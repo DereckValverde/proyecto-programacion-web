@@ -1,7 +1,7 @@
 # proyecto-programacion-web
 Sistema web para la donación, reutilización y gestión de dispositivos tecnológicos.
 
-##Integrantes:
+## Integrantes:
 
 -	ISAAC QUESADA
 - DERECK VALVERDE

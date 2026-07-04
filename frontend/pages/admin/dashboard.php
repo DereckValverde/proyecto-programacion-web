@@ -44,25 +44,23 @@
 
     <main class="main">
         <div class="container-fluid px-4">
-            <h2 class="dashboard-title">
-                Panel Administrativo
-            </h2>
-            <p class="dashboard-message">¡Bienvenido de nuevo, Dereck!</p>
-            <div class="row g-4">
 
+            <h2 class="dashboard-title">Panel Administrativo</h2>
+            <p class="dashboard-message">¡Bienvenido de nuevo, Dereck!</p>
+
+            <div class="row g-4 mb-4">
                 <div class="col-12 col-lg-4">
-                    <div class="dashboard-card card-coral bg-danger border border-2 border border-light rounded-3 p-4 h-100">
+                    <div class="dashboard-card card-coral bg-danger border border-2 border-light rounded-3 p-4 h-100">
                         <div class="d-flex justify-content-between align-items-center">
                             <p class="card-title fw-bold fs-5 mb-0">Solicitudes Pendientes</p>
                             <i class="bi bi-clock-history fs-5"></i>
                         </div>
-
                         <h3 class="card-value fw-bold mt-4 mb-0">54</h3>
                     </div>
                 </div>
 
                 <div class="col-12 col-lg-4">
-                    <div class="dashboard-card card-pine bg-success border border-2 border border-light rounded-3 p-4 h-100">
+                    <div class="dashboard-card card-pine bg-success border border-2 border-light rounded-3 p-4 h-100">
                         <div class="d-flex justify-content-between align-items-center">
                             <p class="card-title fw-bold fs-5 mb-0">Donaciones Completadas</p>
                             <i class="bi bi-check-circle fs-5"></i>
@@ -72,20 +70,130 @@
                 </div>
 
                 <div class="col-12 col-lg-4">
-                    <div class="dashboard-card card-grey bg-warning border border-2 border border-light rounded-3 p-4 h-100">
+                    <div class="dashboard-card card-grey bg-warning border border-2 border-light rounded-3 p-4 h-100">
                         <div class="d-flex justify-content-between">
-                            <p class="card-title fw-bold fs-5">Impacto Ambiental</p>
+                            <p class="card-title fw-bold fs-5">CO₂ Evitado</p>
                             <i class="bi bi-tree fs-5"></i>
                         </div>
-                        <h3 class="card-value fw-bold fs-4 mt-4 mb-0">450 kg</h3>
+                        <h3 class="card-value fw-bold fs-4 mt-4 mb-0">450 kg CO₂e</h3>
                     </div>
                 </div>
             </div>
+
+            <div class="row pt-4 g-4">
+
+                <div class="col-12 col-md-8 d-flex flex-column">
+                    <div class="white-panel bg-white text-dark p-4 rounded-3 shadow-sm h-100">
+                        <h5 class="fw-bold mb-4">Histórico Mensual de Donaciones</h5>
+                        <canvas id="lineChart" style="max-height: 400px; width: 100%;"></canvas>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-4 d-flex flex-column">
+                    <div class="white-panel bg-white text-dark p-4 rounded-3 shadow-sm h-100">
+                        <h5 class="fw-bold mb-4 text-center">Tipos de Equipos Donados</h5>
+                        <canvas id="chartArea"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row pt-4 g-4">
+                <div class="col-12 col-md-8 d-flex flex-column">
+                    <div class="white-panel bg-white text-dark p-4 rounded-3 shadow-sm h-100">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <h5 class="fw-bold mb-0">Solicitudes</h5>
+                            <button type="button" class="btn btn-outline-info btn-sm py-1 px-4">Ver Todas</button>
+
+                        </div>
+
+                        <table class="table text-center">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Beneficiario</th>
+                                    <th scope="col">Equipo Solicitado</th>
+                                    <th scope="col">Fecha</th>
+                                    <th scope="col">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Beneficiario 1</td>
+                                    <td>10 Laptos</td>
+                                    <td>12/12/2022</td>
+                                    <td>
+                                        <button type="button" class="btn btn-outline-primary btn-sm rounded-2">Ver Más</button>
+                                        <button type="button" class="btn btn-danger btn-sm rounded-2">Rechazar</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Beneficiario 2</td>
+                                    <td>5 Monitores</td>
+                                    <td>12/12/2022</td>
+                                    <td>
+                                        <button type="button" class="btn btn-outline-primary btn-sm rounded-2">Ver Más</button>
+                                        <button type="button" class="btn btn-danger btn-sm rounded-2">Rechazar</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Beneficiario 3</td>
+                                    <td>22 Teclados</td>
+                                    <td>12/12/2022</td>
+                                    <td>
+                                        <button type="button" class="btn btn-outline-primary btn-sm rounded-2">Ver Más</button>
+                                        <button type="button" class="btn btn-danger btn-sm rounded-2">Rechazar</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-4 d-flex flex-column">
+                    <div class="white-panel bg-white text-dark p-4 rounded-3 shadow-sm h-100">
+                        <h5 class="fw-bold mb-4">Últimos Logs (Auditoría)</h5>
+                        <div class="list-group list-group-flush class-logs-container">
+
+                            <div class="list-group-item px-0 py-3 border-0 border-bottom">
+                                <div class="d-flex w-100 justify-content-between align-items-center mb-1">
+                                    <span class="badge bg-success-subtle text-success border border-success-subtle rounded-pill px-2 py-1 small">
+                                        <i class="bi bi-check-circle-fill me-1"></i> Creación
+                                    </span>
+                                    <small class="text-muted fw-semibold">Hace 2 min</small>
+                                </div>
+                                <p class="mb-1 text-secondary small fw-medium"><strong>Beneficiario 99</strong> registró una nueva solicitud de 20 Laptops.</p>
+                            </div>
+
+                            <div class="list-group-item px-0 py-3 border-0 border-bottom">
+                                <div class="d-flex w-100 justify-content-between align-items-center mb-1">
+                                    <span class="badge bg-warning-subtle text-warning-emphasis border border-warning-subtle rounded-pill px-2 py-1 small">
+                                        <i class="bi bi-exclamation-triangle-fill me-1"></i> Modificación
+                                    </span>
+                                    <small class="text-muted fw-semibold">Hace 15 min</small>
+                                </div>
+                                <p class="mb-1 text-secondary small fw-medium">Se actualizaron los datos del la solicitud id: <strong>11</strong>.</p>
+                            </div>
+
+                            <div class="list-group-item px-0 py-3 border-0">
+                                <div class="d-flex w-100 justify-content-between align-items-center mb-1">
+                                    <span class="badge bg-danger-subtle text-danger border border-danger-subtle rounded-pill px-2 py-1 small">
+                                        <i class="bi bi-x-circle-fill me-1"></i> Error
+                                    </span>
+                                    <small class="text-muted fw-semibold">Hace 1 hora</small>
+                                </div>
+                                <p class="mb-1 text-secondary small fw-medium">Intento de inicio de sesión fallido para el usuario <strong>admin_test</strong>.</p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </main>
 
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../../assets/js/dashboard-admin.js"></script>
 </body>
 
 </html>

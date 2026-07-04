@@ -7,19 +7,11 @@
 :root {
     --color-pine: #2d6758;
     --color-teal: #0092a5;
-    --color-teal-dark: #007b8b;
-    --color-coral: #ff6447;
-    --color-indigo: #554be4;
-    --color-indigo-dark: #473fc7;
-    --color-grey: #f4f4f4;
-    --color-grey-dark: #282828;
     --color-grey-night: #212121;
     --color-white: #ffffff;
+
     --font-heading: 'Poppins', sans-serif;
     --font-body: 'Inter', 'Segoe UI', system-ui, sans-serif;
-    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
-    --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.08);
-    --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.12);
 }
 
 body {
@@ -128,7 +120,11 @@ body {
 }
 
 @media (max-width: 767px) {
-    .main h2 {
+    .dashboard-title {
+        text-align: center;
+    }
+
+    .dashboard-message {
         text-align: center;
     }
 }

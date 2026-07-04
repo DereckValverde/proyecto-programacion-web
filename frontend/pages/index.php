@@ -8,7 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/png" href="img/LOGO.png">
+    <link rel="icon" type="image/png" href="../assets/images/LOGO.png">
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 
@@ -17,7 +17,7 @@
     <nav class="navbar navbar-expand-lg sticky-top" id="mainNavbar">
         <div class="container">
             <a class="navbar-brand" href="#inicio">
-                <img src="img/LOGO.png" alt="ConectiTicos" class="navbar-logo"> ConectiTicos
+                <img src="../assets/images/LOGO.png" alt="ConectiTicos" class="navbar-logo"> ConectiTicos
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Abrir menú">
                 <i class="fas fa-bars"></i>

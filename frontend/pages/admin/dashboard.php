@@ -17,7 +17,7 @@
 
     <nav class="navbar navbar-expand-lg sticky-top" id="mainNavbar">
         <div class="container">
-            <a class="navbar-brand" href="#inicio">
+            <a class="navbar-brand" href="#">
                 <img src="../../assets/images/LOGO.png"" alt=" ConectiTicos" class="navbar-logo"> ConectiTicos
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Abrir menú">
@@ -29,13 +29,13 @@
                         <a class="nav-link active" href="#inicio" data-section="inicio">Dashboard</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#mision" data-section="mision">Gestión de Solicitudes</a>
+                        <a class="nav-link" href="#" data-section="mision">Gestión de Solicitudes</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#impacto" data-section="impacto">Gestión de Donaciones</a>
+                        <a class="nav-link" href="#" data-section="impacto">Gestión de Donaciones</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#contacto" data-section="contacto"><i class="bi bi-box-arrow-right"></i></a>
+                        <a class="nav-link" href="#" data-section="contacto"><i class="bi bi-box-arrow-right"></i></a>
                     </li>
                 </ul>
             </div>
@@ -100,51 +100,53 @@
             <div class="row pt-4 g-4">
                 <div class="col-12 col-md-8 d-flex flex-column">
                     <div class="white-panel bg-white text-dark p-4 rounded-3 shadow-sm h-100">
-                        <div class="d-flex justify-content-between align-items-center mb-4">
+
+                        <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
                             <h5 class="fw-bold mb-0">Solicitudes</h5>
                             <button type="button" class="btn btn-outline-info btn-sm py-1 px-4">Ver Todas</button>
-
                         </div>
 
-                        <table class="table text-center">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Beneficiario</th>
-                                    <th scope="col">Equipo Solicitado</th>
-                                    <th scope="col">Fecha</th>
-                                    <th scope="col">Acciones</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Beneficiario 1</td>
-                                    <td>10 Laptos</td>
-                                    <td>12/12/2022</td>
-                                    <td>
-                                        <button type="button" class="btn btn-outline-primary btn-sm rounded-2">Ver Más</button>
-                                        <button type="button" class="btn btn-danger btn-sm rounded-2">Rechazar</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Beneficiario 2</td>
-                                    <td>5 Monitores</td>
-                                    <td>12/12/2022</td>
-                                    <td>
-                                        <button type="button" class="btn btn-outline-primary btn-sm rounded-2">Ver Más</button>
-                                        <button type="button" class="btn btn-danger btn-sm rounded-2">Rechazar</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Beneficiario 3</td>
-                                    <td>22 Teclados</td>
-                                    <td>12/12/2022</td>
-                                    <td>
-                                        <button type="button" class="btn btn-outline-primary btn-sm rounded-2">Ver Más</button>
-                                        <button type="button" class="btn btn-danger btn-sm rounded-2">Rechazar</button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <div class="table-responsive">
+                            <table class="table text-center align-middle mb-0">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Beneficiario</th>
+                                        <th scope="col">Equipo Solicitado</th>
+                                        <th scope="col">Fecha</th>
+                                        <th scope="col">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Beneficiario 1</td>
+                                        <td>10 Laptops</td>
+                                        <td>12/12/2022</td>
+                                        <td class="d-flex flex-wrap justify-content-center gap-2">
+                                            <button type="button" class="btn btn-outline-primary btn-sm rounded-2">Ver Más</button>
+                                            <button type="button" class="btn btn-danger btn-sm rounded-2">Rechazar</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Beneficiario 2</td>
+                                        <td>5 Monitores</td>
+                                        <td>12/12/2022</td>
+                                        <td class="d-flex flex-wrap justify-content-center gap-2">
+                                            <button type="button" class="btn btn-outline-primary btn-sm rounded-2">Ver Más</button>
+                                            <button type="button" class="btn btn-danger btn-sm rounded-2">Rechazar</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Beneficiario 3</td>
+                                        <td>22 Teclados</td>
+                                        <td>12/12/2022</td>
+                                        <td class="d-flex flex-wrap justify-content-center gap-2">
+                                            <button type="button" class="btn btn-outline-primary btn-sm rounded-2">Ver Más</button>
+                                            <button type="button" class="btn btn-danger btn-sm rounded-2">Rechazar</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
 
@@ -156,7 +158,7 @@
                             <div class="list-group-item px-0 py-3 border-0 border-bottom">
                                 <div class="d-flex w-100 justify-content-between align-items-center mb-1">
                                     <span class="badge bg-success-subtle text-success border border-success-subtle rounded-pill px-2 py-1 small">
-                                        <i class="bi bi-check-circle-fill me-1"></i> Creación
+                                        Creación
                                     </span>
                                     <small class="text-muted fw-semibold">Hace 2 min</small>
                                 </div>
@@ -166,28 +168,26 @@
                             <div class="list-group-item px-0 py-3 border-0 border-bottom">
                                 <div class="d-flex w-100 justify-content-between align-items-center mb-1">
                                     <span class="badge bg-warning-subtle text-warning-emphasis border border-warning-subtle rounded-pill px-2 py-1 small">
-                                        <i class="bi bi-exclamation-triangle-fill me-1"></i> Modificación
+                                        Modificación
                                     </span>
                                     <small class="text-muted fw-semibold">Hace 15 min</small>
                                 </div>
-                                <p class="mb-1 text-secondary small fw-medium">Se actualizaron los datos del la solicitud id: <strong>11</strong>.</p>
+                                <p class="mb-1 text-secondary small fw-medium">Se actualizaron los datos de la solicitud id: <strong>11</strong>.</p>
                             </div>
 
                             <div class="list-group-item px-0 py-3 border-0">
                                 <div class="d-flex w-100 justify-content-between align-items-center mb-1">
                                     <span class="badge bg-danger-subtle text-danger border border-danger-subtle rounded-pill px-2 py-1 small">
-                                        <i class="bi bi-x-circle-fill me-1"></i> Error
+                                        Error
                                     </span>
                                     <small class="text-muted fw-semibold">Hace 1 hora</small>
                                 </div>
                                 <p class="mb-1 text-secondary small fw-medium">Intento de inicio de sesión fallido para el usuario <strong>admin_test</strong>.</p>
                             </div>
-
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
     </main>
 

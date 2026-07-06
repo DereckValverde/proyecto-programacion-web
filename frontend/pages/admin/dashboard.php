@@ -43,10 +43,12 @@
     </nav>
 
     <main class="main">
-        <div class="container-fluid px-4">
+        <div class="d-flex flex-column container-fluid px-4 gap-3">
 
-            <h2 class="dashboard-title">Panel Administrativo</h2>
-            <p class="dashboard-message">¡Bienvenido de nuevo, Dereck!</p>
+            <div>
+                <p>Panel Administrativo / <strong>Dashboard</strong></p>
+                <h2 class="dashboard-title">Panel Administrativo</h2>
+            </div>
 
             <div class="row g-4 mb-4">
                 <div class="col-12 col-lg-4">
@@ -122,8 +124,8 @@
                                         <td>10 Laptops</td>
                                         <td>12/12/2022</td>
                                         <td class="d-flex flex-wrap justify-content-center gap-2">
-                                            <button type="button" class="btn btn-outline-primary btn-sm rounded-2">Ver Más</button>
-                                            <button type="button" class="btn btn-danger btn-sm rounded-2">Rechazar</button>
+                                            <button type="button" class="btn btn-primary btn-sm rounded-2 flex-fill">Ver Más</button>
+                                            <button type="button" class="btn btn-danger btn-sm rounded-2 flex-fill">Rechazar</button>
                                         </td>
                                     </tr>
                                     <tr>
@@ -131,8 +133,8 @@
                                         <td>5 Monitores</td>
                                         <td>12/12/2022</td>
                                         <td class="d-flex flex-wrap justify-content-center gap-2">
-                                            <button type="button" class="btn btn-outline-primary btn-sm rounded-2">Ver Más</button>
-                                            <button type="button" class="btn btn-danger btn-sm rounded-2">Rechazar</button>
+                                            <button type="button" class="btn btn-primary btn-sm rounded-2 flex-fill">Ver Más</button>
+                                            <button type="button" class="btn btn-danger btn-sm rounded-2 flex-fill">Rechazar</button>
                                         </td>
                                     </tr>
                                     <tr>
@@ -140,8 +142,8 @@
                                         <td>22 Teclados</td>
                                         <td>12/12/2022</td>
                                         <td class="d-flex flex-wrap justify-content-center gap-2">
-                                            <button type="button" class="btn btn-outline-primary btn-sm rounded-2">Ver Más</button>
-                                            <button type="button" class="btn btn-danger btn-sm rounded-2">Rechazar</button>
+                                            <button type="button" class="btn btn-primary btn-sm rounded-2 flex-fill">Ver Más</button>
+                                            <button type="button" class="btn btn-danger btn-sm rounded-2 flex-fill">Rechazar</button>
                                         </td>
                                     </tr>
                                 </tbody>

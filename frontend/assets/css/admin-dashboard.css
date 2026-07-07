@@ -78,8 +78,7 @@ body {
 }
 
 .main {
-    background-color: var(--color-teal);
-    color: var(--color-white);
+    background-color: #F5F8F7;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -112,11 +111,6 @@ body {
     background: rgba(255, 255, 255, 0.03);
     bottom: -80px;
     left: -80px;
-}
-
-.cards-container {
-    border: 1px solid red;
-    width: 100%;
 }
 
 @media (max-width: 767px) {
@@ -153,7 +147,6 @@ body {
     font-family: var(--font-heading);
     font-size: 2.3rem;
     font-weight: 700;
-    color: var(--color-white);
     letter-spacing: -0.5px;
 }
 

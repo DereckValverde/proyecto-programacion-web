@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="../../assets/images/LOGO.png">
-    <link rel="stylesheet" href="../../assets//css/admin-dashboard.css">
+    <link rel="stylesheet" href="../../assets//css/style-admin-dashboard.css">
 </head>
 
 <body>
@@ -26,13 +26,13 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" href="#inicio" data-section="inicio">Dashboard</a>
+                        <a class="nav-link active" href="./dashboard.php" data-section="inicio">Dashboard</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" data-section="mision">Gestión de Solicitudes</a>
+                        <a class="nav-link" href="./crud-solicitudes.php" data-section="mision">Gestión de Solicitudes</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" data-section="impacto">Gestión de Donaciones</a>
+                        <a class="nav-link" href="./crud-donaciones.php" data-section="impacto">Gestión de Donaciones</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#" data-section="contacto"><i class="bi bi-box-arrow-right"></i></a>
@@ -45,7 +45,7 @@
     <main class="main">
         <div class="d-flex flex-column container-fluid px-4 gap-3">
 
-            <div>
+            <div class="py-4">
                 <p>Panel Administrativo / <strong>Dashboard</strong></p>
                 <h2 class="dashboard-title">Panel Administrativo</h2>
             </div>

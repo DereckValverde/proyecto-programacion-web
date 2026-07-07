@@ -9,8 +9,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="../../assets/images/LOGO.png">
-    <link rel="stylesheet" href="../../assets/css/style-crud-solicitudes.css">
-    <title>Panel Administrativo - Solicitudes</title>
+    <link rel="stylesheet" href="../../assets/css/style-crud-donaciones.css">
+    <title>Panel Administrativo - Donaciones</title>
 </head>
 
 <body>
@@ -28,10 +28,10 @@
                         <a class="nav-link" href="./dashboard.php" data-section="inicio">Dashboard</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="./crud-solicitudes.php" data-section="mision">Gestión de Solicitudes</a>
+                        <a class="nav-link" href="./crud-solicitudes.php" data-section="mision">Gestión de Solicitudes</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./crud-donaciones.php" data-section="impacto">Gestión de Donaciones</a>
+                        <a class="nav-link active" href="./crud-donaciones.php" data-section="impacto">Gestión de Donaciones</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#" data-section="contacto"><i class="bi bi-box-arrow-right"></i></a>
@@ -45,23 +45,23 @@
         <div class="d-flex flex-column container-fluid px-4 gap-5">
 
             <div class="dashboard-head">
-                <p>Panel Administrativo / <strong>Solicitudes</strong></p>
-                <h2>Gestión de Solicitudes</h2>
+                <p>Panel Administrativo / <strong>Donaciones</strong></p>
+                <h2>Gestión de Donaciones</h2>
             </div>
 
             <div class="row g-4 mb-4">
                 <div class="col-12 col-lg-3">
                     <div class="d-flex flex-column dashboard-card shadow text-dark bg-white border border-1 border-dark-light rounded-4 p-3">
                         <div class="d-flex justify-content-between align-items-center">
-                            <p class="card-title text-secondary  fw-bold fs-8 mb-0">Total de Solicitudes</p>
-                            <i class="bi bi-inbox fs-5 text-secondary"></i>
+                            <p class="card-title text-secondary  fw-bold fs-8 mb-0">Total de Donaciones</p>
+                            <i class="bi bi-box2-heart fs-5 text-secondary"></i>
                         </div>
                         <h3 class="card-value text-dark fs-5 fw-bold mt-4 mb-0">21</h3>
                     </div>
                 </div>
 
                 <div class="col-12 col-lg-3">
-                    <div class="d-flex flex-column dashboard-card shadow border border-1 border-dark-light  rounded-4 p-3 solicitudes-pendientes">
+                    <div class="d-flex flex-column dashboard-card shadow border border-1 border-dark-light  rounded-4 p-3 donaciones-pendientes">
                         <div class="d-flex justify-content-between align-items-center">
                             <p class="card-title fw-bold fs-8 mb-0">Pendientes de Revisar</p>
                             <i class="bi bi-clipboard-check fs-5"></i>
@@ -73,7 +73,7 @@
                 <div class="col-12 col-lg-3">
                     <div class="d-flex flex-column dashboard-card shadow text-dark bg-white border border-1 border-dark-light rounded-4 p-3">
                         <div class="d-flex justify-content-between align-items-center">
-                            <p class="card-title text-secondary fw-bold fs-8 mb-0"> Solicitudes Aceptadas</p>
+                            <p class="card-title text-secondary fw-bold fs-8 mb-0"> Donaciones Aceptadas</p>
                             <i class="bi bi-check-circle fs-5 text-secondary"></i>
                         </div>
                         <h3 class="card-value text-dark fs-5 fw-bold mt-4 mb-0">32</h3>
@@ -83,7 +83,7 @@
                 <div class="col-12 col-lg-3">
                     <div class="d-flex flex-column dashboard-card shadow text-dark bg-white border border-1 border-dark-light rounded-4 p-3">
                         <div class="d-flex justify-content-between align-items-center">
-                            <p class="card-title text-secondary fw-bold fs-8 mb-0">Solicitudes Rechazadas</p>
+                            <p class="card-title text-secondary fw-bold fs-8 mb-0">Donaciones Rechazadas</p>
                             <i class="bi bi-x-circle fs-5 text-secondary"></i>
                         </div>
                         <h3 class="card-value text-dark fs-5 fw-bold mt-4 mb-0">13</h3>
@@ -102,8 +102,8 @@
                 <table class="table text-center align-middle mb-0">
                     <thead class="table-light">
                         <tr>
-                            <th scope="col">Solicitante</th>
-                            <th scope="col">Equipo Solicitado</th>
+                            <th scope="col">Donante</th>
+                            <th scope="col">Equipo Donado</th>
                             <th scope="col">Unidades</th>
                             <th scope="col">Fecha</th>
                             <th scope="col">Estado</th>
@@ -122,10 +122,10 @@
                                     <button title="Ver Más" class="boton-acciones" id="btn-ver-mas">
                                         <i class="bi bi-eye-fill"></i>
                                     </button>
-                                    <button title="Aceptar Solicitud" class="boton-acciones" id="btn-aceptar">
+                                    <button title="Aceptar Donación" class="boton-acciones" id="btn-aceptar">
                                         <i class="bi bi-check-lg"></i>
                                     </button>
-                                    <button title="Rechazar Solicitud" class="boton-acciones" id="btn-rechazar">
+                                    <button title="Rechazar Donación" class="boton-acciones" id="btn-rechazar">
                                         <i class="bi bi-x"></i>
                                     </button>
                                 </div>
@@ -143,10 +143,10 @@
                                     <button title="Ver Más" class="boton-acciones" id="btn-ver-mas">
                                         <i class="bi bi-eye-fill"></i>
                                     </button>
-                                    <button title="Aceptar Solicitud" class="boton-acciones" id="btn-aceptar">
+                                    <button title="Aceptar Donación" class="boton-acciones" id="btn-aceptar">
                                         <i class="bi bi-check-lg"></i>
                                     </button>
-                                    <button title="Rechazar Solicitud" class="boton-acciones" id="btn-rechazar">
+                                    <button title="Rechazar Donación" class="boton-acciones" id="btn-rechazar">
                                         <i class="bi bi-x"></i>
                                     </button>
                                 </div>
@@ -164,10 +164,10 @@
                                     <button title="Ver Más" class="boton-acciones" id="btn-ver-mas">
                                         <i class="bi bi-eye-fill"></i>
                                     </button>
-                                    <button title="Aceptar Solicitud" class="boton-acciones" id="btn-aceptar">
+                                    <button title="Aceptar Donación" class="boton-acciones" id="btn-aceptar">
                                         <i class="bi bi-check-lg"></i>
                                     </button>
-                                    <button title="Rechazar Solicitud" class="boton-acciones" id="btn-rechazar">
+                                    <button title="Rechazar Donación" class="boton-acciones" id="btn-rechazar">
                                         <i class="bi bi-x"></i>
                                     </button>
                                 </div>
@@ -185,10 +185,10 @@
                                     <button title="Ver Más" class="boton-acciones" id="btn-ver-mas">
                                         <i class="bi bi-eye-fill"></i>
                                     </button>
-                                    <button title="Aceptar Solicitud" class="boton-acciones" id="btn-aceptar">
+                                    <button title="Aceptar Donación" class="boton-acciones" id="btn-aceptar">
                                         <i class="bi bi-check-lg"></i>
                                     </button>
-                                    <button title="Rechazar Solicitud" class="boton-acciones" id="btn-rechazar">
+                                    <button title="Rechazar Donación" class="boton-acciones" id="btn-rechazar">
                                         <i class="bi bi-x"></i>
                                     </button>
                                 </div>
@@ -206,10 +206,10 @@
                                     <button title="Ver Más" class="boton-acciones" id="btn-ver-mas">
                                         <i class="bi bi-eye-fill"></i>
                                     </button>
-                                    <button title="Aceptar Solicitud" class="boton-acciones" id="btn-aceptar">
+                                    <button title="Aceptar Donación" class="boton-acciones" id="btn-aceptar">
                                         <i class="bi bi-check-lg"></i>
                                     </button>
-                                    <button title="Rechazar Solicitud" class="boton-acciones" id="btn-rechazar">
+                                    <button title="Rechazar Donación" class="boton-acciones" id="btn-rechazar">
                                         <i class="bi bi-x"></i>
                                     </button>
                                 </div>
@@ -227,10 +227,10 @@
                                     <button title="Ver Más" class="boton-acciones" id="btn-ver-mas">
                                         <i class="bi bi-eye-fill"></i>
                                     </button>
-                                    <button title="Aceptar Solicitud" class="boton-acciones" id="btn-aceptar">
+                                    <button title="Aceptar Donación" class="boton-acciones" id="btn-aceptar">
                                         <i class="bi bi-check-lg"></i>
                                     </button>
-                                    <button title="Rechazar Solicitud" class="boton-acciones" id="btn-rechazar">
+                                    <button title="Rechazar Donación" class="boton-acciones" id="btn-rechazar">
                                         <i class="bi bi-x"></i>
                                     </button>
                                 </div>

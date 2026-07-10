@@ -16,19 +16,19 @@
 
             <h1>Acceso Administrativo</h1>
 
-            <form>
-
+            <form id="frmLogin">
                 <label for="">Usuario:</label>
-                <input type="text" name="username" id="username" required>
+                <input type="email" name="correo" id="correo" autocomplete="email" required>
 
                 <label for="">Contraseña</label>
-                <input type="password" name="password" id="password" required>
+                <input type="password" name="password" id="password" autocomplete="current-password" required>
 
+                <p id="msgError"></p>
                 <button type="submit">Inciar Sesión</button>
-
             </form>
 
         </div>
     </body>
 
+    <script src="../../assets/js/login.js"></script>
 </html>

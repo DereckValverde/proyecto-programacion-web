@@ -1,3 +1,12 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['user_id'])) {
+    header('location: ./login.php');
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -33,8 +42,22 @@
                     <li class="nav-item">
                         <a class="nav-link active" href="./crud-donaciones.php" data-section="impacto">Gestión de Donaciones</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" data-section="contacto"><i class="bi bi-box-arrow-right"></i></a>
+
+                    <li class="nav-item ms-4">
+                        <div class="d-flex align-items-center bg-light rounded-pill px-3 py-0 shadow-sm">
+                            <i class="bi bi-person-circle fs-4 me-2 text-secondary"></i>
+                            <span class="fw-semibold text-dark">
+                                <?= htmlspecialchars($_SESSION['user_name']) ?>
+                            </span>
+                        </div>
+                    </li>
+
+                    <li class="nav-item ms-3">
+                        <a class="nav-link text-danger"
+                            href="/proyecto-programacion-web/backend/backend-admin/logout.php"
+                            title="Cerrar sesión">
+                            <i class="bi bi-box-arrow-right fs-4"></i>
+                        </a>
                     </li>
                 </ul>
             </div>

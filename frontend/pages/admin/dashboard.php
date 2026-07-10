@@ -1,3 +1,12 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['user_id'])) {
+    header('location: ./login.php');
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -24,18 +33,39 @@
                 <i class="fas fa-bars"></i>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
+                <ul class="navbar-nav ms-auto align-items-center">
+
                     <li class="nav-item">
-                        <a class="nav-link active" href="./dashboard.php" data-section="inicio">Dashboard</a>
+                        <a class="nav-link active" href="./dashboard.php">Dashboard</a>
                     </li>
+
                     <li class="nav-item">
-                        <a class="nav-link" href="./crud-solicitudes.php" data-section="mision">Gestión de Solicitudes</a>
+                        <a class="nav-link" href="./crud-solicitudes.php">
+                            Gestión de Solicitudes
+                        </a>
                     </li>
+
                     <li class="nav-item">
-                        <a class="nav-link" href="./crud-donaciones.php" data-section="impacto">Gestión de Donaciones</a>
+                        <a class="nav-link" href="./crud-donaciones.php">
+                            Gestión de Donaciones
+                        </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" data-section="contacto"><i class="bi bi-box-arrow-right"></i></a>
+
+                    <li class="nav-item ms-4">
+                        <div class="d-flex align-items-center bg-light rounded-pill px-3 py-0 shadow-sm">
+                            <i class="bi bi-person-circle fs-4 me-2 text-secondary"></i>
+                            <span class="fw-semibold text-dark">
+                                <?= htmlspecialchars($_SESSION['user_name']) ?>
+                            </span>
+                        </div>
+                    </li>
+
+                    <li class="nav-item ms-3">
+                        <a class="nav-link text-danger"
+                            href="/proyecto-programacion-web/backend/backend-admin/logout.php"
+                            title="Cerrar sesión">
+                            <i class="bi bi-box-arrow-right fs-4"></i>
+                        </a>
                     </li>
                 </ul>
             </div>
@@ -52,7 +82,7 @@
 
             <div class="row g-4 mb-4">
                 <div class="col-12 col-lg-4">
-                    <div class="dashboard-card text-light bg-danger border border-2 border-dark rounded-3 p-4 h-100">
+                    <div class="dashboard-card text-dark bg-white rounded-3 shadow-sm rounded-3 p-4 h-100">
                         <div class="d-flex justify-content-between align-items-center">
                             <p class="card-title fw-bold fs-5 mb-0">Solicitudes Pendientes</p>
                             <i class="bi bi-clock-history fs-5"></i>
@@ -62,7 +92,7 @@
                 </div>
 
                 <div class="col-12 col-lg-4">
-                    <div class="dashboard-card text-light bg-success border border-2 border-dark rounded-3 p-4 h-100">
+                    <div class="dashboard-card text-dark bg-white rounded-3 shadow-sm rounded-3 p-4 h-100">
                         <div class="d-flex justify-content-between align-items-center">
                             <p class="card-title fw-bold fs-5 mb-0">Donaciones Completadas</p>
                             <i class="bi bi-check-circle fs-5"></i>
@@ -72,7 +102,7 @@
                 </div>
 
                 <div class="col-12 col-lg-4">
-                    <div class="dashboard-card text-light bg-warning border border-2 border-dark rounded-3 p-4 h-100">
+                    <div class="dashboard-card text-dark bg-white rounded-3 shadow-sm rounded-3 p-4 h-100">
                         <div class="d-flex justify-content-between">
                             <p class="card-title fw-bold fs-5">CO₂ Evitado</p>
                             <i class="bi bi-tree fs-5"></i>

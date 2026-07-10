@@ -14,6 +14,47 @@
 </head>
 
 <body>
+    <!-- Modal -->
+    <div class="modal fade" id="miModal" tabindex="-1" aria-labelledby="miModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+
+                <!-- Encabezado -->
+                <div class="modal-header">
+                    <h5 class="modal-title" id="miModalLabel">Detalle de solicitud</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+
+                <!-- Cuerpo -->
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <strong>Beneficiario:</strong>
+                        <span>Escuela ABC</span>
+                    </div>
+
+                    <div class="mb-3">
+                        <strong>Equipo solicitado:</strong>
+                        <span>Laptop Dell Latitude</span>
+                    </div>
+
+                    <div class="mb-3">
+                        <strong>Unidades:</strong>
+                        <span>10</span>
+                    </div>
+                </div>
+
+                <!-- Pie -->
+                <div class="modal-footer">
+                    <button type="button" data-bs-dismiss="modal" class="btn btn-danger">
+                        Cerrar
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
 
     <nav class="navbar navbar-expand-lg sticky-top" id="mainNavbar">
         <div class="container">
@@ -124,7 +165,7 @@
                                         <td>10 Laptops</td>
                                         <td>12/12/2022</td>
                                         <td class="d-flex flex-wrap justify-content-center gap-2">
-                                            <button type="button" class="btn btn-primary btn-sm rounded-2 flex-fill">Ver Más</button>
+                                            <button type="button" class="btn btn-primary btn-sm rounded-2 flex-fill " data-bs-toggle="modal" data-bs-target="#miModal">Ver Más</button>
                                             <button type="button" class="btn btn-danger btn-sm rounded-2 flex-fill">Rechazar</button>
                                         </td>
                                     </tr>
@@ -133,7 +174,7 @@
                                         <td>5 Monitores</td>
                                         <td>12/12/2022</td>
                                         <td class="d-flex flex-wrap justify-content-center gap-2">
-                                            <button type="button" class="btn btn-primary btn-sm rounded-2 flex-fill">Ver Más</button>
+                                            <button type="button" class="btn btn-primary btn-sm rounded-2 flex-fill" data-bs-toggle="modal" data-bs-target="#miModal">Ver Más</button>
                                             <button type="button" class="btn btn-danger btn-sm rounded-2 flex-fill">Rechazar</button>
                                         </td>
                                     </tr>
@@ -142,7 +183,7 @@
                                         <td>22 Teclados</td>
                                         <td>12/12/2022</td>
                                         <td class="d-flex flex-wrap justify-content-center gap-2">
-                                            <button type="button" class="btn btn-primary btn-sm rounded-2 flex-fill">Ver Más</button>
+                                            <button type="button" class="btn btn-primary btn-sm rounded-2 flex-fill" data-bs-toggle="modal" data-bs-target="#miModal">Ver Más</button>
                                             <button type="button" class="btn btn-danger btn-sm rounded-2 flex-fill">Rechazar</button>
                                         </td>
                                     </tr>

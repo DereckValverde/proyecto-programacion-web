@@ -1,30 +1,5 @@
-# IDEs y editores
 .vscode/
-.idea/
-*.swp
-*.swo
-*~
-
-# Sistema
+.env
+*.log
 .DS_Store
 Thumbs.db
-Desktop.ini
-
-# Dependencias
-node_modules/
-vendor/
-
-# Entorno
-.env
-.env.local
-
-# Logs
-*.log
-
-# PHP
-*.phar
-
-# Archivos temporales
-*.tmp
-*.bak
-*.orig

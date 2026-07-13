@@ -571,31 +571,31 @@
             </div>
             <div class="allies-track-wrapper">
                 <div class="allies-track">
-                    <img src="https://logo.clearbit.com/dell.com" alt="Dell" class="ally-logo">
-                    <img src="https://logo.clearbit.com/hp.com" alt="HP" class="ally-logo">
-                    <img src="https://logo.clearbit.com/lenovo.com" alt="Lenovo" class="ally-logo">
-                    <img src="https://logo.clearbit.com/samsung.com" alt="Samsung" class="ally-logo">
-                    <img src="https://logo.clearbit.com/intel.com" alt="Intel" class="ally-logo">
-                    <img src="https://logo.clearbit.com/microsoft.com" alt="Microsoft" class="ally-logo">
-                    <img src="https://logo.clearbit.com/apple.com" alt="Apple" class="ally-logo">
-                    <img src="https://logo.clearbit.com/cisco.com" alt="Cisco" class="ally-logo">
-                    <img src="https://logo.clearbit.com/ibm.com" alt="IBM" class="ally-logo">
-                    <img src="https://logo.clearbit.com/oracle.com" alt="Oracle" class="ally-logo">
-                    <img src="https://logo.clearbit.com/sony.com" alt="Sony" class="ally-logo">
-                    <img src="https://logo.clearbit.com/lg.com" alt="LG" class="ally-logo">
-                    <!-- Logos duplicados para loop infinito -->
-                    <img src="https://logo.clearbit.com/dell.com" alt="Dell" class="ally-logo">
-                    <img src="https://logo.clearbit.com/hp.com" alt="HP" class="ally-logo">
-                    <img src="https://logo.clearbit.com/lenovo.com" alt="Lenovo" class="ally-logo">
-                    <img src="https://logo.clearbit.com/samsung.com" alt="Samsung" class="ally-logo">
-                    <img src="https://logo.clearbit.com/intel.com" alt="Intel" class="ally-logo">
-                    <img src="https://logo.clearbit.com/microsoft.com" alt="Microsoft" class="ally-logo">
-                    <img src="https://logo.clearbit.com/apple.com" alt="Apple" class="ally-logo">
-                    <img src="https://logo.clearbit.com/cisco.com" alt="Cisco" class="ally-logo">
-                    <img src="https://logo.clearbit.com/ibm.com" alt="IBM" class="ally-logo">
-                    <img src="https://logo.clearbit.com/oracle.com" alt="Oracle" class="ally-logo">
-                    <img src="https://logo.clearbit.com/sony.com" alt="Sony" class="ally-logo">
-                    <img src="https://logo.clearbit.com/lg.com" alt="LG" class="ally-logo">
+                    <div class="ally-item"><i class="fab fa-dell"></i><span>Dell</span></div>
+                    <div class="ally-item"><i class="fab fa-hp"></i><span>HP</span></div>
+                    <div class="ally-item"><i class="fab fa-apple"></i><span>Apple</span></div>
+                    <div class="ally-item"><i class="fab fa-intel"></i><span>Intel</span></div>
+                    <div class="ally-item"><i class="fab fa-microsoft"></i><span>Microsoft</span></div>
+                    <div class="ally-item"><i class="fab fa-ibm"></i><span>IBM</span></div>
+                    <div class="ally-item"><i class="fab fa-samsung"></i><span>Samsung</span></div>
+                    <div class="ally-item"><i class="fab fa-android"></i><span>Android</span></div>
+                    <div class="ally-item"><i class="fab fa-aws"></i><span>AWS</span></div>
+                    <div class="ally-item"><i class="fab fa-linux"></i><span>Linux</span></div>
+                    <div class="ally-item"><i class="fab fa-python"></i><span>Python</span></div>
+                    <div class="ally-item"><i class="fab fa-java"></i><span>Java</span></div>
+                    <!-- Duplicados para loop infinito -->
+                    <div class="ally-item"><i class="fab fa-dell"></i><span>Dell</span></div>
+                    <div class="ally-item"><i class="fab fa-hp"></i><span>HP</span></div>
+                    <div class="ally-item"><i class="fab fa-apple"></i><span>Apple</span></div>
+                    <div class="ally-item"><i class="fab fa-intel"></i><span>Intel</span></div>
+                    <div class="ally-item"><i class="fab fa-microsoft"></i><span>Microsoft</span></div>
+                    <div class="ally-item"><i class="fab fa-ibm"></i><span>IBM</span></div>
+                    <div class="ally-item"><i class="fab fa-samsung"></i><span>Samsung</span></div>
+                    <div class="ally-item"><i class="fab fa-android"></i><span>Android</span></div>
+                    <div class="ally-item"><i class="fab fa-aws"></i><span>AWS</span></div>
+                    <div class="ally-item"><i class="fab fa-linux"></i><span>Linux</span></div>
+                    <div class="ally-item"><i class="fab fa-python"></i><span>Python</span></div>
+                    <div class="ally-item"><i class="fab fa-java"></i><span>Java</span></div>
                 </div>
             </div>
         </div>

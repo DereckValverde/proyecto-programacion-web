@@ -569,7 +569,30 @@
                 <h2>Aliados</h2>
                 <p class="sh-subtitle">Empresas que hacen posible esta labor</p>
             </div>
-            <p class="allies-soon"><i class="fas fa-handshake"></i> Próximamente anunciaremos a nuestros aliados estratégicos</p>
+            <div class="allies-marquee-wrapper">
+                <div class="allies-marquee">
+                    <span class="allies-marquee-text">Próximamente</span>
+                    <span class="allies-marquee-dot"></span>
+                    <span class="allies-marquee-text">Próximamente</span>
+                    <span class="allies-marquee-dot"></span>
+                    <span class="allies-marquee-text">Próximamente</span>
+                    <span class="allies-marquee-dot"></span>
+                    <span class="allies-marquee-text">Próximamente</span>
+                    <span class="allies-marquee-dot"></span>
+                    <span class="allies-marquee-text">Próximamente</span>
+                    <span class="allies-marquee-dot"></span>
+                    <span class="allies-marquee-text">Próximamente</span>
+                    <span class="allies-marquee-dot"></span>
+                    <span class="allies-marquee-text">Próximamente</span>
+                    <span class="allies-marquee-dot"></span>
+                    <span class="allies-marquee-text">Próximamente</span>
+                    <span class="allies-marquee-dot"></span>
+                    <span class="allies-marquee-text">Próximamente</span>
+                    <span class="allies-marquee-dot"></span>
+                    <span class="allies-marquee-text">Próximamente</span>
+                    <span class="allies-marquee-dot"></span>
+                </div>
+            </div>
         </div>
     </section>
 

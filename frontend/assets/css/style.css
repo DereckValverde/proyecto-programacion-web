@@ -772,16 +772,46 @@ h6 {
 }
 
 /* US-06: Aliados */
-.allies-soon {
-    text-align: center;
-    font-size: 1.1rem;
-    color: #888;
-    padding: 2rem 0;
+.allies-marquee-wrapper {
+    overflow: hidden;
+    margin-top: 2rem;
 }
 
-.allies-soon i {
-    color: var(--color-pine);
-    margin-right: 8px;
+.allies-marquee {
+    display: flex;
+    gap: 3rem;
+    width: max-content;
+    animation: scrollMarquee 20s linear infinite;
+    align-items: center;
+}
+
+.allies-marquee:hover {
+    animation-play-state: paused;
+}
+
+@keyframes scrollMarquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+.allies-marquee-text {
+    flex-shrink: 0;
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--color-grey-night);
+    opacity: 0.25;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+}
+
+.allies-marquee-dot {
+    flex-shrink: 0;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--color-coral);
+    opacity: 0.4;
 }
 
 /* US-07: Testimonios - Carrusel */

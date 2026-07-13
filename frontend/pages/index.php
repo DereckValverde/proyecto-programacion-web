@@ -659,63 +659,122 @@
         </div>
     </section>
 
-    <section id="contacto" class="section-padding">
-        <div class="container">
-            <div class="section-header">
-                <div class="sh-bar"></div>
-                <h2>Contacto</h2>
-                <p class="sh-subtitle">Estamos aquí para ayudarte</p>
-            </div>
-            <p class="placeholder-hint"><i class="fas fa-arrow-down"></i> US-11: Formulario de contacto + redes sociales
-            </p>
+ <section id="contacto" class="section-padding">
+    <div class="container">
+
+        <div class="section-header">
+            <div class="sh-bar"></div>
+            <h2>Contacto</h2>
+            <p class="sh-subtitle">Estamos aquí para ayudarte</p>
         </div>
-    </section>
 
-    <footer class="section-padding">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <h5><img src="../assets/images/LOGO.png" alt="ConectiTicos" class="footer-logo"> ConectiTicos</h5>
-                    <p>Cerrando la brecha digital, una compu a la vez.</p>
-                    <div class="footer-newsletter">
-                        <p>Recibí novedades</p>
-                        <div class="input-group">
-                            <input type="email" placeholder="tu@email.com">
-                            <button type="button"><i class="fas fa-paper-plane"></i></button>
-                        </div>
-                        <small class="form-text">Sin spam, solo info de campañas.</small>
+        <div class="row g-4">
+
+            <!-- Formulario -->
+            <div class="col-lg-7">
+
+                <div class="card shadow border-0 h-100">
+
+                    <div class="card-body p-4">
+
+                        <h4 class="mb-4">Envíanos un mensaje</h4>
+
+                        <form>
+
+                            <div class="row">
+
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Nombre</label>
+                                    <input type="text" class="form-control" placeholder="Tu nombre">
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Correo electrónico</label>
+                                    <input type="email" class="form-control" placeholder="correo@ejemplo.com">
+                                </div>
+
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Asunto</label>
+                                <input type="text" class="form-control" placeholder="Asunto del mensaje">
+                            </div>
+
+                            <div class="mb-4">
+                                <label class="form-label">Mensaje</label>
+                                <textarea class="form-control" rows="6" placeholder="Escribe tu mensaje"></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-success px-4">
+                                <i class="fas fa-paper-plane"></i>
+                                Enviar mensaje
+                            </button>
+
+                        </form>
+
                     </div>
+
                 </div>
-                <div class="col-md-4">
-                    <h5>Enlaces rápidos</h5>
-                    <ul>
-                        <li><a href="#inicio">Inicio</a></li>
-                        <li><a href="#mision">Cómo funciona</a></li>
-                        <li><a href="#donar">Donar</a></li>
-                        <li><a href="#impacto">Impacto</a></li>
-                        <li><a href="#contacto">Contacto</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-4">
-                    <h5>Seguinos</h5>
-                    <div class="social-icons">
-                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                    </div>
-                    <div class="contact-info">
-                        <p class="footer-small"><i class="fas fa-envelope"></i> info@donatech.org</p>
-                        <p class="footer-small"><i class="fas fa-phone"></i> +506 8888-7777</p>
-                    </div>
-                </div>
+
             </div>
-            <hr>
-            <p class="copyright">&copy; <span id="year"></span> ConectiTicos. Todos los derechos reservados.</p>
+
+            <!-- Información -->
+            <div class="col-lg-5">
+
+                <div class="card shadow border-0 mb-4">
+
+                    <div class="card-body">
+
+                        <h4 class="mb-4">Información de contacto</h4>
+
+                        <p>
+                            <i class="fas fa-map-marker-alt text-success me-2"></i>
+                            San José, Costa Rica
+                        </p>
+
+                        <p>
+                            <i class="fas fa-phone text-success me-2"></i>
+                            +506 8888-7777
+                        </p>
+
+                        <p>
+                            <i class="fas fa-envelope text-success me-2"></i>
+                            info@conectiticos.org
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="card shadow border-0">
+
+                    <div class="card-body text-center">
+
+                        <h4 class="mb-4">Síguenos</h4>
+
+                        <a href="#" class="btn btn-outline-primary rounded-circle m-2">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+
+                        <a href="#" class="btn btn-outline-danger rounded-circle m-2">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+
+                        <a href="#" class="btn btn-outline-info rounded-circle m-2">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+
+                        <a href="#" class="btn btn-outline-success rounded-circle m-2">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
         </div>
-    </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../assets/js/main.js"></script>
-</body>
-
-</html>
+    </div>
+</section>

@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
 
+    /* Navegación suave y scroll spy */
     const navLinks = document.querySelectorAll('.navbar .nav-link');
     const sections = document.querySelectorAll('section[id]');
     const navbar = document.getElementById('mainNavbar');
@@ -60,6 +61,49 @@ document.addEventListener('DOMContentLoaded', function () {
     const yearSpan = document.getElementById('year');
     if (yearSpan) {
         yearSpan.textContent = new Date().getFullYear();
+    }
+
+    /* US-04: Contadores animados con Intersection Observer + setInterval */
+    function animateCounter(element, target, duration) {
+        var start = 0;
+        var startTime = null;
+
+        function step(timestamp) {
+            if (!startTime) startTime = timestamp;
+            var progress = Math.min((timestamp - startTime) / duration, 1);
+            var eased = 1 - Math.pow(1 - progress, 3);
+            var current = Math.floor(eased * target);
+            element.textContent = current.toLocaleString('es-CR');
+            if (progress < 1) {
+                requestAnimationFrame(step);
+            } else {
+                element.textContent = target.toLocaleString('es-CR');
+            }
+        }
+
+        requestAnimationFrame(step);
+    }
+
+    var countersSection = document.getElementById('impacto');
+    var countersAnimated = false;
+
+    if (countersSection) {
+        var counterObserver = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (entry.isIntersecting && !countersAnimated) {
+                    countersAnimated = true;
+                    var counterNumbers = countersSection.querySelectorAll('.counter-number');
+                    counterNumbers.forEach(function (counter) {
+                        var target = parseInt(counter.getAttribute('data-target'), 10);
+                        animateCounter(counter, target, 2000);
+                    });
+                }
+            });
+        }, {
+            threshold: 0.4
+        });
+
+        counterObserver.observe(countersSection);
     }
 
 });

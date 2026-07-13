@@ -195,8 +195,28 @@
                 <h2>Nuestro Impacto</h2>
                 <p class="sh-subtitle">Resultados que impulsan nuestra misión día a día</p>
             </div>
-            <p class="placeholder-hint"><i class="fas fa-arrow-down"></i> US-04: Contadores animados con Intersection
-                Observer</p>
+            <div class="impact-counters">
+                <div class="counter-item">
+                    <div class="counter-icon"><i class="fas fa-laptop"></i></div>
+                    <span class="counter-number" data-target="5000">0</span><span class="counter-suffix">+</span>
+                    <span class="counter-label">Equipos donados</span>
+                </div>
+                <div class="counter-item">
+                    <div class="counter-icon"><i class="fas fa-users"></i></div>
+                    <span class="counter-number" data-target="200">0</span><span class="counter-suffix">+</span>
+                    <span class="counter-label">Comunidades beneficiadas</span>
+                </div>
+                <div class="counter-item">
+                    <div class="counter-icon"><i class="fas fa-handshake"></i></div>
+                    <span class="counter-number" data-target="150">0</span><span class="counter-suffix">+</span>
+                    <span class="counter-label">Aliados corporativos</span>
+                </div>
+                <div class="counter-item">
+                    <div class="counter-icon"><i class="fas fa-leaf"></i></div>
+                    <span class="counter-number" data-target="450">0</span><span class="counter-suffix"> ton</span>
+                    <span class="counter-label">CO&#8322; evitadas</span>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -207,7 +227,36 @@
                 <h2>¿Cómo donar?</h2>
                 <p class="sh-subtitle">Cuatro pasos simples para transformar vidas</p>
             </div>
-            <p class="placeholder-hint"><i class="fas fa-arrow-down"></i> US-05: Flujo de 4 pasos con iconos FA</p>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number pine">
+                        <i class="fas fa-clipboard-list"></i>
+                    </div>
+                    <h4>Registra</h4>
+                    <p>Completá el formulario con los datos de tus equipos y tu información de contacto.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number teal">
+                        <i class="fas fa-box-open"></i>
+                    </div>
+                    <h4>Prepara</h4>
+                    <p>Reúne los equipos que deseás donar y verificá que estén en buen estado.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number coral">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <h4>Entrega</h4>
+                    <p>Coordinamos la recogida o vos los dejás en uno de nuestros puntos de acopio.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number indigo">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h4>Impacta</h4>
+                    <p>Tu donación llega a comunidades, escuelas y emprendedores que la necesitan.</p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -520,7 +569,35 @@
                 <h2>Aliados</h2>
                 <p class="sh-subtitle">Empresas que hacen posible esta labor</p>
             </div>
-            <p class="placeholder-hint"><i class="fas fa-arrow-down"></i> US-06: Grid de logos aliados</p>
+            <div class="allies-track-wrapper">
+                <div class="allies-track">
+                    <img src="https://logo.clearbit.com/dell.com" alt="Dell" class="ally-logo">
+                    <img src="https://logo.clearbit.com/hp.com" alt="HP" class="ally-logo">
+                    <img src="https://logo.clearbit.com/lenovo.com" alt="Lenovo" class="ally-logo">
+                    <img src="https://logo.clearbit.com/samsung.com" alt="Samsung" class="ally-logo">
+                    <img src="https://logo.clearbit.com/intel.com" alt="Intel" class="ally-logo">
+                    <img src="https://logo.clearbit.com/microsoft.com" alt="Microsoft" class="ally-logo">
+                    <img src="https://logo.clearbit.com/apple.com" alt="Apple" class="ally-logo">
+                    <img src="https://logo.clearbit.com/cisco.com" alt="Cisco" class="ally-logo">
+                    <img src="https://logo.clearbit.com/ibm.com" alt="IBM" class="ally-logo">
+                    <img src="https://logo.clearbit.com/oracle.com" alt="Oracle" class="ally-logo">
+                    <img src="https://logo.clearbit.com/sony.com" alt="Sony" class="ally-logo">
+                    <img src="https://logo.clearbit.com/lg.com" alt="LG" class="ally-logo">
+                    <!-- Logos duplicados para loop infinito -->
+                    <img src="https://logo.clearbit.com/dell.com" alt="Dell" class="ally-logo">
+                    <img src="https://logo.clearbit.com/hp.com" alt="HP" class="ally-logo">
+                    <img src="https://logo.clearbit.com/lenovo.com" alt="Lenovo" class="ally-logo">
+                    <img src="https://logo.clearbit.com/samsung.com" alt="Samsung" class="ally-logo">
+                    <img src="https://logo.clearbit.com/intel.com" alt="Intel" class="ally-logo">
+                    <img src="https://logo.clearbit.com/microsoft.com" alt="Microsoft" class="ally-logo">
+                    <img src="https://logo.clearbit.com/apple.com" alt="Apple" class="ally-logo">
+                    <img src="https://logo.clearbit.com/cisco.com" alt="Cisco" class="ally-logo">
+                    <img src="https://logo.clearbit.com/ibm.com" alt="IBM" class="ally-logo">
+                    <img src="https://logo.clearbit.com/oracle.com" alt="Oracle" class="ally-logo">
+                    <img src="https://logo.clearbit.com/sony.com" alt="Sony" class="ally-logo">
+                    <img src="https://logo.clearbit.com/lg.com" alt="LG" class="ally-logo">
+                </div>
+            </div>
         </div>
     </section>
 
@@ -531,7 +608,59 @@
                 <h2>Testimonios</h2>
                 <p class="sh-subtitle">Historias de quienes han sido beneficiados</p>
             </div>
-            <p class="placeholder-hint"><i class="fas fa-arrow-down"></i> US-07: Carrusel Bootstrap con testimonios</p>
+            <div id="testimoniosCarousel" class="carousel slide testimonials-carousel" data-bs-ride="carousel" data-bs-interval="5000">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="testimonial-card">
+                            <p class="testimonial-text">Gracias a ConectiTicos, nuestros estudiantes de la escuela rural de San Carlos ahora cuentan con laptops para sus tareas. El impacto en su rendimiento académico ha sido increíble.</p>
+                            <div class="testimonial-author">
+                                <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="María" class="testimonial-avatar">
+                                <div class="testimonial-info">
+                                    <h5>María Fernández</h5>
+                                    <p>Directora, Escuela Rural San Carlos</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="testimonial-card">
+                            <p class="testimonial-text">Donamos 30 laptops que ya no usábamos en la empresa. El proceso fue muy sencillo y ahora sabemos que están ayudando a emprendedores en Limón. Una experiencia excelente.</p>
+                            <div class="testimonial-author">
+                                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Carlos" class="testimonial-avatar">
+                                <div class="testimonial-info">
+                                    <h5>Carlos Mora</h5>
+                                    <p>Gerente de TI, TechCorp CR</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="testimonial-card">
+                            <p class="testimonial-text">Con las computadoras recibidas pudimos crear un centro de capacitación digital para mujeres emprendedoras. Más de 80 personas ya se capacitaron en ofimática y emprendimiento.</p>
+                            <div class="testimonial-author">
+                                <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Laura" class="testimonial-avatar">
+                                <div class="testimonial-info">
+                                    <h5>Laura Jiménez</h5>
+                                    <p>Coordinadora, Fundación Futuro Digital</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#testimoniosCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Anterior</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#testimoniosCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Siguiente</span>
+                </button>
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#testimoniosCarousel" data-bs-slide-to="0" class="active" aria-current="true"></button>
+                    <button type="button" data-bs-target="#testimoniosCarousel" data-bs-slide-to="1"></button>
+                    <button type="button" data-bs-target="#testimoniosCarousel" data-bs-slide-to="2"></button>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -551,7 +680,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
-                    <h5><img src="img/LOGO.png" alt="ConectiTicos" class="footer-logo"> ConectiTicos</h5>
+                    <h5><img src="../assets/images/LOGO.png" alt="ConectiTicos" class="footer-logo"> ConectiTicos</h5>
                     <p>Cerrando la brecha digital, una compu a la vez.</p>
                     <div class="footer-newsletter">
                         <p>Recibí novedades</p>
@@ -591,7 +720,7 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../js/main.js"></script>
+    <script src="../assets/js/main.js"></script>
 </body>
 
 </html>

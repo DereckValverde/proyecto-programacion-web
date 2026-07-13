@@ -604,6 +604,331 @@ h6 {
     padding-top: 1rem;
 }
 
+/* US-04: Contadores animados */
+.impact-counters {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.counter-item {
+    text-align: center;
+}
+
+.counter-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+    font-size: 24px;
+    color: var(--color-white);
+}
+
+.counter-number {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 2.8rem;
+    font-weight: 800;
+    line-height: 1.1;
+    color: var(--color-white);
+}
+
+.counter-suffix {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.counter-label {
+    display: block;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.65);
+    margin-top: 4px;
+}
+
+@media (max-width: 992px) {
+    .impact-counters {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .impact-counters {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .counter-number {
+        font-size: 2.2rem;
+    }
+}
+
+/* US-05: Cómo donar - 4 pasos */
+.steps-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-top: 2rem;
+    position: relative;
+}
+
+.steps-grid::before {
+    content: '';
+    position: absolute;
+    top: 44px;
+    left: 12.5%;
+    right: 12.5%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--color-pine), var(--color-teal), var(--color-coral), var(--color-indigo));
+    z-index: 0;
+    border-radius: 2px;
+}
+
+.step-card {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.step-number {
+    width: 88px;
+    height: 88px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    font-size: 32px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.step-card:hover .step-number {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.step-number.pine {
+    background: var(--color-pine);
+    color: var(--color-white);
+}
+
+.step-number.teal {
+    background: var(--color-teal);
+    color: var(--color-white);
+}
+
+.step-number.coral {
+    background: var(--color-coral);
+    color: var(--color-white);
+}
+
+.step-number.indigo {
+    background: var(--color-indigo);
+    color: var(--color-white);
+}
+
+.step-card h4 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--color-grey-night);
+}
+
+.step-card p {
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.6;
+    max-width: 220px;
+    margin: 0 auto;
+}
+
+@media (max-width: 992px) {
+    .steps-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+    }
+
+    .steps-grid::before {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .steps-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .step-number {
+        width: 72px;
+        height: 72px;
+        font-size: 26px;
+    }
+}
+
+/* US-06: Aliados - Carrusel de logos */
+.allies-track-wrapper {
+    overflow: hidden;
+    margin-top: 2rem;
+    mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
+    -webkit-mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
+}
+
+.allies-track {
+    display: flex;
+    gap: 4rem;
+    width: max-content;
+    animation: scrollLogos 25s linear infinite;
+}
+
+.allies-track:hover {
+    animation-play-state: paused;
+}
+
+@keyframes scrollLogos {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.ally-logo {
+    flex-shrink: 0;
+    height: 48px;
+    width: auto;
+    filter: grayscale(100%) opacity(0.5);
+    transition: filter 0.3s ease, transform 0.3s ease;
+    object-fit: contain;
+}
+
+.ally-logo:hover {
+    filter: grayscale(0%) opacity(1);
+    transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+    .allies-track {
+        gap: 2.5rem;
+        animation-duration: 20s;
+    }
+
+    .ally-logo {
+        height: 36px;
+    }
+}
+
+/* US-07: Testimonios - Carrusel */
+.testimonials-carousel .carousel-inner {
+    padding: 20px 0;
+}
+
+.testimonials-carousel .carousel-item {
+    text-align: center;
+}
+
+.testimonial-card {
+    max-width: 650px;
+    margin: 0 auto;
+    background: var(--color-white);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: var(--shadow-md);
+    position: relative;
+}
+
+.testimonial-card::before {
+    content: '\201C';
+    font-size: 5rem;
+    font-family: Georgia, serif;
+    color: var(--color-coral);
+    opacity: 0.2;
+    position: absolute;
+    top: 10px;
+    left: 28px;
+    line-height: 1;
+}
+
+.testimonial-text {
+    font-size: 1.05rem;
+    color: #555;
+    line-height: 1.8;
+    font-style: italic;
+    margin-bottom: 24px;
+    position: relative;
+    z-index: 1;
+}
+
+.testimonial-author {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+}
+
+.testimonial-avatar {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--color-pine);
+}
+
+.testimonial-info h5 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-bottom: 2px;
+    color: var(--color-grey-night);
+}
+
+.testimonial-info p {
+    font-size: 0.8rem;
+    color: #888;
+    margin-bottom: 0;
+}
+
+.testimonials-carousel .carousel-indicators {
+    bottom: -10px;
+}
+
+.testimonials-carousel .carousel-indicators button {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--color-pine);
+    opacity: 0.4;
+    border: none;
+}
+
+.testimonials-carousel .carousel-indicators .active {
+    opacity: 1;
+}
+
+.testimonials-carousel .carousel-control-prev-icon,
+.testimonials-carousel .carousel-control-next-icon {
+    background-color: var(--color-pine);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    background-size: 50%;
+}
+
+@media (max-width: 768px) {
+    .testimonial-card {
+        padding: 28px 20px;
+    }
+
+    .testimonial-text {
+        font-size: 0.95rem;
+    }
+}
+
 footer {
     background-color: var(--color-grey-night) !important;
 }

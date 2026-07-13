@@ -771,72 +771,17 @@ h6 {
     }
 }
 
-/* US-06: Aliados - Carrusel de logos */
-.allies-track-wrapper {
-    overflow: hidden;
-    margin-top: 2rem;
-    mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
-    -webkit-mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
-}
-
-.allies-track {
-    display: flex;
-    gap: 4rem;
-    width: max-content;
-    animation: scrollLogos 25s linear infinite;
-    align-items: center;
-}
-
-.allies-track:hover {
-    animation-play-state: paused;
-}
-
-@keyframes scrollLogos {
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-        transform: translateX(-50%);
-    }
-}
-
-.ally-item {
-    flex-shrink: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 6px;
-    opacity: 0.45;
-    transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-.ally-item:hover {
-    opacity: 1;
-    transform: scale(1.1);
-}
-
-.ally-item i {
-    font-size: 42px;
-    color: var(--color-grey-night);
-}
-
-.ally-item span {
-    font-size: 0.75rem;
-    font-weight: 600;
+/* US-06: Aliados */
+.allies-soon {
+    text-align: center;
+    font-size: 1.1rem;
     color: #888;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    padding: 2rem 0;
 }
 
-@media (max-width: 768px) {
-    .allies-track {
-        gap: 2.5rem;
-        animation-duration: 20s;
-    }
-
-    .ally-item i {
-        font-size: 32px;
-    }
+.allies-soon i {
+    color: var(--color-pine);
+    margin-right: 8px;
 }
 
 /* US-07: Testimonios - Carrusel */

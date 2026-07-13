@@ -569,35 +569,7 @@
                 <h2>Aliados</h2>
                 <p class="sh-subtitle">Empresas que hacen posible esta labor</p>
             </div>
-            <div class="allies-track-wrapper">
-                <div class="allies-track">
-                    <div class="ally-item"><i class="fab fa-dell"></i><span>Dell</span></div>
-                    <div class="ally-item"><i class="fab fa-hp"></i><span>HP</span></div>
-                    <div class="ally-item"><i class="fab fa-apple"></i><span>Apple</span></div>
-                    <div class="ally-item"><i class="fab fa-intel"></i><span>Intel</span></div>
-                    <div class="ally-item"><i class="fab fa-microsoft"></i><span>Microsoft</span></div>
-                    <div class="ally-item"><i class="fab fa-ibm"></i><span>IBM</span></div>
-                    <div class="ally-item"><i class="fab fa-samsung"></i><span>Samsung</span></div>
-                    <div class="ally-item"><i class="fab fa-android"></i><span>Android</span></div>
-                    <div class="ally-item"><i class="fab fa-aws"></i><span>AWS</span></div>
-                    <div class="ally-item"><i class="fab fa-linux"></i><span>Linux</span></div>
-                    <div class="ally-item"><i class="fab fa-python"></i><span>Python</span></div>
-                    <div class="ally-item"><i class="fab fa-java"></i><span>Java</span></div>
-                    <!-- Duplicados para loop infinito -->
-                    <div class="ally-item"><i class="fab fa-dell"></i><span>Dell</span></div>
-                    <div class="ally-item"><i class="fab fa-hp"></i><span>HP</span></div>
-                    <div class="ally-item"><i class="fab fa-apple"></i><span>Apple</span></div>
-                    <div class="ally-item"><i class="fab fa-intel"></i><span>Intel</span></div>
-                    <div class="ally-item"><i class="fab fa-microsoft"></i><span>Microsoft</span></div>
-                    <div class="ally-item"><i class="fab fa-ibm"></i><span>IBM</span></div>
-                    <div class="ally-item"><i class="fab fa-samsung"></i><span>Samsung</span></div>
-                    <div class="ally-item"><i class="fab fa-android"></i><span>Android</span></div>
-                    <div class="ally-item"><i class="fab fa-aws"></i><span>AWS</span></div>
-                    <div class="ally-item"><i class="fab fa-linux"></i><span>Linux</span></div>
-                    <div class="ally-item"><i class="fab fa-python"></i><span>Python</span></div>
-                    <div class="ally-item"><i class="fab fa-java"></i><span>Java</span></div>
-                </div>
-            </div>
+            <p class="allies-soon"><i class="fas fa-handshake"></i> Próximamente anunciaremos a nuestros aliados estratégicos</p>
         </div>
     </section>
 

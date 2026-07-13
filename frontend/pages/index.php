@@ -572,25 +572,25 @@
             <div class="allies-marquee-wrapper">
                 <div class="allies-marquee">
                     <span class="allies-marquee-text">Próximamente</span>
-                    <span class="allies-marquee-dot"></span>
+                    <span class="allies-marquee-line"></span>
                     <span class="allies-marquee-text">Próximamente</span>
-                    <span class="allies-marquee-dot"></span>
+                    <span class="allies-marquee-line"></span>
                     <span class="allies-marquee-text">Próximamente</span>
-                    <span class="allies-marquee-dot"></span>
+                    <span class="allies-marquee-line"></span>
                     <span class="allies-marquee-text">Próximamente</span>
-                    <span class="allies-marquee-dot"></span>
+                    <span class="allies-marquee-line"></span>
                     <span class="allies-marquee-text">Próximamente</span>
-                    <span class="allies-marquee-dot"></span>
+                    <span class="allies-marquee-line"></span>
                     <span class="allies-marquee-text">Próximamente</span>
-                    <span class="allies-marquee-dot"></span>
+                    <span class="allies-marquee-line"></span>
                     <span class="allies-marquee-text">Próximamente</span>
-                    <span class="allies-marquee-dot"></span>
+                    <span class="allies-marquee-line"></span>
                     <span class="allies-marquee-text">Próximamente</span>
-                    <span class="allies-marquee-dot"></span>
+                    <span class="allies-marquee-line"></span>
                     <span class="allies-marquee-text">Próximamente</span>
-                    <span class="allies-marquee-dot"></span>
+                    <span class="allies-marquee-line"></span>
                     <span class="allies-marquee-text">Próximamente</span>
-                    <span class="allies-marquee-dot"></span>
+                    <span class="allies-marquee-line"></span>
                 </div>
             </div>
         </div>

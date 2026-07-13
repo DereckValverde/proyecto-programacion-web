@@ -805,13 +805,13 @@ h6 {
     letter-spacing: 4px;
 }
 
-.allies-marquee-dot {
+.allies-marquee-line {
     flex-shrink: 0;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
+    width: 36px;
+    height: 4px;
     background: var(--color-coral);
-    opacity: 0.4;
+    border-radius: 2px;
+    opacity: 0.5;
 }
 
 /* US-07: Testimonios - Carrusel */

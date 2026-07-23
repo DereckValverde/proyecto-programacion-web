@@ -11,51 +11,14 @@
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700;800&display=swap"
         rel="stylesheet">
     <link rel="icon" type="image/png" href="../assets/images/LOGO.png">
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="<?= BASE_URL . '/css/style.css' ?>">
 </head>
 
 <body>
 
-    <nav class="navbar navbar-expand-lg sticky-top" id="mainNavbar">
-        <div class="container">
-            <a class="navbar-brand" href="#inicio">
-                <img src="../assets/images/LOGO.png" alt="ConectiTicos" class="navbar-logo"> ConectiTicos
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Abrir menú">
-                <i class="fas fa-bars"></i>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#inicio" data-section="inicio">Inicio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#mision" data-section="mision">Historia</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#impacto" data-section="impacto">Impacto</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#aliados" data-section="aliados">Aliados</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#contacto" data-section="contacto">Contacto</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link btn-aplicar" href="#solicitar" data-section="donar">Aplicar para
-                            computadoras</a>
-                        <!-- Se cambio el #donar por un #solicitar para que el boton aplique a la seccion correcta -->
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link btn-donar" href="#donar" data-section="donar">Donar computadoras</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <?php require_once LAYOUT_PATH . '/navbar.php' ?>
 
-    <section id="inicio" class="hero">
+    <section id=" inicio" class="hero">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 hero-content">
@@ -260,7 +223,7 @@
         </div>
     </section>
 
-<!-- Aca se agrego el formulario para la gente que desea donar equipo -->
+    <!-- Aca se agrego el formulario para la gente que desea donar equipo -->
     <section id="donar" class="bg-alt section-padding">
 
         <div class="container">
@@ -779,51 +742,10 @@
         </div>
     </section>
 
-    <footer class="section-padding">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <h5><img src="img/LOGO.png" alt="ConectiTicos" class="footer-logo"> ConectiTicos</h5>
-                    <p>Cerrando la brecha digital, una compu a la vez.</p>
-                    <div class="footer-newsletter">
-                        <p>Recibí novedades</p>
-                        <div class="input-group">
-                            <input type="email" placeholder="tu@email.com">
-                            <button type="button"><i class="fas fa-paper-plane"></i></button>
-                        </div>
-                        <small class="form-text">Sin spam, solo info de campañas.</small>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <h5>Enlaces rápidos</h5>
-                    <ul>
-                        <li><a href="#inicio">Inicio</a></li>
-                        <li><a href="#mision">Cómo funciona</a></li>
-                        <li><a href="#donar">Donar</a></li>
-                        <li><a href="#impacto">Impacto</a></li>
-                        <li><a href="#contacto">Contacto</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-4">
-                    <h5>Seguinos</h5>
-                    <div class="social-icons">
-                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                    </div>
-                    <div class="contact-info">
-                        <p class="footer-small"><i class="fas fa-envelope"></i> info@donatech.org</p>
-                        <p class="footer-small"><i class="fas fa-phone"></i> +506 8888-7777</p>
-                    </div>
-                </div>
-            </div>
-            <hr>
-            <p class="copyright">&copy; <span id="year"></span> ConectiTicos. Todos los derechos reservados.</p>
-        </div>
-    </footer>
+    <?php require_once LAYOUT_PATH . '/footer.php' ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../assets//js/main.js"></script>
+    <script src="<?= BASE_URL . '/js/main.js' ?> ?>"></script>
 </body>
 
 </html>

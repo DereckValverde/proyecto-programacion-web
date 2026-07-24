@@ -11,14 +11,14 @@
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700;800&display=swap"
         rel="stylesheet">
     <link rel="icon" type="image/png" href="../assets/images/LOGO.png">
-    <link rel="stylesheet" href="<?= BASE_URL . '/css/style.css' ?>">
+    <link rel="stylesheet" href="<?= BASE_URL . 'public/css/style.css' ?>">
 </head>
 
 <body>
 
     <?php require_once LAYOUT_PATH . '/navbar.php' ?>
 
-    <section id=" inicio" class="hero">
+    <section id="inicio" class="hero">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 hero-content">
@@ -32,8 +32,6 @@
                         <a href="#solicitar" class="btn-outline-white"><i class="fas fa-laptop"></i> Aplicar para
                             computadoras</a>
                         <!-- Se cambio el #donar por un #solicitar para que el boton aplique a la seccion correcta -->
-
-
                     </div>
                     <div class="hero-stats">
                         <div class="stat-item">

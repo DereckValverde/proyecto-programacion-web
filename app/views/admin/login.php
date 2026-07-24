@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../assets/css/style-admin-login.css">
+    <link rel="stylesheet" href="<?= BASE_URL . '/public/css/style-admin-login.css'?>">
     <title>Proyecto</title>
 </head>
 
@@ -16,10 +16,10 @@
 
             <h1>Acceso Administrativo</h1>
 
-            <form>
+            <form action="<?= BASE_URL . 'auth/login'?>" method="POST">
 
                 <label for="">Usuario:</label>
-                <input type="text" name="username" id="username" required>
+                <input type="email" name="correo" id="usercorreoname" required>
 
                 <label for="">Contraseña</label>
                 <input type="password" name="password" id="password" required>

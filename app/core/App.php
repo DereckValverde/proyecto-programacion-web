@@ -1,5 +1,7 @@
 <?php
 
+require_once APP_PATH . '/config/config.php';
+
 class App
 {
     protected $controller = 'HomeController';
@@ -21,7 +23,7 @@ class App
         }
 
         // Cargar el archivo del controlador
-        require_once __DIR__ . '/../controllers/' . $this->controller . '.php';
+        require_once APP_PATH . '/controllers/' . $this->controller . '.php';
 
         // Crear instancia del controlador
         $this->controller = new $this->controller;

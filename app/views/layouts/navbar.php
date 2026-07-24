@@ -1,7 +1,7 @@
     <nav class="navbar navbar-expand-lg sticky-top" id="mainNavbar">
         <div class="container">
             <a class="navbar-brand" href="#inicio">
-                <img src="../assets/images/LOGO.png" alt="ConectiTicos" class="navbar-logo"> ConectiTicos
+                <img src=<?= BASE_URL . '/public/images/LOGO.png' ?> alt="ConectiTicos" class="navbar-logo"> ConectiTicos
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Abrir menú">

@@ -2,7 +2,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
-                    <h5><img src="img/LOGO.png" alt="ConectiTicos" class="footer-logo"> ConectiTicos</h5>
+                    <h5><img src=<?= BASE_URL . '/public/images/LOGO.png' ?> alt="ConectiTicos" class="footer-logo"> ConectiTicos</h5>
                     <p>Cerrando la brecha digital, una compu a la vez.</p>
                     <div class="footer-newsletter">
                         <p>Recibí novedades</p>

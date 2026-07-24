@@ -10,7 +10,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700;800&display=swap"
         rel="stylesheet">
-    <link rel="icon" type="image/png" href="../assets/images/LOGO.png">
+    <link rel="icon" type="image/png" href=<?= BASE_URL . '/public/images/LOGO.png' ?>>
     <link rel="stylesheet" href="<?= BASE_URL . 'public/css/style.css' ?>">
 </head>
 
@@ -743,7 +743,7 @@
     <?php require_once LAYOUT_PATH . '/footer.php' ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="<?= BASE_URL . '/js/main.js' ?> ?>"></script>
+    <script src="<?= BASE_URL . '/public/js/main.js' ?> ?>"></script>
 </body>
 
 </html>

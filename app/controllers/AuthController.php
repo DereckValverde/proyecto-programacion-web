@@ -43,7 +43,7 @@ class AuthController
                 $_SESSION['admin_name'] = $admin['nombre'];
 
                 //redirigir al dashboard
-                header('Location: ' . BASE_URL . 'dashboard');
+                header('Location: ' . BASE_URL . 'auth/dashboard');
                 exit();
             } else {
 
@@ -77,7 +77,43 @@ class AuthController
 
         //si está loggeado de manera correcta se carga la vista del dashboard
         view('admin/dashboard');
+    }
 
-        header('Location: ' . BASE_URL . 'dashboard');
+
+    public function crud_solicitudes(){
+
+        if(session_status() === PHP_SESSION_NONE){
+            session_start();
+        }
+
+        if(!isset($_SESSION['admin_logged']) || $_SESSION['admin_logged'] !== true){
+            header('Location: ' . BASE_URL . 'auth');
+            exit();
+        }
+
+        //Si está loggeado
+        view('admin/crud-solicitudes');
+    }
+
+    public function crud_donaciones(){
+        if(session_start() === PHP_SESSION_NONE){
+            session_start();
+        }
+
+        if(!isset($_SESSION['admin_logged']) || $_SESSION['admin_logged'] !== true){
+            
+            header('Location: ' . BASE_URL . 'auth');
+            exit();
+        }
+
+        //Si está loggeado
+        view('admin/crud-donaciones');
+    }
+
+    public function logout(){
+        session_start();
+        session_destroy();
+        header('Location: ' . BASE_URL . 'auth');
+        exit();
     }
 }

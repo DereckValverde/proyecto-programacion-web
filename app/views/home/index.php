@@ -16,7 +16,7 @@
 
 <body>
 
-    <?php require_once LAYOUT_PATH . '/navbar.php' ?>
+    <?php require_once LAYOUT_PATH . 'navbar.php' ?>
 
     <section id="inicio" class="hero">
         <div class="container">

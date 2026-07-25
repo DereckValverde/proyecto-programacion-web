@@ -15,32 +15,7 @@
 
 <body>
 
-    <nav class="navbar navbar-expand-lg sticky-top" id="mainNavbar">
-        <div class="container">
-            <a class="navbar-brand" href="#">
-                <img src=<?= BASE_URL . '/public/images/LOGO.png' ?> alt=" ConectiTicos" class="navbar-logo"> ConectiTicos
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Abrir menú">
-                <i class="fas fa-bars"></i>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="./dashboard.php" data-section="inicio">Dashboard</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="./crud-solicitudes.php" data-section="mision">Gestión de Solicitudes</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="./crud-donaciones.php" data-section="impacto">Gestión de Donaciones</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" data-section="contacto"><i class="bi bi-box-arrow-right"></i></a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <?php require_once LAYOUT_PATH . 'admin_navbar.php' ?>
 
     <main class="main">
         <div class="d-flex flex-column container-fluid px-4 gap-3">

@@ -1,5 +1,7 @@
 <?php
-require_once dirname(__DIR__) . '/config/config.php';
+// app/controllers/AuthController.php
+
+require_once APP_PATH . 'config/config.php';
 
 class AuthController
 {
@@ -7,10 +9,10 @@ class AuthController
     //Vista del login para administradores únicamente
     public function index()
     {
-        require_once dirname(__DIR__) . '/views/admin/login.php';
+        require_once APP_PATH . 'views/admin/login.php';
     }
 
-    public function login()
+    public function processLogin()
     {
 
         // Verificar que los datos lleguen por POST
@@ -27,7 +29,7 @@ class AuthController
             }
 
             //Llamar al modelo para buscar el administrador por correo
-            require_once APP_PATH . '/models/AdminModel.php';
+            require_once APP_PATH . 'models/AdminModel.php';
             $adminModel = new AdminModel();
             $admin = $adminModel->getByEmail($email);
 
@@ -37,15 +39,24 @@ class AuthController
                 //Credenciales correctas
                 session_start();
                 $_SESSION['admin_logged'] = true;
-                $_SESSION['admin_email'] = $admin['correo'];
+                $_SESSION['admin_id'] = $admin['idAdministrador'];
+                $_SESSION['admin_name'] = $admin['nombre'];
 
                 //redirigir al dashboard
-                header('Location: ' . BASE_URL . 'auth/dashboard');
+                header('Location: ' . BASE_URL . 'dashboard');
                 exit();
             } else {
-                $error = "Correo o contraseña incorrectos.";
-                require_once VIEW_PATH . '/admin/login.php';
-                return;
+
+                if (session_status() === PHP_SESSION_NONE) {
+                    session_start();
+                }
+
+                $_SESSION['error'] = "Correo o contraseña incorrectos.";
+
+
+                //Redirigir a login para limpiar el formulario
+                header('Location: ' . BASE_URL . 'auth');
+                exit();
             }
         }
     }
@@ -57,13 +68,16 @@ class AuthController
             session_start();
         }
 
-        // Validar seguridad: si no está logueado, patada al login
+        /*Si se intenta entrar a la vista del dashboard sin estar loggeado, entonces
+        automaticamente se redirecciona de nuevo al login */
         if (!isset($_SESSION['admin_logged']) || $_SESSION['admin_logged'] !== true) {
             header('Location: ' . BASE_URL . 'auth');
             exit();
         }
 
-        // Cargar la vista de forma segura
-        require_once VIEW_PATH . '/admin/dashboard.php';
+        //si está loggeado de manera correcta se carga la vista del dashboard
+        view('admin/dashboard');
+
+        header('Location: ' . BASE_URL . 'dashboard');
     }
 }

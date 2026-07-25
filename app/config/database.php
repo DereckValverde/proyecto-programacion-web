@@ -1,4 +1,5 @@
 <?php
+//app/config/database.php
 
 $host = 'localhost';
 $database = 'techdonaciones';

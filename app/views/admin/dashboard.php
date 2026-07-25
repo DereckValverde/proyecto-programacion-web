@@ -195,7 +195,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src=<?= BASE_URL . '/public/js/dashboard-admin.js' ?>></script>
+    <script src=<?= BASE_URL . '/public/js/admin/dashboard-admin.js' ?>></script>
 </body>
 
 </html>

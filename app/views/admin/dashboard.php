@@ -27,7 +27,7 @@
 
             <div class="row g-4 mb-4">
                 <div class="col-12 col-lg-4">
-                    <div class="dashboard-card text-light bg-danger border border-2 border-dark rounded-3 p-4 h-100">
+                    <div class="dashboard-card bg-white text-dark p-4 rounded-3 shadow-sm p-4 h-100">
                         <div class="d-flex justify-content-between align-items-center">
                             <p class="card-title fw-bold fs-5 mb-0">Solicitudes Pendientes</p>
                             <i class="bi bi-clock-history fs-5"></i>
@@ -37,7 +37,7 @@
                 </div>
 
                 <div class="col-12 col-lg-4">
-                    <div class="dashboard-card text-light bg-success border border-2 border-dark rounded-3 p-4 h-100">
+                    <div class="dashboard-card bg-white text-dark p-4 rounded-3 shadow-sm p-4 h-100">
                         <div class="d-flex justify-content-between align-items-center">
                             <p class="card-title fw-bold fs-5 mb-0">Donaciones Completadas</p>
                             <i class="bi bi-check-circle fs-5"></i>
@@ -47,7 +47,7 @@
                 </div>
 
                 <div class="col-12 col-lg-4">
-                    <div class="dashboard-card text-light bg-warning border border-2 border-dark rounded-3 p-4 h-100">
+                    <div class="dashboard-card bg-white text-dark p-4 rounded-3 shadow-sm p-4 h-100">
                         <div class="d-flex justify-content-between">
                             <p class="card-title fw-bold fs-5">CO₂ Evitado</p>
                             <i class="bi bi-tree fs-5"></i>

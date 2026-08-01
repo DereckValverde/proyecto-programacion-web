@@ -58,7 +58,6 @@ body {
 .navbar .nav-link.active {
     background: rgba(45, 103, 88, 0.1);
     color: var(--color-pine) !important;
-    font-weight: 600;
 }
 
 .navbar .navbar-toggler {
@@ -82,7 +81,6 @@ body {
     display: flex;
     flex-direction: column;
     position: relative;
-    overflow: hidden;
     gap: 30px;
     padding: 40px 20px;
     box-sizing: border-box;
@@ -131,7 +129,6 @@ body {
 
 .boton-activo {
     background-color: var(--color-pine);
-    border: none;
     color: #fff;
 }
 
@@ -142,53 +139,182 @@ body {
     border-radius: 5px;
 }
 
-#btn-ver-mas:hover {
+.btn-ver-mas:hover {
     transition: 0.3s;
     background-color: #e5edf6;
 
 }
 
-#btn-aceptar:hover {
+.btn-aceptar:hover {
     transition: 0.3s;
     background-color: #E5F6EC;
 }
 
-#btn-rechazar:hover {
+.btn-rechazar:hover {
     transition: 0.3s;
     background-color: #FDEAEA;
+}
+
+.estado-pendiente,
+.estado-aceptada,
+.estado-rechazada,
+.estado-completada {
+    display: inline-block;
+    width: 95px;
+    text-align: center;
+    font-size: 14px;
+    padding: 2px;
+    border-radius: 12px;
 }
 
 .estado-pendiente {
-    font-size: 14px;
-    padding: 4px;
     color: #B4650A;
     background-color: #FFF2DC;
-    border-radius: 12px;
     border: 1px solid #F3D8A6;
 }
 
-.estado-aceptado {
-    font-size: 14px;
-    padding: 4px;
+.estado-aceptada {
+    min-width: 10px;
     color: #1F7A46;
     background-color: #E5F6EC;
-    border-radius: 12px;
     border: 1px solid #BFE6CF;
 }
 
-.estado-rechazado {
-    font-size: 14px;
-    padding: 4px;
+.estado-rechazada {
     color: #C43D3D;
     background-color: #FDEAEA;
-    border-radius: 12px;
     border: 1px solid #F4C7C7;
+}
+
+.estado-completada {
+    color: #1565C0;
+    background-color: #E3F2FD;
+    border: 1px solid #BBDEFB;
+}
+
+.estado-equipo-nuevo {
+    color: #1565C0;
+}
+
+.estado-equipo-bueno {
+    color: #2E7D32;
+}
+
+.estado-equipo-regular {
+    color: #B7791F;
+}
+
+.estado-equipo-malo {
+    color: #C43D3D;
+}
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+    overflow-y: auto;
+
+    z-index: 9999;
+
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    background: #fff;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 600px;
+    max-height: calc(100vh - 40px);
+
+    display: flex;
+    flex-direction: column;
+
+    overflow: hidden;
+
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+
+    transform: translateY(-15px);
+    transition: transform 0.3s ease;
+}
+
+.modal-overlay.active .modal-content {
+    transform: translateY(0);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 1.5rem;
+    border-bottom: 1px solid #e9ecef;
+
+    flex-shrink: 0;
+}
+
+.modal-header h3 {
+    margin: 0;
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    line-height: 1;
+    cursor: pointer;
+    color: #6c757d;
+    margin-left: 1rem;
+}
+
+.modal-close:hover {
+    color: #212529;
+}
+
+#detallesDonacion {
+    padding: 1.5rem;
+    overflow-y: auto;
+    flex: 1;
 }
 
 .acciones {
     display: flex;
     gap: 5px;
     justify-content: center;
+}
+
+@media (max-width: 768px) {
+    .modal-overlay {
+        padding: 12px;
+    }
+
+    .modal-content {
+        width: 100%;
+        max-height: calc(100vh - 24px);
+    }
+
+    .modal-header {
+        padding: 1rem;
+    }
+
+    #detallesDonacion {
+        padding: 1rem;
+    }
 }
 
 @media (max-width: 768px) {

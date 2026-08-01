@@ -9,18 +9,31 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" href="<?= BASE_URL . 'auth/dashboard' ?>" data-section="inicio">Dashboard</a>
+                        <a class="nav-link" href="<?= BASE_URL . 'auth/dashboard' ?>" data-section="inicio">Dashboard</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="<?= BASE_URL . 'auth/solicitudes' ?>" data-section="mision">Gestión de Solicitudes</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= BASE_URL . 'auth/donaciones' ?>" data-section="impacto">Gestión de Donaciones</a>
+                        <a class="nav-link" id="linkDonaciones" href="<?= BASE_URL . 'auth/donaciones' ?>" data-section="impacto">Gestión de Donaciones</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?= BASE_URL . 'auth/logout' ?>"><i class="bi bi-box-arrow-right"></i></a>
+
+                    <div class="d-flex px-3" style="height: 30px;">
+                        <div class="vr"></div>
+                    </div>
+
+                    <div>
+                        <span class="text-black-50">dereck@gmail.com</span>
+                    </div>
+
+
+                    <li class="nav-item px-2">
+                        <a class="nav-link" href="<?= BASE_URL . 'auth/logout' ?>"><i class="bi bi-box-arrow-right text-black-50"></i></a>
                     </li>
                 </ul>
+
+
+
             </div>
         </div>
     </nav>

@@ -15,3 +15,15 @@ function view(string $viewPath, array $data = [])
         die("La vista '{$viewPath}' no existe.");
     }
 }
+
+function redirect($url)
+{
+    header('Location: ' . BASE_URL . $url);
+    exit;
+}
+
+function model($model)
+{
+    require_once __DIR__ . '/../models/' . $model . '.php';
+    return new $model();
+}

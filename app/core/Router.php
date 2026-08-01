@@ -3,23 +3,18 @@
 
 class Router
 {
-
-    //Arreglo que guarda las rutas
     private array $routes = [];
 
-    //Registra Rutas de tipo 'GET'
     public function get(string $url, array $handler): void
     {
         $this->addRoute('GET', $url, $handler);
     }
 
-    //Registrar Rutas de tipo 'POST'
     public function post(string $url, array $handler)
     {
         $this->addRoute('POST', $url, $handler);
     }
 
-    //Guardar Rutas
     private function addRoute(string $method, string $url, array $handler): void
     {
         $url = trim($url, '/');
@@ -29,13 +24,22 @@ class Router
     public function dispatch(string $url, string $method): void
     {
         $url = trim($url, '/');
+        $segments = $url !== '' ? explode('/', $url) : [];
 
+        $routeKey = '';
+        $params = [];
 
-        //Verificar si existe la ruta para GET o POST
-        if (isset($this->routes[$method][$url])) {
+        for ($i = count($segments); $i >= 0; $i--) {
+            $tempRoute = implode('/', array_slice($segments, 0, $i));
+            if (isset($this->routes[$method][$tempRoute])) {
+                $routeKey = $tempRoute;
+                $params = array_slice($segments, $i);
+                break;
+            }
+        }
 
-            //Extraer nombre del controlador y método
-            [$controllerClass, $methodName] = $this->routes[$method][$url];
+        if ($routeKey !== '' && isset($this->routes[$method][$routeKey])) {
+            [$controllerClass, $methodName] = $this->routes[$method][$routeKey];
 
             $controllerFile = APP_PATH . '/controllers/' . $controllerClass . '.php';
 
@@ -45,13 +49,12 @@ class Router
                 $controller = new $controllerClass();
 
                 if (method_exists($controller, $methodName)) {
-                    $controller->$methodName();
+                    call_user_func_array([$controller, $methodName], $params);
                     return;
                 }
             }
         }
 
-        //Si la ruta o controller no existen
         http_response_code(404);
         echo "<h1>404 - Página no encontrada</h1>";
     }

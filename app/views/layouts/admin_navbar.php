@@ -17,10 +17,23 @@
                     <li class="nav-item">
                         <a class="nav-link" href="<?= BASE_URL . 'auth/donaciones' ?>" data-section="impacto">Gestión de Donaciones</a>
                     </li>
+
+                    <div class="d-flex" style="height: 30px;">
+                        <div class="vr"></div>
+                    </div>
+
+                    <div class="px-4">
+                        <span class="text-black-50">dereck@gmail.com</span>
+                    </div>
+
+
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= BASE_URL . 'auth/logout' ?>"><i class="bi bi-box-arrow-right"></i></a>
+                        <a class="nav-link" href="<?= BASE_URL . 'auth/logout' ?>"><i class="bi bi-box-arrow-right text-black-50"></i></a>
                     </li>
                 </ul>
+
+
+
             </div>
         </div>
     </nav>

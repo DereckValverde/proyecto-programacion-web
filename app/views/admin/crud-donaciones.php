@@ -68,156 +68,55 @@
             </div>
 
             <div class="d-flex flex-wrap gap-2">
-                <button class="btn btn-light rounded-pill boton-activo">Todas</button>
-                <button class="btn btn-light border border-dark-light rounded-pill">Pendientes</button>
-                <button class="btn btn-light border border-dark-light rounded-pill">Aceptadas</button>
-                <button class="btn btn-light border border-dark-light rounded-pill">Rechazadas</button>
+                <button class="btn btn-light rounded-pill boton-filtro boton-activo" id="btnTodas">Todas</button>
+                <button class="btn btn-light border border-dark-light rounded-pill boton-filtro" id="btnPendientes">Pendientes</button>
+                <button class="btn btn-light border border-dark-light rounded-pill boton-filtro" id="btnAceptadas">Aceptadas</button>
+                <button class="btn btn-light border border-dark-light rounded-pill boton-filtro" id="btnRechazadas">Rechazadas</button>
             </div>
 
             <div class="table-responsive border border-dark-light border border-bottom-0 rounded-3">
                 <table class="table text-center align-middle mb-0">
                     <thead class="table-light">
-                        <tr>
-                            <th scope="col">Donante</th>
-                            <th scope="col">Equipo Donado</th>
-                            <th scope="col">Unidades</th>
-                            <th scope="col">Fecha</th>
-                            <th scope="col">Estado</th>
-                            <th scope="col">Acciones</th>
+                        <tr class="align-middle">
+                            <th>Nombre</th>
+                            <th>Equipo</th>
+                            <th>Marca</th>
+                            <th>Modelo</th>
+                            <th>Estado Equipo</th>
+                            <th>Cantidad</th>
+                            <th>Estado Solicitud</th>
+                            <th>Fecha Registro</th>
+                            <th>Acciones</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">Fundación Manos Unidas</th>
-                            <td>Monitores</td>
-                            <td>10</td>
-                            <td>14/01/2024</td>
-                            <td><span class="estado-pendiente">Pendiente</span></td>
-                            <td>
-                                <div class="acciones">
-                                    <button title="Ver Más" class="boton-acciones" id="btn-ver-mas">
-                                        <i class="bi bi-eye-fill"></i>
-                                    </button>
-                                    <button title="Aceptar Donación" class="boton-acciones" id="btn-aceptar">
-                                        <i class="bi bi-check-lg"></i>
-                                    </button>
-                                    <button title="Rechazar Donación" class="boton-acciones" id="btn-rechazar">
-                                        <i class="bi bi-x"></i>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <th scope="row">Colegio Técnico de Cartago</th>
-                            <td>Teclados</td>
-                            <td>25</td>
-                            <td>02/03/2024</td>
-                            <td><span class="estado-aceptado">Aceptado</span></td>
-                            <td>
-                                <div class="acciones">
-                                    <button title="Ver Más" class="boton-acciones" id="btn-ver-mas">
-                                        <i class="bi bi-eye-fill"></i>
-                                    </button>
-                                    <button title="Aceptar Donación" class="boton-acciones" id="btn-aceptar">
-                                        <i class="bi bi-check-lg"></i>
-                                    </button>
-                                    <button title="Rechazar Donación" class="boton-acciones" id="btn-rechazar">
-                                        <i class="bi bi-x"></i>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <th scope="row">Asociación Esperanza Verde</th>
-                            <td>Mouse</td>
-                            <td>15</td>
-                            <td>18/04/2024</td>
-                            <td><span class="estado-rechazado">Rechazado</span></td>
-                            <td>
-                                <div class="acciones">
-                                    <button title="Ver Más" class="boton-acciones" id="btn-ver-mas">
-                                        <i class="bi bi-eye-fill"></i>
-                                    </button>
-                                    <button title="Aceptar Donación" class="boton-acciones" id="btn-aceptar">
-                                        <i class="bi bi-check-lg"></i>
-                                    </button>
-                                    <button title="Rechazar Donación" class="boton-acciones" id="btn-rechazar">
-                                        <i class="bi bi-x"></i>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <th scope="row">Liceo de Heredia</th>
-                            <td>CPU</td>
-                            <td>8</td>
-                            <td>27/05/2024</td>
-                            <td><span class="estado-pendiente">Pendiente</span></td>
-                            <td>
-                                <div class="acciones">
-                                    <button title="Ver Más" class="boton-acciones" id="btn-ver-mas">
-                                        <i class="bi bi-eye-fill"></i>
-                                    </button>
-                                    <button title="Aceptar Donación" class="boton-acciones" id="btn-aceptar">
-                                        <i class="bi bi-check-lg"></i>
-                                    </button>
-                                    <button title="Rechazar Donación" class="boton-acciones" id="btn-rechazar">
-                                        <i class="bi bi-x"></i>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <th scope="row">ONG Futuro Digital</th>
-                            <td>Laptops</td>
-                            <td>6</td>
-                            <td>09/07/2024</td>
-                            <td><span class="estado-aceptado">Aceptado</span></td>
-                            <td>
-                                <div class="acciones">
-                                    <button title="Ver Más" class="boton-acciones" id="btn-ver-mas">
-                                        <i class="bi bi-eye-fill"></i>
-                                    </button>
-                                    <button title="Aceptar Donación" class="boton-acciones" id="btn-aceptar">
-                                        <i class="bi bi-check-lg"></i>
-                                    </button>
-                                    <button title="Rechazar Donación" class="boton-acciones" id="btn-rechazar">
-                                        <i class="bi bi-x"></i>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <th scope="row">Colegio de Puntarenas</th>
-                            <td>Proyectores</td>
-                            <td>3</td>
-                            <td>21/08/2024</td>
-                            <td><span class="estado-rechazado">Rechazado</span></td>
-                            <td>
-                                <div class="acciones">
-                                    <button title="Ver Más" class="boton-acciones" id="btn-ver-mas">
-                                        <i class="bi bi-eye-fill"></i>
-                                    </button>
-                                    <button title="Aceptar Donación" class="boton-acciones" id="btn-aceptar">
-                                        <i class="bi bi-check-lg"></i>
-                                    </button>
-                                    <button title="Rechazar Donación" class="boton-acciones" id="btn-rechazar">
-                                        <i class="bi bi-x"></i>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
+                    <tbody id="donacionesTbody">
+                        <!-- Acá se cargan los datos desde JS-->
                     </tbody>
                 </table>
             </div>
     </main>
 
+    <!-- Modal para Ver Detalles de cada Donación -->
+    <div class="modal-overlay" id="donacionModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Titulo Modal</h3>
+                <button class="modal-close" id="closeModal">&times;</button>
+            </div>
+
+            <div id="detallesDonacion">
+                <!-- Acá se cargan los detalles con js -->
+            </div>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        const BASE_URL = "<?= BASE_URL ?>";
+    </script>
+
+    <script src="<?= BASE_URL . 'public/js/admin/tabla-donaciones.js' ?>"></script>
 </body>
 
 </html>

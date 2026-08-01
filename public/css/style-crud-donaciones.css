@@ -58,7 +58,6 @@ body {
 .navbar .nav-link.active {
     background: rgba(45, 103, 88, 0.1);
     color: var(--color-pine) !important;
-    font-weight: 600;
 }
 
 .navbar .navbar-toggler {

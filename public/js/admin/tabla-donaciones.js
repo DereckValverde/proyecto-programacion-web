@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', (e) => {
-    e.preventDefault();
     cargarTabla(`${BASE_URL}donaciones/apiList`); // Carga todos los registros de donaciones en la tabla
+
+    document.getElementById('linkDonaciones').classList.add('active');
 
     /*Listener para cerrar el modal */
     const closeModal = document.getElementById('closeModal');

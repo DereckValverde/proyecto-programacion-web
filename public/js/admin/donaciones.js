@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
     /*Cargar las KPIs*/
     cargarKpis();
 
+    //Se marca el botón en en navbar
     document.getElementById('linkDonaciones').classList.add('active');
 
     /*Listener para cerrar el modal */

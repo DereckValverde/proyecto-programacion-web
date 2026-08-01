@@ -130,7 +130,6 @@ body {
 
 .boton-activo {
     background-color: var(--color-pine);
-    border: none;
     color: #fff;
 }
 

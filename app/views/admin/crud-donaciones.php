@@ -68,7 +68,7 @@
             </div>
 
             <div class="d-flex flex-wrap gap-2">
-                <button class="btn btn-light rounded-pill boton-filtro boton-activo" id="btnTodas">Todas</button>
+                <button class="btn btn-light border border-dark-light rounded-pill boton-filtro boton-activo" id="btnTodas">Todas</button>
                 <button class="btn btn-light border border-dark-light rounded-pill boton-filtro" id="btnPendientes">Pendientes</button>
                 <button class="btn btn-light border border-dark-light rounded-pill boton-filtro" id="btnAceptadas">Aceptadas</button>
                 <button class="btn btn-light border border-dark-light rounded-pill boton-filtro" id="btnRechazadas">Rechazadas</button>

@@ -32,7 +32,7 @@
                             <p class="card-title text-secondary  fw-bold fs-8 mb-0">Total de Donaciones</p>
                             <i class="bi bi-box2-heart fs-5 text-secondary"></i>
                         </div>
-                        <h3 class="card-value text-dark fs-5 fw-bold mt-4 mb-0">21</h3>
+                        <h3 class="card-value text-dark fs-5 fw-bold mt-4 mb-0" id="kpiTotalDonaciones"></h3>
                     </div>
                 </div>
 
@@ -42,7 +42,7 @@
                             <p class="card-title fw-bold fs-8 mb-0">Pendientes de Revisar</p>
                             <i class="bi bi-clipboard-check fs-5"></i>
                         </div>
-                        <h3 class="card-value fs-5 fw-bold mt-4 mb-0">11</h3>
+                        <h3 class="card-value fs-5 fw-bold mt-4 mb-0" id="kpiPendientes"></h3>
                     </div>
                 </div>
 
@@ -52,7 +52,7 @@
                             <p class="card-title text-secondary fw-bold fs-8 mb-0"> Donaciones Aceptadas</p>
                             <i class="bi bi-check-circle fs-5 text-secondary"></i>
                         </div>
-                        <h3 class="card-value text-dark fs-5 fw-bold mt-4 mb-0">32</h3>
+                        <h3 class="card-value text-dark fs-5 fw-bold mt-4 mb-0" id="kpiAceptadas"></h3>
                     </div>
                 </div>
 
@@ -62,7 +62,7 @@
                             <p class="card-title text-secondary fw-bold fs-8 mb-0">Donaciones Rechazadas</p>
                             <i class="bi bi-x-circle fs-5 text-secondary"></i>
                         </div>
-                        <h3 class="card-value text-dark fs-5 fw-bold mt-4 mb-0">13</h3>
+                        <h3 class="card-value text-dark fs-5 fw-bold mt-4 mb-0" id="kpiRechazadas"></h3>
                     </div>
                 </div>
             </div>
@@ -116,7 +116,7 @@
         const BASE_URL = "<?= BASE_URL ?>";
     </script>
 
-    <script src="<?= BASE_URL . 'public/js/admin/tabla-donaciones.js' ?>"></script>
+    <script src="<?= BASE_URL . 'public/js/admin/donaciones.js' ?>"></script>
 </body>
 
 </html>

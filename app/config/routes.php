@@ -14,6 +14,7 @@ $router->get('auth/logout', ['AuthController', 'logout']);
 $router->get('donaciones/apiList', ['DonacionesController', 'apiList']);
 $router->get('donaciones/apiShow', ['DonacionesController', 'apiShow']);
 $router->get('donaciones/apiListEstado', ['DonacionesController', 'apiListEstado']);
+$router->get('donaciones/apiKpis', ['DonacionesController', 'apiKpis']);
 
 $router->get('solicitudes/apiList',['SolicitudesController','apiList']);
 $router->get('solicitudes/apiShow',['SolicitudesController','apiShow']);

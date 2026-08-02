@@ -121,6 +121,10 @@ body {
     letter-spacing: -0.5px;
 }
 
+.dashboard-card .card-value {
+    min-height: 1.5rem;
+    display: block;
+}
 
 .donaciones-pendientes {
     background-color: var(--color-pine);

@@ -41,4 +41,11 @@ class DonacionesController
 
         echo json_encode($donaciones);
     }
+
+    public function apiKpis()
+    {
+        header('Content-Type: application/json');
+        $kpis = $this->donacionesModel->getKpis();
+        echo json_encode($kpis);
+    }
 }

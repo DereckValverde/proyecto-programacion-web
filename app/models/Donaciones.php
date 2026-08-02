@@ -72,4 +72,21 @@ class Donaciones
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function getKpis()
+    {
+        $query = "
+        SELECT
+            COUNT(*) AS total,
+            SUM(CASE WHEN estado = 'Pendiente' THEN 1 ELSE 0 END) as pendientes,
+            SUM(CASE WHEN estado = 'Aceptada' THEN 1 ELSE 0 END) as aceptadas,
+            SUM(CASE WHEN estado = 'Rechazada' THEN 1 ELSE 0 END) as rechazadas
+            FROM donaciones
+        ";
+
+        $stmt = $this->db->prepare($query);
+        $stmt->execute();
+
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 }

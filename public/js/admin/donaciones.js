@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', (e) => {
     cargarTabla(`${BASE_URL}donaciones/apiList`); // Carga todos los registros de donaciones en la tabla
 
-    /*Cargar las KPIs*/
+    /*Llama a un endpoint que trae todas las KPIs y las caga*/
     cargarKpis();
 
     //Se marca el botón en en navbar
@@ -197,36 +197,27 @@ async function verMas(id) {
 
 async function cargarKpis() {
 
-    // Total Donaciones
     const kpiTotalDonaciones = document.getElementById('kpiTotalDonaciones');
-
-    const responseDonaciones = await fetch(`${BASE_URL}donaciones/apiList`);
-    const donaciones = await responseDonaciones.json();
-
-    kpiTotalDonaciones.textContent = donaciones.length;
-
-
-    // Pendientes de Revisar
     const kpiPendientes = document.getElementById('kpiPendientes');
-
-    const responsePendientes = await fetch(`${BASE_URL}donaciones/apiListEstado/Pendiente`);
-    const donacionesPendientes = await responsePendientes.json();
-
-    kpiPendientes.textContent = donacionesPendientes.length;
-
-    //Donaciones Aceptadas
     const kpiAceptadas = document.getElementById('kpiAceptadas');
-    
-    const responseAceptadas = await fetch(`${BASE_URL}donaciones/apiListEstado/Aceptada`);
-    const donacionesAceptadas = await responseAceptadas.json();
-
-    kpiAceptadas.textContent = donacionesAceptadas.length;
-
-    //Donaciones Rechazadas
     const kpiRechazadas = document.getElementById('kpiRechazadas');
 
-    const responseRechazadas = await fetch(`${BASE_URL}donaciones/apiListEstado/Rechazada`);
-    const donacionesRechazadas = await responseRechazadas.json();
+    try {
 
-    kpiRechazadas.textContent = donacionesRechazadas.length;
+        const response = await fetch(`${BASE_URL}/donaciones/apiKpis`);
+        const kpis = await response.json();
+
+        kpiTotalDonaciones.textContent = kpis.total;
+        kpiPendientes.textContent = kpis.pendientes;
+        kpiAceptadas.textContent = kpis.aceptadas;
+        kpiRechazadas.textContent = kpis.rechazadas;
+
+
+    } catch (error) {
+
+        console.error(error);
+
+    }
+
+
 }

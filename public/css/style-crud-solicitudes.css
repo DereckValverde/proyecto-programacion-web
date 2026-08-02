@@ -122,7 +122,7 @@ body {
     letter-spacing: -0.5px;
 }
 
-.donaciones-pendientes {
+.solicitudes-pendientes {
     background-color: var(--color-pine);
     color: #fff;
 }

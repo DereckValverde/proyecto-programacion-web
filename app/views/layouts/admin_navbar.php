@@ -18,13 +18,18 @@
                         <a class="nav-link" id="linkDonaciones" href="<?= BASE_URL . 'auth/donaciones' ?>" data-section="impacto">Gestión de Donaciones</a>
                     </li>
 
-                    <div class="d-flex px-3" style="height: 30px;">
-                        <div class="vr"></div>
-                    </div>
+                    <li class="nav-item w-50 d-lg-none">
+                        <hr class="my-2">
+                    </li>
 
-                    <div>
+                    <li class="nav-item d-none d-lg-block px-3">
+                        <div class="vr" style="height:30px;"></div>
+                    </li>
+
+                    <li>
                         <span class="text-black-50">dereck@gmail.com</span>
-                    </div>
+                    </li>
+
 
 
                     <li class="nav-item px-2">

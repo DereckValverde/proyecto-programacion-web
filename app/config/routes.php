@@ -3,7 +3,7 @@
 
 $router = new Router();
 
-$router->get('', ['HomeController', 'index']);
+$router->get('home', ['HomeController', 'index']);
 
 $router->get('auth', ['AuthController', 'index']);
 $router->get('auth/dashboard', ['AuthController', 'dashboard']);

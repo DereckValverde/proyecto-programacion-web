@@ -32,7 +32,7 @@
                             <p class="card-title text-secondary  fw-bold fs-8 mb-0">Total de Solicitudes</p>
                             <i class="bi bi-inbox fs-5 text-secondary"></i>
                         </div>
-                        <h3 class="card-value text-dark fs-5 fw-bold mt-4 mb-0">21</h3>
+                        <h3 class="card-value text-dark fs-5 fw-bold mt-4 mb-0" id="kpiTotal"></h3>
                     </div>
                 </div>
 
@@ -42,7 +42,7 @@
                             <p class="card-title fw-bold fs-8 mb-0">Pendientes de Revisar</p>
                             <i class="bi bi-clipboard-check fs-5"></i>
                         </div>
-                        <h3 class="card-value fs-5 fw-bold mt-4 mb-0">11</h3>
+                        <h3 class="card-value fs-5 fw-bold mt-4 mb-0" id="kpiPendientes"></h3>
                     </div>
                 </div>
 
@@ -52,7 +52,7 @@
                             <p class="card-title text-secondary fw-bold fs-8 mb-0"> Solicitudes Aceptadas</p>
                             <i class="bi bi-check-circle fs-5 text-secondary"></i>
                         </div>
-                        <h3 class="card-value text-dark fs-5 fw-bold mt-4 mb-0">32</h3>
+                        <h3 class="card-value text-dark fs-5 fw-bold mt-4 mb-0" id="kpiAceptadas"></h3>
                     </div>
                 </div>
 
@@ -62,16 +62,16 @@
                             <p class="card-title text-secondary fw-bold fs-8 mb-0">Solicitudes Rechazadas</p>
                             <i class="bi bi-x-circle fs-5 text-secondary"></i>
                         </div>
-                        <h3 class="card-value text-dark fs-5 fw-bold mt-4 mb-0">13</h3>
+                        <h3 class="card-value text-dark fs-5 fw-bold mt-4 mb-0" id="kpiRechazadas"></h3>
                     </div>
                 </div>
             </div>
 
             <div class="d-flex flex-wrap gap-2">
-                <button class="btn btn-light rounded-pill boton-activo">Todas</button>
-                <button class="btn btn-light border border-dark-light rounded-pill">Pendientes</button>
-                <button class="btn btn-light border border-dark-light rounded-pill">Aceptadas</button>
-                <button class="btn btn-light border border-dark-light rounded-pill">Rechazadas</button>
+                <button class="btn btn-light rounded-pill boton-filtro boton-activo" id="btnTodas">Todas</button>
+                <button class="btn btn-light border border-dark-light rounded-pill boton-filtro" id="btnPendientes">Pendientes</button>
+                <button class="btn btn-light border border-dark-light rounded-pill boton-filtro" id="btnAceptadas">Aceptadas</button>
+                <button class="btn btn-light border border-dark-light rounded-pill boton-filtro" id="btnRechazadas">Rechazadas</button>
             </div>
 
             <div class="table-responsive border border-dark-light border border-bottom-0 rounded-3">

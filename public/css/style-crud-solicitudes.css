@@ -87,6 +87,11 @@ body {
     box-sizing: border-box;
 }
 
+.dashboard-card .card-value {
+    min-height: 1.5rem;
+    display: block;
+}
+
 @media (max-width: 767px) {
     .dashboard-head {
         text-align: center;

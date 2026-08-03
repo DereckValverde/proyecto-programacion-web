@@ -1,9 +1,49 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    //Acá va para cargar las tablas
+    //Carga inicial de la tabla
     cargarTabla(`${BASE_URL}/solicitudes/apiList`);
 
+    //Botones de filtro para la tabla
+    const btnTodas = document.getElementById('btnTodas');
+    const btnPendientes = document.getElementById('btnPendientes');
+    const btnAceptadas = document.getElementById('btnAceptadas');
+    const btnRechazadas = document.getElementById('btnRechazadas');
+
+    //constante para quitar el active de los botones y ponerselo al que se le haga click
+    const botones = document.querySelectorAll('.boton-filtro');
+
+    botones.forEach(boton => {
+        boton.addEventListener('click', () => {
+
+            botones.forEach(b => b.classList.remove('boton-activo'));
+
+            boton.classList.add('boton-activo');
+
+        });
+    });
+
+    //listener de los botones de filtro
+    btnTodas.addEventListener('click', () => {
+        cargarTabla(`${BASE_URL}/solicitudes/apiList`);
+    });
+
+    btnPendientes.addEventListener('click', () => {
+        cargarTabla(`${BASE_URL}/solicitudes/apiListEstado/Pendiente`);
+    });
+
+    btnAceptadas.addEventListener('click', () => {
+        cargarTabla(`${BASE_URL}/solicitudes/apiListEstado/Aceptada`);
+    });
+
+    btnRechazadas.addEventListener('click', () => {
+        cargarTabla(`${BASE_URL}/solicitudes/apiListEstado/Rechazada`);
+    });
+
+
+
+
     //Acá va para cargar los KPIs
+    cargarKpis();
 
     //Marcar botón en el navbar
     document.getElementById('linkSolicitudes').classList.add('active');
@@ -68,4 +108,30 @@ async function cargarTabla(url) {
         console.error(error);
     }
 
+}
+
+async function cargarKpis() {
+
+    //Constantes de los Kpis
+    const kpiTotal = document.getElementById('kpiTotal');
+    const kpiPendientes = document.getElementById('kpiPendientes');
+    const kpiAceptadas = document.getElementById('kpiAceptadas');
+    const kpiRechazadas = document.getElementById('kpiRechazadas');
+
+
+    try {
+
+        const response = await fetch(`${BASE_URL}/solicitudes/apiKpis`);
+        const kpis = await response.json();
+
+        kpiTotal.textContent = kpis.total;
+        kpiPendientes.textContent = kpis.pendientes;
+        kpiAceptadas.textContent = kpis.aceptadas;
+        kpiRechazadas.textContent = kpis.rechazadas;
+
+
+
+    } catch (error) {
+        console.error(error);
+    }
 }

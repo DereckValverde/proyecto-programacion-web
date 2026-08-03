@@ -42,4 +42,12 @@ class SolicitudesController
 
         echo json_encode($solicitudes);
     }
+
+    public function apiKpis()
+    {
+        header('Content-Type: application/json');
+        $kpis = $this->solicitudesModel->getKpis();
+
+        echo json_encode($kpis);
+    }
 }

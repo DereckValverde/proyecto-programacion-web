@@ -83,7 +83,6 @@ h6 {
 .navbar .nav-link.active {
     background: rgba(45, 103, 88, 0.1);
     color: var(--color-pine) !important;
-    font-weight: 600;
 }
 
 .navbar .nav-link.btn-aplicar {
@@ -790,8 +789,13 @@ h6 {
 }
 
 @keyframes scrollMarquee {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
 }
 
 .allies-marquee-text {

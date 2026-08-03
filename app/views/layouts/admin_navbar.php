@@ -12,7 +12,7 @@
                         <a class="nav-link" href="<?= BASE_URL . 'auth/dashboard' ?>" data-section="inicio">Dashboard</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= BASE_URL . 'auth/solicitudes' ?>" data-section="mision">Gestión de Solicitudes</a>
+                        <a class="nav-link" id="linkSolicitudes" href="<?= BASE_URL . 'auth/solicitudes' ?>" data-section="mision">Gestión de Solicitudes</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="linkDonaciones" href="<?= BASE_URL . 'auth/donaciones' ?>" data-section="impacto">Gestión de Donaciones</a>

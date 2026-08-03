@@ -1,8 +1,8 @@
 <?php
 
-class DonacionesController
+class SolicitudesController
 {
-    private $donacionesModel;
+    private $solicitudesModel;
 
     public function __construct()
     {
@@ -11,41 +11,43 @@ class DonacionesController
             redirect('auth');
         }
 
-        $this->donacionesModel = model('Donaciones');
+        $this->solicitudesModel = model('Solicitudes');
     }
 
     public function apiList()
     {
         header('Content-Type: application/json');
-        $donaciones = $this->donacionesModel->getAll();
 
-        echo json_encode($donaciones);
+        $solicitudes = $this->solicitudesModel->getAll();
+
+        echo json_encode($solicitudes);
     }
 
     public function apiShow($id)
     {
         header('Content-Type: application/json');
-        $donacion = $this->donacionesModel->getById($id);
+        $solicitud = $this->solicitudesModel->getById($id);
 
-        if ($donacion) {
-            echo json_encode(['success' => true, 'data' => $donacion]);
+        if ($solicitud) {
+            echo json_encode(['success' => true, 'data' => $solicitud]);
         } else {
-            echo json_encode(['success' => false, 'message' => 'Donacion no encontrada.']);
+            echo json_encode(['success' => false, 'message' => 'Solicitud no encontrada.']);
         }
     }
 
     public function apiListEstado($estado)
     {
         header('Content-Type: application/json');
-        $donaciones = $this->donacionesModel->getPorEstado($estado);
+        $solicitudes = $this->solicitudesModel->getPorEstado($estado);
 
-        echo json_encode($donaciones);
+        echo json_encode($solicitudes);
     }
 
     public function apiKpis()
     {
         header('Content-Type: application/json');
-        $kpis = $this->donacionesModel->getKpis();
+        $kpis = $this->solicitudesModel->getKpis();
+
         echo json_encode($kpis);
     }
 }

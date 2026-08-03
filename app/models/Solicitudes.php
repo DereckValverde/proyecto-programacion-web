@@ -1,6 +1,6 @@
 <?php
 
-class Donaciones
+class Solicitudes
 {
     private $db;
 
@@ -14,22 +14,24 @@ class Donaciones
     {
         $query = "
         SELECT
-            d.idDonacion,
-            d.nombreDonador,
-            d.correoDonador,
-            d.telefonoDonador,
-            t.nombre AS tipoEquipo,
-            d.marca,
-            d.modelo,
-            d.estadoEquipo,
-            d.cantidadEquipos,
-            d.estado,
-            d.fechaRegistro
-        FROM donaciones d
+        s.idSolicitud,
+        s.nombreSolicitante,
+        s.correoSolicitante,
+        s.telefonoSolicitante,
+        s.nombreOrganizacion,
+        o.nombre as tipoOrganizacion,
+        t.nombre AS tipoEquipo,
+        s.cantidadEquipos,
+        s.motivoSolicitud,
+        s.estado,
+        s.comentarioAdministrador,
+        s.fechaRegistro
+        FROM solicitudes s
         INNER JOIN tipos_equipo t
-            ON d.idTipoEquipo = t.idTipoEquipo
-        ORDER BY d.idDonacion ASC
-    ";
+        ON s.idTipoEquipo = t.idTipoEquipo
+        INNER JOIN tipos_organizacion o
+        ON s.idTipoOrganizacion = o.idTipoOrganizacion
+        ORDER BY s.idSolicitud ASC";
 
         $stmt = $this->db->query($query);
 
@@ -38,7 +40,7 @@ class Donaciones
 
     public function getById($id)
     {
-        $query = "SELECT * FROM donaciones WHERE idDonacion = ?";
+        $query = "SELECT * FROM solicitudes WHERE idSolicitud = ?";
         $stmt = $this->db->prepare($query);
         $stmt->execute([$id]);
         return $stmt->fetch();
@@ -48,23 +50,22 @@ class Donaciones
     {
         $query = "
         SELECT
-            d.idDonacion,
-            d.nombreDonador,
-            d.correoDonador,
-            d.telefonoDonador,
+            s.idSolicitud,
+            s.nombreSolicitante,
+            s.correoSolicitante,
+            s.telefonoSolicitante,
+            s.nombreOrganizacion,
             t.nombre AS tipoEquipo,
-            d.marca,
-            d.modelo,
-            d.estadoEquipo,
-            d.cantidadEquipos,
-            d.estado,
-            d.fechaRegistro
-        FROM donaciones d
-        INNER JOIN tipos_equipo t
-            ON d.idTipoEquipo = t.idTipoEquipo
-        WHERE d.estado = :estado
-        ORDER BY d.idDonacion ASC
-    ";
+            s.cantidadEquipos,
+            s.motivoSolicitud,
+            s.estado,
+            s.comentarioAdministrador,
+            s.fechaRegistro
+            FROM solicitudes s
+            INNER JOIN tipos_equipo t
+            ON s.idTipoEquipo = t.idTipoEquipo
+            WHERE s.estado = :estado
+            ORDER BY s.idSolicitud ASC";
 
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(':estado', $estado);
@@ -81,7 +82,7 @@ class Donaciones
             SUM(CASE WHEN estado = 'Pendiente' THEN 1 ELSE 0 END) as pendientes,
             SUM(CASE WHEN estado = 'Aceptada' THEN 1 ELSE 0 END) as aceptadas,
             SUM(CASE WHEN estado = 'Rechazada' THEN 1 ELSE 0 END) as rechazadas
-            FROM donaciones
+            FROM solicitudes
         ";
 
         $stmt = $this->db->prepare($query);

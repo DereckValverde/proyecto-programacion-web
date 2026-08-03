@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="<?= BASE_URL . 'public/images/LOGO.png' ?>">
-    <link rel="stylesheet" href="<?= BASE_URL . 'public/css/style-crud-solicitudes.css'?>">
+    <link rel="stylesheet" href="<?= BASE_URL . 'public/css/style-crud-solicitudes.css' ?>">
     <title>Panel Administrativo - Solicitudes</title>
 </head>
 
@@ -32,7 +32,7 @@
                             <p class="card-title text-secondary  fw-bold fs-8 mb-0">Total de Solicitudes</p>
                             <i class="bi bi-inbox fs-5 text-secondary"></i>
                         </div>
-                        <h3 class="card-value text-dark fs-5 fw-bold mt-4 mb-0">21</h3>
+                        <h3 class="card-value text-dark fs-5 fw-bold mt-4 mb-0" id="kpiTotal"></h3>
                     </div>
                 </div>
 
@@ -42,7 +42,7 @@
                             <p class="card-title fw-bold fs-8 mb-0">Pendientes de Revisar</p>
                             <i class="bi bi-clipboard-check fs-5"></i>
                         </div>
-                        <h3 class="card-value fs-5 fw-bold mt-4 mb-0">11</h3>
+                        <h3 class="card-value fs-5 fw-bold mt-4 mb-0" id="kpiPendientes"></h3>
                     </div>
                 </div>
 
@@ -52,7 +52,7 @@
                             <p class="card-title text-secondary fw-bold fs-8 mb-0"> Solicitudes Aceptadas</p>
                             <i class="bi bi-check-circle fs-5 text-secondary"></i>
                         </div>
-                        <h3 class="card-value text-dark fs-5 fw-bold mt-4 mb-0">32</h3>
+                        <h3 class="card-value text-dark fs-5 fw-bold mt-4 mb-0" id="kpiAceptadas"></h3>
                     </div>
                 </div>
 
@@ -62,162 +62,62 @@
                             <p class="card-title text-secondary fw-bold fs-8 mb-0">Solicitudes Rechazadas</p>
                             <i class="bi bi-x-circle fs-5 text-secondary"></i>
                         </div>
-                        <h3 class="card-value text-dark fs-5 fw-bold mt-4 mb-0">13</h3>
+                        <h3 class="card-value text-dark fs-5 fw-bold mt-4 mb-0" id="kpiRechazadas"></h3>
                     </div>
                 </div>
             </div>
 
             <div class="d-flex flex-wrap gap-2">
-                <button class="btn btn-light rounded-pill boton-activo">Todas</button>
-                <button class="btn btn-light border border-dark-light rounded-pill">Pendientes</button>
-                <button class="btn btn-light border border-dark-light rounded-pill">Aceptadas</button>
-                <button class="btn btn-light border border-dark-light rounded-pill">Rechazadas</button>
+                <button class="btn btn-light rounded-pill boton-filtro boton-activo" id="btnTodas">Todas</button>
+                <button class="btn btn-light border border-dark-light rounded-pill boton-filtro" id="btnPendientes">Pendientes</button>
+                <button class="btn btn-light border border-dark-light rounded-pill boton-filtro" id="btnAceptadas">Aceptadas</button>
+                <button class="btn btn-light border border-dark-light rounded-pill boton-filtro" id="btnRechazadas">Rechazadas</button>
             </div>
 
             <div class="table-responsive border border-dark-light border border-bottom-0 rounded-3">
                 <table class="table text-center align-middle mb-0">
                     <thead class="table-light">
-                        <tr>
-                            <th scope="col">Solicitante</th>
-                            <th scope="col">Equipo Solicitado</th>
-                            <th scope="col">Unidades</th>
-                            <th scope="col">Fecha</th>
-                            <th scope="col">Estado</th>
-                            <th scope="col">Acciones</th>
+                        <tr class="align-middle">
+                            <th>Solicitante</th>
+                            <th>Correo</th>
+                            <th>Teléfono</th>
+                            <th>Organización</th>
+                            <th>Equipo</th>
+                            <th>Cantidad</th>
+                            <th>Estado</th>
+                            <th>Fecha</th>
+                            <th>Acciones</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">Fundación Manos Unidas</th>
-                            <td>Monitores</td>
-                            <td>10</td>
-                            <td>14/01/2024</td>
-                            <td><span class="estado-pendiente">Pendiente</span></td>
-                            <td>
-                                <div class="acciones">
-                                    <button title="Ver Más" class="boton-acciones" id="btn-ver-mas">
-                                        <i class="bi bi-eye-fill"></i>
-                                    </button>
-                                    <button title="Aceptar Solicitud" class="boton-acciones" id="btn-aceptar">
-                                        <i class="bi bi-check-lg"></i>
-                                    </button>
-                                    <button title="Rechazar Solicitud" class="boton-acciones" id="btn-rechazar">
-                                        <i class="bi bi-x"></i>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
+                    <tbody id="solicitudesTbody">
 
-                        <tr>
-                            <th scope="row">Colegio Técnico de Cartago</th>
-                            <td>Teclados</td>
-                            <td>25</td>
-                            <td>02/03/2024</td>
-                            <td><span class="estado-aceptado">Aceptado</span></td>
-                            <td>
-                                <div class="acciones">
-                                    <button title="Ver Más" class="boton-acciones" id="btn-ver-mas">
-                                        <i class="bi bi-eye-fill"></i>
-                                    </button>
-                                    <button title="Aceptar Solicitud" class="boton-acciones" id="btn-aceptar">
-                                        <i class="bi bi-check-lg"></i>
-                                    </button>
-                                    <button title="Rechazar Solicitud" class="boton-acciones" id="btn-rechazar">
-                                        <i class="bi bi-x"></i>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <th scope="row">Asociación Esperanza Verde</th>
-                            <td>Mouse</td>
-                            <td>15</td>
-                            <td>18/04/2024</td>
-                            <td><span class="estado-rechazado">Rechazado</span></td>
-                            <td>
-                                <div class="acciones">
-                                    <button title="Ver Más" class="boton-acciones" id="btn-ver-mas">
-                                        <i class="bi bi-eye-fill"></i>
-                                    </button>
-                                    <button title="Aceptar Solicitud" class="boton-acciones" id="btn-aceptar">
-                                        <i class="bi bi-check-lg"></i>
-                                    </button>
-                                    <button title="Rechazar Solicitud" class="boton-acciones" id="btn-rechazar">
-                                        <i class="bi bi-x"></i>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <th scope="row">Liceo de Heredia</th>
-                            <td>CPU</td>
-                            <td>8</td>
-                            <td>27/05/2024</td>
-                            <td><span class="estado-pendiente">Pendiente</span></td>
-                            <td>
-                                <div class="acciones">
-                                    <button title="Ver Más" class="boton-acciones" id="btn-ver-mas">
-                                        <i class="bi bi-eye-fill"></i>
-                                    </button>
-                                    <button title="Aceptar Solicitud" class="boton-acciones" id="btn-aceptar">
-                                        <i class="bi bi-check-lg"></i>
-                                    </button>
-                                    <button title="Rechazar Solicitud" class="boton-acciones" id="btn-rechazar">
-                                        <i class="bi bi-x"></i>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <th scope="row">ONG Futuro Digital</th>
-                            <td>Laptops</td>
-                            <td>6</td>
-                            <td>09/07/2024</td>
-                            <td><span class="estado-aceptado">Aceptado</span></td>
-                            <td>
-                                <div class="acciones">
-                                    <button title="Ver Más" class="boton-acciones" id="btn-ver-mas">
-                                        <i class="bi bi-eye-fill"></i>
-                                    </button>
-                                    <button title="Aceptar Solicitud" class="boton-acciones" id="btn-aceptar">
-                                        <i class="bi bi-check-lg"></i>
-                                    </button>
-                                    <button title="Rechazar Solicitud" class="boton-acciones" id="btn-rechazar">
-                                        <i class="bi bi-x"></i>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <th scope="row">Colegio de Puntarenas</th>
-                            <td>Proyectores</td>
-                            <td>3</td>
-                            <td>21/08/2024</td>
-                            <td><span class="estado-rechazado">Rechazado</span></td>
-                            <td>
-                                <div class="acciones">
-                                    <button title="Ver Más" class="boton-acciones" id="btn-ver-mas">
-                                        <i class="bi bi-eye-fill"></i>
-                                    </button>
-                                    <button title="Aceptar Solicitud" class="boton-acciones" id="btn-aceptar">
-                                        <i class="bi bi-check-lg"></i>
-                                    </button>
-                                    <button title="Rechazar Solicitud" class="boton-acciones" id="btn-rechazar">
-                                        <i class="bi bi-x"></i>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
                     </tbody>
                 </table>
             </div>
     </main>
 
+    <!-- Modal para Ver Detalles de cada Solicitud -->
+    <div class="modal-overlay" id="solicitudModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Titulo Modal</h3>
+                <button class="modal-close" id="closeModal">&times;</button>
+            </div>
+
+            <div id="detallesSolicitud">
+                <!-- Acá se cargan los detalles con js -->
+            </div>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        const BASE_URL = "<?= BASE_URL ?>";
+    </script>
+    <script src="<?= BASE_URL . '/public/js/admin/solicitudes.js' ?>">
+
+    </script>
 </body>
 
 </html>

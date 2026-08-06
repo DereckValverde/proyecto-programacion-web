@@ -48,4 +48,23 @@ class DonacionesController
         $kpis = $this->donacionesModel->getKpis();
         echo json_encode($kpis);
     }
+
+    public function apiDelete($id)
+    {
+        header('Content-Type: application/json');
+
+        $donacionEliminada = $this->donacionesModel->deleteById($id);
+
+        if ($donacionEliminada) {
+            echo json_encode([
+                'success' => true,
+                'message' => 'Donación eliminada correctamente.'
+            ]);
+        } else {
+            echo json_encode([
+                'success' => false,
+                'message' => 'Error al eliminar la donación.'
+            ]);
+        }
+    }
 }

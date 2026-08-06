@@ -89,4 +89,12 @@ class Donaciones
 
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+
+    public function deleteById($id)
+    {
+        $query = "DELETE FROM donaciones WHERE idDonacion = ?";
+        $stmt = $this->db->prepare($query);
+
+        return $stmt->execute([$id]);
+    }
 }

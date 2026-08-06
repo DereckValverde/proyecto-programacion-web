@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="<?= BASE_URL . 'public/images/LOGO.png' ?>">
     <link rel="stylesheet" href="<?= BASE_URL . 'public/css/style-crud-donaciones.css' ?>">
-    
+
     <title>Panel Administrativo - Donaciones</title>
 </head>
 
@@ -112,6 +112,7 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
         const BASE_URL = "<?= BASE_URL ?>";

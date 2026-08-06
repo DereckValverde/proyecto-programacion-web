@@ -54,6 +54,8 @@ document.addEventListener('DOMContentLoaded', (e) => {
 
 });
 
+/*Función que carga la tabla dependiento
+ del filtro que se le pase por URL */
 async function cargarTabla(url) {
     const tbody = document.getElementById('donacionesTbody');
 
@@ -98,7 +100,7 @@ async function cargarTabla(url) {
                             <i class="bi bi-check-lg"></i>
                         </button>
 
-                        <button title="Rechazar Donación" class="boton-acciones btn-rechazar">
+                        <button title="Rechazar Donación" class="boton-acciones btn-rechazar" onclick= "eliminarSolicitud(${donacion.idDonacion})">
                             <i class="bi bi-x"></i>
                         </button>
                     </div>
@@ -207,6 +209,8 @@ async function cargarKpis() {
         const response = await fetch(`${BASE_URL}/donaciones/apiKpis`);
         const kpis = await response.json();
 
+        console.log(`Respuesta de la carga de KPIs: ${response.ok}`);
+
         kpiTotalDonaciones.textContent = kpis.total;
         kpiPendientes.textContent = kpis.pendientes;
         kpiAceptadas.textContent = kpis.aceptadas;
@@ -219,5 +223,44 @@ async function cargarKpis() {
 
     }
 
+
+}
+
+async function eliminarSolicitud(id) {
+
+
+
+    //Validación a nivel de front para confirmar la eliminación (SweetAlert)
+    Swal.fire({
+        title: "¿Está Seguro?",
+        text: "¡No podrá revertir esta acción!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Sí, eliminar",
+        cancelButtonText: "Cancelar"
+    }).then(async (result) => {
+        if (result.isConfirmed) {
+            try {
+                const response = await fetch(`${BASE_URL}donaciones/delete/${id}`, {
+                    method: 'POST'
+                });
+                const resData = await response.json();
+
+                console.log(resData);
+
+                if (resData.success) {
+                    Swal.fire('Eliminado', resData.message, 'success');
+                    cargarTabla(`${BASE_URL}donaciones/apiListEstado/Pendiente`);
+                } else {
+                    Swal.fire('Error', resData.message, 'error');
+                }
+            } catch (error) {
+                console.error(error);
+                Swal.fire('Error', 'Ocurrió un error al liminar el producto', 'error');
+            }
+        }
+    });
 
 }

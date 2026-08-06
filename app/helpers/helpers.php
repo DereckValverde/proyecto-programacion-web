@@ -2,9 +2,8 @@
 
 
 //Método para cargar vistas
-function view(string $viewPath, array $data = [])
+function view(string $viewPath)
 {
-    extract($data); //Para en el futuro pasar parametros si hace falta
 
     $file = VIEW_PATH . '/' . $viewPath . '.php';
 

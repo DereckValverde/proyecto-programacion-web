@@ -56,6 +56,6 @@ class Router
         }
 
         http_response_code(404);
-        echo "<h1>404 - Página no encontrada</h1>";
+        header('Location: '. BASE_URL . 'error/404');
     }
 }

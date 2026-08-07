@@ -15,11 +15,15 @@ $router->get('donaciones/apiList', ['DonacionesController', 'apiList']);
 $router->get('donaciones/apiShow', ['DonacionesController', 'apiShow']);
 $router->get('donaciones/apiListEstado', ['DonacionesController', 'apiListEstado']);
 $router->get('donaciones/apiKpis', ['DonacionesController', 'apiKpis']);
+$router->post('donaciones/rechazar', ['DonacionesController', 'apiRechazar']);
+$router->post('donaciones/aceptar', ['DonacionesController', 'apiAceptar']);
 
 $router->get('solicitudes/apiList', ['SolicitudesController', 'apiList']);
 $router->get('solicitudes/apiShow', ['SolicitudesController', 'apiShow']);
 $router->get('solicitudes/apiListEstado', ['SolicitudesController', 'apiListEstado']);
 $router->get('solicitudes/apiKpis', ['SolicitudesController', 'apiKpis']);
+$router->post('solicitudes/aceptar', ['SolicitudesController', 'apiAceptar']);
+$router->post('solicitudes/rechazar', ['SolicitudesController', 'apiRechazar']);
 
 $router->get('error/404', ['ErroresController', 'Error404']);
 

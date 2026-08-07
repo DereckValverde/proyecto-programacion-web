@@ -127,6 +127,17 @@ body {
     letter-spacing: -0.5px;
 }
 
+.dashboard-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+
+.dashboard-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+}
+
 .solicitudes-pendientes {
     background-color: var(--color-pine);
     color: #fff;
@@ -226,7 +237,7 @@ body {
     padding: 20px;
     overflow-y: auto;
 
-    z-index: 9999;
+    z-index: 1050;
 
     opacity: 0;
     visibility: hidden;

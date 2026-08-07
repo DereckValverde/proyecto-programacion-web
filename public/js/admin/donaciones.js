@@ -54,6 +54,8 @@ document.addEventListener('DOMContentLoaded', (e) => {
 
 });
 
+/*Función que carga la tabla dependiento
+ del filtro que se le pase por URL */
 async function cargarTabla(url) {
     const tbody = document.getElementById('donacionesTbody');
 
@@ -93,14 +95,6 @@ async function cargarTabla(url) {
                         <button title="Ver Más" class="boton-acciones btn-ver-mas" onclick= "verMas(${donacion.idDonacion})">
                             <i class="bi bi-eye-fill"></i>
                         </button>
-
-                        <button title="Aceptar Donación" class="boton-acciones btn-aceptar">
-                            <i class="bi bi-check-lg"></i>
-                        </button>
-
-                        <button title="Rechazar Donación" class="boton-acciones btn-rechazar">
-                            <i class="bi bi-x"></i>
-                        </button>
                     </div>
                 </td>`;
                 tbody.appendChild(tr);
@@ -110,6 +104,23 @@ async function cargarTabla(url) {
     } catch (error) {
         console.error(error);
     }
+}
+
+function activarBotonFiltro(estado) {
+    const botones = document.querySelectorAll('.boton-filtro');
+    botones.forEach(b => b.classList.remove('boton-activo'));
+
+    let botonActivo = document.getElementById('btnTodas');
+
+    if (estado === 'Pendiente') {
+        botonActivo = document.getElementById('btnPendientes');
+    } else if (estado === 'Aceptada') {
+        botonActivo = document.getElementById('btnAceptadas');
+    } else if (estado === 'Rechazada') {
+        botonActivo = document.getElementById('btnRechazadas');
+    }
+
+    botonActivo.classList.add('boton-activo');
 }
 
 /*Función que abre el modal y muestra 
@@ -175,6 +186,21 @@ async function verMas(id) {
                         </div>
                     </div>
                 </div>
+                ${data.estado === 'Pendiente' ? `
+                    <div class="card-footer bg-white border-0 pb-0">
+                        <div class="mb-3">
+                            <label for="comentarioAdmin" class="form-label fw-semibold text-muted small mb-1">Comentario del administrador</label>
+                            <textarea class="form-control" id="comentarioAdmin" rows="3" placeholder="Escriba una reseña, opinión o comentario sobre esta donación..."></textarea>
+                        </div>
+                        <div class="d-flex justify-content-end gap-2">
+                            <button type="button" class="boton-acciones btn-rechazar px-3 py-1" onclick="rechazarSolicitud(${data.idDonacion})">
+                                <i class="bi bi-x"></i> Rechazar
+                            </button>
+                            <button type="button" class="boton-acciones btn-aceptar px-3 py-1" onclick="aceptarDonacion(${data.idDonacion})">
+                                <i class="bi bi-check-lg"></i> Aceptar
+                            </button>
+                        </div>
+                    </div>` : ''}
             </div>
         `;
         } else {
@@ -207,6 +233,8 @@ async function cargarKpis() {
         const response = await fetch(`${BASE_URL}/donaciones/apiKpis`);
         const kpis = await response.json();
 
+        console.log(`Respuesta de la carga de KPIs: ${response.ok}`);
+
         kpiTotalDonaciones.textContent = kpis.total;
         kpiPendientes.textContent = kpis.pendientes;
         kpiAceptadas.textContent = kpis.aceptadas;
@@ -219,5 +247,89 @@ async function cargarKpis() {
 
     }
 
+
+}
+
+async function aceptarDonacion(id) {
+
+    const comentario = document.getElementById('comentarioAdmin')?.value.trim() || null;
+
+    Swal.fire({
+        title: "¿Está Seguro?",
+        text: "¿Desea aceptar esta donación?",
+        icon: "question",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Sí, aceptar",
+        cancelButtonText: "Cancelar"
+    }).then(async (result) => {
+        if (result.isConfirmed) {
+            try {
+                const response = await fetch(`${BASE_URL}donaciones/aceptar/${id}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ comentario })
+                });
+                const resData = await response.json();
+
+                if (resData.success) {
+                    Swal.fire('Aceptada', resData.message, 'success');
+                    document.getElementById('donacionModal').classList.remove('active');
+                    activarBotonFiltro('Aceptada');
+                    cargarTabla(`${BASE_URL}donaciones/apiListEstado/Aceptada`);
+                    cargarKpis();
+                } else {
+                    Swal.fire('Error', resData.message, 'error');
+                }
+            } catch (error) {
+                console.error(error);
+                Swal.fire('Error', 'Ocurrió un error al aceptar la donación', 'error');
+            }
+        }
+    });
+}
+
+async function rechazarSolicitud(id) {
+
+    const comentario = document.getElementById('comentarioAdmin')?.value.trim() || null;
+
+    //Validación a nivel de front para confirmar el rechazo de la solicitud (SweetAlert)
+    Swal.fire({
+        title: "¿Está Seguro?",
+        text: "¡No podrá revertir esta acción!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Sí, rechazar",
+        cancelButtonText: "Cancelar"
+    }).then(async (result) => {
+        if (result.isConfirmed) {
+            try {
+                const response = await fetch(`${BASE_URL}donaciones/rechazar/${id}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ comentario })
+                });
+                const resData = await response.json();
+
+                console.log(resData);
+
+                if (resData.success) {
+                    Swal.fire('Eliminado', resData.message, 'success');
+                    document.getElementById('donacionModal').classList.remove('active');
+                    activarBotonFiltro('Rechazada');
+                    cargarTabla(`${BASE_URL}donaciones/apiListEstado/Rechazada`);
+                    cargarKpis();
+                } else {
+                    Swal.fire('Error', resData.message, 'error');
+                }
+            } catch (error) {
+                console.error(error);
+                Swal.fire('Error', 'Ocurrió un error al rechazar la donación', 'error');
+            }
+        }
+    });
 
 }

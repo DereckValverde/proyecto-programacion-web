@@ -48,4 +48,48 @@ class DonacionesController
         $kpis = $this->donacionesModel->getKpis();
         echo json_encode($kpis);
     }
+
+    public function apiRechazar($id)
+    {
+        header('Content-Type: application/json');
+
+        $datos = json_decode(file_get_contents('php://input'), true);
+        $comentario = $datos['comentario'] ?? null;
+
+        $donacionRechazada = $this->donacionesModel->rechazarById($id, $comentario);
+
+        if ($donacionRechazada) {
+            echo json_encode([
+                'success' => true,
+                'message' => 'Donación rechazada correctamente.'
+            ]);
+        } else {
+            echo json_encode([
+                'success' => false,
+                'message' => 'Error al rechazar la donación.'
+            ]);
+        }
+    }
+
+    public function apiAceptar($id)
+    {
+        header('Content-Type: application/json');
+
+        $datos = json_decode(file_get_contents('php://input'), true);
+        $comentario = $datos['comentario'] ?? null;
+
+        $donacionAceptada = $this->donacionesModel->aceptarById($id, $comentario);
+
+        if ($donacionAceptada) {
+            echo json_encode([
+                'success' => true,
+                'message' => 'Donación aceptada correctamente.'
+            ]);
+        } else {
+            echo json_encode([
+                'success' => false,
+                'message' => 'Error al aceptar la donación.'
+            ]);
+        }
+    }
 }

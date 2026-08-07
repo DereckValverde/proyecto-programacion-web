@@ -16,6 +16,7 @@ $router->get('donaciones/apiShow', ['DonacionesController', 'apiShow']);
 $router->get('donaciones/apiListEstado', ['DonacionesController', 'apiListEstado']);
 $router->get('donaciones/apiKpis', ['DonacionesController', 'apiKpis']);
 $router->post('donaciones/rechazar', ['DonacionesController', 'apiRechazar']);
+$router->post('donaciones/aceptar', ['DonacionesController', 'apiAceptar']);
 
 $router->get('solicitudes/apiList', ['SolicitudesController', 'apiList']);
 $router->get('solicitudes/apiShow', ['SolicitudesController', 'apiShow']);

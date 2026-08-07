@@ -90,14 +90,27 @@ class Donaciones
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function rechazarById($id)
+    public function rechazarById($id, $comentario = null)
     {
         $query = "UPDATE donaciones 
-        SET estado = 'Rechazada'
+        SET estado = 'Rechazada',
+            comentarioAdministrador = ?
         WHERE idDonacion = ?
         ";
         $stmt = $this->db->prepare($query);
 
-        return $stmt->execute([$id]);
+        return $stmt->execute([$comentario, $id]);
+    }
+
+    public function aceptarById($id, $comentario = null)
+    {
+        $query = "UPDATE donaciones 
+        SET estado = 'Aceptada',
+            comentarioAdministrador = ?
+        WHERE idDonacion = ?
+        ";
+        $stmt = $this->db->prepare($query);
+
+        return $stmt->execute([$comentario, $id]);
     }
 }

@@ -40,7 +40,18 @@ class Solicitudes
 
     public function getById($id)
     {
-        $query = "SELECT * FROM solicitudes WHERE idSolicitud = ?";
+        $query = "
+        SELECT
+            s.*,
+            t.nombre AS tipoEquipo,
+            o.nombre AS tipoOrganizacion
+        FROM solicitudes s
+        INNER JOIN tipos_equipo t
+        ON s.idTipoEquipo = t.idTipoEquipo
+        INNER JOIN tipos_organizacion o
+        ON s.idTipoOrganizacion = o.idTipoOrganizacion
+        WHERE s.idSolicitud = ?
+        ";
         $stmt = $this->db->prepare($query);
         $stmt->execute([$id]);
         return $stmt->fetch();
@@ -89,5 +100,29 @@ class Solicitudes
         $stmt->execute();
 
         return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function aceptarById($id, $comentario = null)
+    {
+        $query = "UPDATE solicitudes 
+        SET estado = 'Aceptada',
+            comentarioAdministrador = ?
+        WHERE idSolicitud = ?
+        ";
+        $stmt = $this->db->prepare($query);
+
+        return $stmt->execute([$comentario, $id]);
+    }
+
+    public function rechazarById($id, $comentario = null)
+    {
+        $query = "UPDATE solicitudes 
+        SET estado = 'Rechazada',
+            comentarioAdministrador = ?
+        WHERE idSolicitud = ?
+        ";
+        $stmt = $this->db->prepare($query);
+
+        return $stmt->execute([$comentario, $id]);
     }
 }

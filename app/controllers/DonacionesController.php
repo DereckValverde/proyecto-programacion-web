@@ -49,21 +49,21 @@ class DonacionesController
         echo json_encode($kpis);
     }
 
-    public function apiDelete($id)
+    public function apiRechazar($id)
     {
         header('Content-Type: application/json');
 
-        $donacionEliminada = $this->donacionesModel->deleteById($id);
+        $donacionRechazada = $this->donacionesModel->rechazarById($id);
 
-        if ($donacionEliminada) {
+        if ($donacionRechazada) {
             echo json_encode([
                 'success' => true,
-                'message' => 'Donación eliminada correctamente.'
+                'message' => 'Donación rechazada correctamente.'
             ]);
         } else {
             echo json_encode([
                 'success' => false,
-                'message' => 'Error al eliminar la donación.'
+                'message' => 'Error al rechazar la donación.'
             ]);
         }
     }

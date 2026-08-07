@@ -100,7 +100,7 @@ async function cargarTabla(url) {
                             <i class="bi bi-check-lg"></i>
                         </button>
 
-                        <button title="Rechazar Donación" class="boton-acciones btn-rechazar" onclick= "eliminarSolicitud(${donacion.idDonacion})">
+                        <button title="Rechazar Donación" class="boton-acciones btn-rechazar" onclick= "rechazarSolicitud(${donacion.idDonacion})">
                             <i class="bi bi-x"></i>
                         </button>
                     </div>
@@ -226,11 +226,11 @@ async function cargarKpis() {
 
 }
 
-async function eliminarSolicitud(id) {
+async function rechazarSolicitud(id) {
 
 
 
-    //Validación a nivel de front para confirmar la eliminación (SweetAlert)
+    //Validación a nivel de front para confirmar el rechazo de la solicitud (SweetAlert)
     Swal.fire({
         title: "¿Está Seguro?",
         text: "¡No podrá revertir esta acción!",
@@ -238,12 +238,12 @@ async function eliminarSolicitud(id) {
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
-        confirmButtonText: "Sí, eliminar",
+        confirmButtonText: "Sí, rechazar",
         cancelButtonText: "Cancelar"
     }).then(async (result) => {
         if (result.isConfirmed) {
             try {
-                const response = await fetch(`${BASE_URL}donaciones/delete/${id}`, {
+                const response = await fetch(`${BASE_URL}donaciones/rechazar/${id}`, {
                     method: 'POST'
                 });
                 const resData = await response.json();
@@ -252,13 +252,13 @@ async function eliminarSolicitud(id) {
 
                 if (resData.success) {
                     Swal.fire('Eliminado', resData.message, 'success');
-                    cargarTabla(`${BASE_URL}donaciones/apiListEstado/Pendiente`);
+                    cargarTabla(`${BASE_URL}donaciones/apiListEstado/Rechazada`);
                 } else {
                     Swal.fire('Error', resData.message, 'error');
                 }
             } catch (error) {
                 console.error(error);
-                Swal.fire('Error', 'Ocurrió un error al liminar el producto', 'error');
+                Swal.fire('Error', 'Ocurrió un error al rechazar la donación', 'error');
             }
         }
     });

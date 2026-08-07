@@ -90,9 +90,12 @@ class Donaciones
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function deleteById($id)
+    public function rechazarById($id)
     {
-        $query = "DELETE FROM donaciones WHERE idDonacion = ?";
+        $query = "UPDATE donaciones 
+        SET estado = 'Rechazada'
+        WHERE idDonacion = ?
+        ";
         $stmt = $this->db->prepare($query);
 
         return $stmt->execute([$id]);

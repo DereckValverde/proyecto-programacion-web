@@ -42,6 +42,8 @@ class AuthController
                 $_SESSION['admin_id'] = $admin['idAdministrador'];
                 $_SESSION['admin_name'] = $admin['nombre'];
 
+                $adminModel->registrarLog('InicioSesion', 'Inicio de sesión del administrador.', $admin['idAdministrador']);
+
                 //redirigir al dashboard
                 header('Location: ' . BASE_URL . 'auth/dashboard');
                 exit();
@@ -51,6 +53,7 @@ class AuthController
                     session_start();
                 }
 
+                $adminModel->registrarLog('Error', 'Intento de acceso con contraseña incorrecta.', null);
                 $_SESSION['error'] = "Correo o contraseña incorrectos.";
 
 

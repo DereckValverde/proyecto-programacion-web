@@ -98,8 +98,13 @@ class Donaciones
         WHERE idDonacion = ?
         ";
         $stmt = $this->db->prepare($query);
+        $exito = $stmt->execute([$comentario, $id]);
 
-        return $stmt->execute([$comentario, $id]);
+        if ($exito) {
+            $this->registrarLog('Modificacion', "Se rechazó la donación #{$id}.", $_SESSION['admin_id'] ?? null);
+        }
+
+        return $exito;
     }
 
     public function aceptarById($id, $comentario = null)
@@ -110,7 +115,19 @@ class Donaciones
         WHERE idDonacion = ?
         ";
         $stmt = $this->db->prepare($query);
+        $exito = $stmt->execute([$comentario, $id]);
 
-        return $stmt->execute([$comentario, $id]);
+        if ($exito) {
+            $this->registrarLog('Modificacion', "Se aprobó la donación #{$id}.", $_SESSION['admin_id'] ?? null);
+        }
+
+        return $exito;
+    }
+
+    private function registrarLog($tipo, $descripcion, $idAdministrador = null)
+    {
+        $query = "INSERT INTO auditoria (idAdministrador, tipo, descripcion) VALUES (?, ?, ?)";
+        $stmt = $this->db->prepare($query);
+        $stmt->execute([$idAdministrador, $tipo, $descripcion]);
     }
 }

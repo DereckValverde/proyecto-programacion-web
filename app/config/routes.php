@@ -25,6 +25,12 @@ $router->get('solicitudes/apiKpis', ['SolicitudesController', 'apiKpis']);
 $router->post('solicitudes/aceptar', ['SolicitudesController', 'apiAceptar']);
 $router->post('solicitudes/rechazar', ['SolicitudesController', 'apiRechazar']);
 
+$router->get('dashboard/apiKpis', ['DashboardController', 'apiKpis']);
+$router->get('dashboard/apiHistorialMensual', ['DashboardController', 'apiHistorialMensual']);
+$router->get('dashboard/apiTiposEquipos', ['DashboardController', 'apiTiposEquipos']);
+$router->get('dashboard/apiSolicitudesRecientes', ['DashboardController', 'apiSolicitudesRecientes']);
+$router->get('dashboard/apiLogs', ['DashboardController', 'apiLogs']);
+
 $router->get('error/404', ['ErroresController', 'Error404']);
 
 $router->post('login', ['AuthController', 'processLogin']);

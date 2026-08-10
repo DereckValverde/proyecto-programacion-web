@@ -22,4 +22,11 @@ class AdminModel
 
         return $stmt->fetch();
     }
+
+    public function registrarLog($tipo, $descripcion, $idAdministrador = null)
+    {
+        $query = "INSERT INTO auditoria (idAdministrador, tipo, descripcion) VALUES (?, ?, ?)";
+        $stmt = $this->db->prepare($query);
+        $stmt->execute([$idAdministrador, $tipo, $descripcion]);
+    }
 }

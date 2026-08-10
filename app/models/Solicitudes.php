@@ -110,8 +110,13 @@ class Solicitudes
         WHERE idSolicitud = ?
         ";
         $stmt = $this->db->prepare($query);
+        $exito = $stmt->execute([$comentario, $id]);
 
-        return $stmt->execute([$comentario, $id]);
+        if ($exito) {
+            $this->registrarLog('Modificacion', "Se aprobó la solicitud #{$id}.", $_SESSION['admin_id'] ?? null);
+        }
+
+        return $exito;
     }
 
     public function rechazarById($id, $comentario = null)
@@ -122,7 +127,19 @@ class Solicitudes
         WHERE idSolicitud = ?
         ";
         $stmt = $this->db->prepare($query);
+        $exito = $stmt->execute([$comentario, $id]);
 
-        return $stmt->execute([$comentario, $id]);
+        if ($exito) {
+            $this->registrarLog('Modificacion', "Se rechazó la solicitud #{$id}.", $_SESSION['admin_id'] ?? null);
+        }
+
+        return $exito;
+    }
+
+    private function registrarLog($tipo, $descripcion, $idAdministrador = null)
+    {
+        $query = "INSERT INTO auditoria (idAdministrador, tipo, descripcion) VALUES (?, ?, ?)";
+        $stmt = $this->db->prepare($query);
+        $stmt->execute([$idAdministrador, $tipo, $descripcion]);
     }
 }

@@ -95,6 +95,7 @@ class Dashboard
         FROM solicitudes s
         INNER JOIN tipos_equipo t
         ON s.idTipoEquipo = t.idTipoEquipo
+        WHERE s.estado = 'Pendiente'
         ORDER BY s.fechaRegistro DESC
         LIMIT 5
         ";

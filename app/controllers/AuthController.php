@@ -42,7 +42,7 @@ class AuthController
                 $_SESSION['admin_id'] = $admin['idAdministrador'];
                 $_SESSION['admin_name'] = $admin['nombre'];
 
-                $adminModel->registrarLog('InicioSesion', 'Inicio de sesión del administrador.', $admin['idAdministrador']);
+                $adminModel->registrarLog('InicioSesion', "Inicio de sesión del administrador: {$admin['nombre']}.", $admin['idAdministrador']);
 
                 //redirigir al dashboard
                 header('Location: ' . BASE_URL . 'auth/dashboard');

@@ -346,7 +346,7 @@ async function cargarLogs() {
         logsContainer.innerHTML = '';
 
         if (logs.length === 0) {
-            logsContainer.innerHTML = '<div class="list-group-item px-0 py-3 border-0 text-muted">No hay logs registrados</div>';
+            logsContainer.innerHTML = '<div class="list-group-item px-0 py-3 border-0 text-muted text-center">No hay logs registrados</div>';
         } else {
 
             logs.forEach(log => {

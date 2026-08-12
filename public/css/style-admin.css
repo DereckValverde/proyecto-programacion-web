@@ -7,6 +7,8 @@
 :root {
     --color-pine: #2d6758;
     --color-teal: #0092a5;
+    --color-grey-night: #212121;
+    --color-white: #ffffff;
 
     --font-heading: 'Poppins', sans-serif;
     --font-body: 'Inter', 'Segoe UI', system-ui, sans-serif;
@@ -20,7 +22,7 @@ body {
 }
 
 .navbar {
-    background-color: #fff;
+    background-color: var(--color-white) !important;
     padding: 8px 0;
     transition: box-shadow 0.3s ease;
     border-bottom: 1px solid rgba(0, 0, 0, 0.06);
@@ -76,27 +78,13 @@ body {
 
 .main {
     background-color: #F5F8F7;
-    color: #000;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     position: relative;
-    overflow: hidden;
     gap: 30px;
     padding: 40px 20px;
     box-sizing: border-box;
-}
-
-.dashboard-card .card-value {
-    min-height: 1.5rem;
-    display: block;
-}
-
-@media (max-width: 767px) {
-    .dashboard-head {
-        text-align: center;
-    }
-
 }
 
 @media (min-width: 768px) {
@@ -119,12 +107,19 @@ body {
     }
 }
 
-.dashboard-title {
-    font-family: var(--font-heading);
-    font-size: 2.3rem;
-    font-weight: 700;
-    color: var(--color-white);
-    letter-spacing: -0.5px;
+.main {
+    color: #000;
+}
+
+@media (max-width: 767px) {
+    .dashboard-head {
+        text-align: center;
+    }
+}
+
+.dashboard-card .card-value {
+    min-height: 1.5rem;
+    display: block;
 }
 
 .dashboard-card {
@@ -132,12 +127,12 @@ body {
     cursor: pointer;
 }
 
-
 .dashboard-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
 }
 
+.donaciones-pendientes,
 .solicitudes-pendientes {
     background-color: var(--color-pine);
     color: #fff;
@@ -158,7 +153,6 @@ body {
 .btn-ver-mas:hover {
     transition: 0.3s;
     background-color: #e5edf6;
-
 }
 
 .btn-aceptar:hover {
@@ -222,6 +216,12 @@ body {
 
 .estado-equipo-malo {
     color: #C43D3D;
+}
+
+.acciones {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
 }
 
 .modal-overlay {
@@ -302,16 +302,11 @@ body {
     color: #212529;
 }
 
-#detallesDonacion {
+#detallesDonacion,
+#detallesSolicitud {
     padding: 1.5rem;
     overflow-y: auto;
     flex: 1;
-}
-
-.acciones {
-    display: flex;
-    gap: 5px;
-    justify-content: center;
 }
 
 @media (max-width: 768px) {
@@ -328,7 +323,8 @@ body {
         padding: 1rem;
     }
 
-    #detallesDonacion {
+    #detallesDonacion,
+    #detallesSolicitud {
         padding: 1rem;
     }
 }

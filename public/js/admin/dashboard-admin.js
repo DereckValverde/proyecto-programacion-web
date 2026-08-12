@@ -222,7 +222,7 @@ async function verMas(id) {
                     </div>
                 </div>
                 ${data.estado === 'Pendiente' ? `
-                    <div class="card-footer bg-white border-0 pb-0">
+                    <div class="card-footer bg-white border-0 mb-2 pb-0">
                         <div class="mb-3">
                             <label for="comentarioAdmin" class="form-label fw-semibold text-muted small mb-1">Comentario del administrador</label>
                             <textarea class="form-control" id="comentarioAdmin" rows="3" placeholder="Escriba una reseña, opinión o comentario sobre esta solicitud..."></textarea>

@@ -9,7 +9,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= BASE_URL . 'auth/dashboard' ?>" data-section="inicio">Dashboard</a>
+                        <a class="nav-link" id="linkDashboard" href="<?= BASE_URL . 'auth/dashboard' ?>" data-section="inicio">Dashboard</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="linkSolicitudes" href="<?= BASE_URL . 'auth/solicitudes' ?>" data-section="mision">Gestión de Solicitudes</a>

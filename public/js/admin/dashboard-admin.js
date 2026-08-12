@@ -6,6 +6,9 @@ document.addEventListener('DOMContentLoaded', () => {
     cargarSolicitudesRecientes();
     cargarLogs();
 
+    //Se marca el botón en en navbar
+    document.getElementById('linkDashboard').classList.add('active');
+
     const closeModal = document.getElementById('closeModal');
     const modal = document.getElementById('solicitudModal');
 

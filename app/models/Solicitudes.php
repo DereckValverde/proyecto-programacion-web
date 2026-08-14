@@ -136,6 +136,145 @@ class Solicitudes
         return $exito;
     }
 
+    public function create(array $datos)
+    {
+        $idTipoEquipo = $this->getTipoEquipoId($datos['tipoEquipo'] ?? '');
+        $idTipoOrganizacion = $this->getTipoOrganizacionId($datos['tipoOrganizacion'] ?? '');
+
+        $query = "INSERT INTO solicitudes
+            (nombreSolicitante, correoSolicitante, telefonoSolicitante, nombreOrganizacion,
+             idTipoOrganizacion, idTipoEquipo, cantidadEquipos, motivoSolicitud, estado)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'Pendiente')
+        ";
+        $stmt = $this->db->prepare($query);
+        $exito = $stmt->execute([
+            $datos['nombreSolicitante'],
+            $datos['correoSolicitante'],
+            $datos['telefonoSolicitante'] ?? null,
+            $datos['nombreOrganizacion'],
+            $idTipoOrganizacion,
+            $idTipoEquipo,
+            $datos['cantidadEquipos'],
+            $datos['motivoSolicitud'],
+        ]);
+
+        if ($exito) {
+            $id = (int) $this->db->lastInsertId();
+            $this->registrarLog('Registro', "Se registró una nueva solicitud de {$datos['nombreSolicitante']}.", $_SESSION['admin_id'] ?? null);
+            return $id;
+        }
+
+        return false;
+    }
+
+    public function updateById($id, array $datos)
+    {
+        $campos = [
+            'nombreSolicitante',
+            'correoSolicitante',
+            'telefonoSolicitante',
+            'nombreOrganizacion',
+            'cantidadEquipos',
+            'motivoSolicitud'
+        ];
+
+        if (isset($datos['tipoEquipo']) && $datos['tipoEquipo'] !== '') {
+            $datos['idTipoEquipo'] = $this->getTipoEquipoId($datos['tipoEquipo']);
+        }
+        if (isset($datos['tipoOrganizacion']) && $datos['tipoOrganizacion'] !== '') {
+            $datos['idTipoOrganizacion'] = $this->getTipoOrganizacionId($datos['tipoOrganizacion']);
+        }
+
+        $sets = [];
+        $valores = [];
+        foreach ($campos as $campo) {
+            if (array_key_exists($campo, $datos)) {
+                $sets[] = "{$campo} = ?";
+                $valores[] = $datos[$campo];
+            }
+        }
+        if (isset($datos['idTipoEquipo'])) {
+            $sets[] = "idTipoEquipo = ?";
+            $valores[] = $datos['idTipoEquipo'];
+        }
+        if (isset($datos['idTipoOrganizacion'])) {
+            $sets[] = "idTipoOrganizacion = ?";
+            $valores[] = $datos['idTipoOrganizacion'];
+        }
+
+        if (empty($sets)) {
+            return false;
+        }
+
+        $valores[] = $id;
+        $query = "UPDATE solicitudes SET " . implode(', ', $sets) . " WHERE idSolicitud = ?";
+        $stmt = $this->db->prepare($query);
+        $exito = $stmt->execute($valores);
+
+        if ($exito) {
+            $this->registrarLog('Modificacion', "Se modificó la solicitud #{$id}.", $_SESSION['admin_id'] ?? null);
+        }
+
+        return $exito;
+    }
+
+    public function deleteById($id)
+    {
+        $query = "DELETE FROM solicitudes WHERE idSolicitud = ?";
+        $stmt = $this->db->prepare($query);
+        $exito = $stmt->execute([$id]);
+
+        if ($exito) {
+            $this->registrarLog('Eliminacion', "Se eliminó la solicitud #{$id}.", $_SESSION['admin_id'] ?? null);
+        }
+
+        return $exito;
+    }
+
+    private function getTipoEquipoId(string $nombre): int
+    {
+        if ($nombre === '') {
+            throw new \InvalidArgumentException('El tipo de equipo es requerido.');
+        }
+
+        $query = "SELECT idTipoEquipo FROM tipos_equipo WHERE nombre = ? LIMIT 1";
+        $stmt = $this->db->prepare($query);
+        $stmt->execute([$nombre]);
+        $id = $stmt->fetchColumn();
+
+        if ($id) {
+            return (int) $id;
+        }
+
+        $insert = "INSERT INTO tipos_equipo (nombre, co2Estimado) VALUES (?, 0)";
+        $stmt = $this->db->prepare($insert);
+        $stmt->execute([$nombre]);
+
+        return (int) $this->db->lastInsertId();
+    }
+
+    private function getTipoOrganizacionId(string $nombre): int
+    {
+        if ($nombre === '') {
+            throw new \InvalidArgumentException('El tipo de organización es requerido.');
+        }
+
+        $query = "SELECT idTipoOrganizacion FROM tipos_organizacion WHERE nombre = ? LIMIT 1";
+        $stmt = $this->db->prepare($query);
+        $stmt->execute([$nombre]);
+        $id = $stmt->fetchColumn();
+
+        if ($id) {
+            return (int) $id;
+        }
+
+        $insert = "INSERT INTO tipos_organizacion (nombre) VALUES (?)";
+        $stmt = $this->db->prepare($insert);
+        $stmt->execute([$nombre]);
+
+        return (int) $this->db->lastInsertId();
+    }
+
     private function registrarLog($tipo, $descripcion, $idAdministrador = null)
     {
         $query = "INSERT INTO auditoria (idAdministrador, tipo, descripcion) VALUES (?, ?, ?)";

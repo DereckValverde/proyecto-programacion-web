@@ -96,6 +96,9 @@ async function cargarTabla(url) {
                     <button title="Ver Más" class="boton-acciones btn-ver-mas" onclick= "verMas(${solicitud.idSolicitud})">
                         <i class="bi bi-eye-fill"></i>
                     </button>
+                    <button title="Eliminar" class="boton-acciones btn-eliminar" onclick= "eliminarSolicitud(${solicitud.idSolicitud})">
+                        <i class="bi bi-trash-fill"></i>
+                    </button>
                 </div>
             </td>`;
                 solicitudesTbody.appendChild(tr);
@@ -319,6 +322,40 @@ async function rechazarSolicitud(id) {
             } catch (error) {
                 console.error(error);
                 Swal.fire('Error', 'Ocurrió un error al rechazar la solicitud', 'error');
+            }
+        }
+    });
+}
+
+async function eliminarSolicitud(id) {
+
+    Swal.fire({
+        title: "¿Está Seguro?",
+        text: "Esta solicitud se eliminará permanentemente.",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#d33",
+        cancelButtonColor: "#3085d6",
+        confirmButtonText: "Sí, eliminar",
+        cancelButtonText: "Cancelar"
+    }).then(async (result) => {
+        if (result.isConfirmed) {
+            try {
+                const response = await fetch(`${BASE_URL}solicitudes/eliminar/${id}`, {
+                    method: 'POST'
+                });
+                const resData = await response.json();
+
+                if (resData.success) {
+                    Swal.fire('Eliminada', resData.message, 'success');
+                    cargarTabla(`${BASE_URL}solicitudes/apiList`);
+                    cargarKpis();
+                } else {
+                    Swal.fire('Error', resData.message, 'error');
+                }
+            } catch (error) {
+                console.error(error);
+                Swal.fire('Error', 'Ocurrió un error al eliminar la solicitud', 'error');
             }
         }
     });

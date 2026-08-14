@@ -27,7 +27,7 @@
                     </li>
 
                     <li>
-                        <span class="text-black-50">dereck@gmail.com</span>
+                        <span class="text-black-50"><?= htmlspecialchars($_SESSION['admin_name'] ?? 'Administrador') ?></span>
                     </li>
 
 

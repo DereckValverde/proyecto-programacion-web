@@ -38,7 +38,7 @@ class Router
             }
         }
 
-        if ($routeKey !== '' && isset($this->routes[$method][$routeKey])) {
+        if (($routeKey !== '' || $url === '') && isset($this->routes[$method][$routeKey])) {
             [$controllerClass, $methodName] = $this->routes[$method][$routeKey];
 
             $controllerFile = APP_PATH . '/controllers/' . $controllerClass . '.php';

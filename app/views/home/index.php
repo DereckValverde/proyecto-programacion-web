@@ -258,7 +258,7 @@
                             <label for="nombreDonante" class="form-label">
                                 Nombre completo
                             </label>
-                            <input type="text" class="form-control" id="nombreDonante" name="nombreDonante"
+                            <input type="text" class="form-control" id="nombreDonante" name="nombreDonador"
                                 placeholder="Ingrese su nombre" required>
 
                         </div>
@@ -267,7 +267,7 @@
                                 Correo electrónico
                             </label>
 
-                            <input type="email" class="form-control" id="emailDonante" name="emailDonante"
+                            <input type="email" class="form-control" id="emailDonante" name="correoDonador"
                                 placeholder="correo@ejemplo.com" required>
                         </div>
                         <div class="col-md-6">
@@ -275,7 +275,7 @@
                                 Teléfono
                             </label>
 
-                            <input type="tel" class="form-control" id="telefonoDonante" name="telefonoDonante"
+                            <input type="tel" class="form-control" id="telefonoDonante" name="telefonoDonador"
                                 placeholder="8888-8888" required>
                         </div>
                         <div class="col-md-6">
@@ -283,7 +283,7 @@
                                 Tipo de equipo
                             </label>
 
-                            <select class="form-select" id="tipoEquipoDonacion" name="tipoEquipoDonacion" required>
+                            <select class="form-select" id="tipoEquipoDonacion" name="tipoEquipo" required>
 
                                 <option value="" selected disabled>
                                     Seleccione un equipo
@@ -306,7 +306,7 @@
                                 Marca
                             </label>
 
-                            <input type="text" class="form-control" id="marcaEquipo" name="marcaEquipo"
+                            <input type="text" class="form-control" id="marcaEquipo" name="marca"
                                 placeholder="Ej: Dell">
                         </div>
                         <div class="col-md-6">
@@ -314,7 +314,7 @@
                                 Modelo
                             </label>
 
-                            <input type="text" class="form-control" id="modeloEquipo" name="modeloEquipo"
+                            <input type="text" class="form-control" id="modeloEquipo" name="modelo"
                                 placeholder="Ej: Latitude 5420">
                         </div>
                         <div class="col-md-6">
@@ -338,7 +338,7 @@
                                 Cantidad de equipos
                             </label>
 
-                            <input type="number" class="form-control" id="cantidadDonacion" name="cantidadDonacion"
+                            <input type="number" class="form-control" id="cantidadDonacion" name="cantidadEquipos"
                                 min="1" placeholder="1" required>
                         </div>
                         <div class="col-12">
@@ -346,7 +346,7 @@
                                 Descripción adicional
                             </label>
 
-                            <textarea class="form-control" id="descripcionDonacion" name="descripcionDonacion" rows="4"
+                            <textarea class="form-control" id="descripcionDonacion" name="descripcionAdicional" rows="4"
                                 placeholder="Contanos cualquier detalle adicional sobre los equipos"></textarea>
                         </div>
 
@@ -413,7 +413,7 @@
                                 Correo electrónico
                             </label>
 
-                            <input type="email" class="form-control" id="emailSolicitante" name="emailSolicitante"
+                            <input type="email" class="form-control" id="emailSolicitante" name="correoSolicitante"
                                 placeholder="correo@ejemplo.com" required>
 
                         </div>
@@ -436,7 +436,7 @@
                             </label>
 
                             <input type="text" class="form-control" id="organizacionSolicitante"
-                                name="organizacionSolicitante" placeholder="Nombre de la organización" required>
+                                name="nombreOrganizacion" placeholder="Nombre de la organización" required>
 
                         </div>
 
@@ -469,7 +469,7 @@
                                 Equipo solicitado
                             </label>
 
-                            <select class="form-select" id="equipoSolicitado" name="equipoSolicitado" required>
+                            <select class="form-select" id="equipoSolicitado" name="tipoEquipo" required>
 
                                 <option value="" selected disabled>
                                     Seleccione un equipo
@@ -494,7 +494,7 @@
                                 Cantidad de equipos
                             </label>
 
-                            <input type="number" class="form-control" id="cantidadSolicitud" name="cantidadSolicitud"
+                            <input type="number" class="form-control" id="cantidadSolicitud" name="cantidadEquipos"
                                 min="1" placeholder="1" required>
 
                         </div>
@@ -747,6 +747,10 @@
     <?php require_once LAYOUT_PATH . '/footer.php' ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        const BASE_URL = "<?= BASE_URL ?>";
+    </script>
     <script src="<?= BASE_URL . '/public/js/main.js' ?>"></script>
 </body>
 

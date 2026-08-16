@@ -28,4 +28,4 @@ define('DB_CHARSET', getenv('DB_CHARSET') ?: 'utf8');
 define('APP_PATH', dirname(__DIR__) . '/');
 define('VIEW_PATH', APP_PATH . 'views/');
 define('LAYOUT_PATH', VIEW_PATH . 'layouts/');
-define('BASE_URL', 'http://localhost:8080/proyecto-programacion-web/');
+define('BASE_URL', 'http://localhost:/proyecto-programacion-web/');

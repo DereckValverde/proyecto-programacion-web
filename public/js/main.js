@@ -106,4 +106,62 @@ document.addEventListener('DOMContentLoaded', function () {
         counterObserver.observe(countersSection);
     }
 
+    /* Envío de formularios públicos (donación, solicitud y contacto) */
+    const formularios = [
+        { form: 'formDonacion', url: 'formularios/donacion', alert: 'donacionAlert' },
+        { form: 'formSolicitud', url: 'formularios/solicitud', alert: 'solicitudAlert' },
+        { form: 'formContacto', url: 'formularios/contacto', alert: 'contactoAlert' }
+    ];
+
+    formularios.forEach(function (config) {
+        const form = document.getElementById(config.form);
+        if (!form) {
+            return;
+        }
+
+        form.addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            const alertDiv = document.getElementById(config.alert);
+            alertDiv.style.display = 'none';
+
+            const formData = new FormData(form);
+            const payload = {};
+            formData.forEach(function (value, key) {
+                payload[key] = value;
+            });
+
+            try {
+                const response = await fetch(BASE_URL + config.url, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                const resData = await response.json();
+
+                if (resData.success) {
+                    alertDiv.className = 'form-alert alert-success';
+                    alertDiv.textContent = resData.message;
+                    alertDiv.style.display = 'block';
+                    form.reset();
+                    alertDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                } else {
+                    let mensaje = resData.message || 'Verifique los datos e intente nuevamente.';
+                    if (Array.isArray(resData.errores)) {
+                        mensaje = resData.errores.join(' ');
+                    }
+                    alertDiv.className = 'form-alert alert-danger';
+                    alertDiv.textContent = mensaje;
+                    alertDiv.style.display = 'block';
+                }
+            } catch (error) {
+                console.error(error);
+                alertDiv.className = 'form-alert alert-danger';
+                alertDiv.textContent = 'Ocurrió un error al enviar. Intente nuevamente.';
+                alertDiv.style.display = 'block';
+            }
+        });
+    });
+
 });

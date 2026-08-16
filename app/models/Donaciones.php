@@ -124,6 +124,136 @@ class Donaciones
         return $exito;
     }
 
+    public function completarById($id, $comentario = null)
+    {
+        $query = "UPDATE donaciones
+        SET estado = 'Completada',
+            comentarioAdministrador = ?,
+            fechaRevision = NOW()
+        WHERE idDonacion = ?
+        ";
+        $stmt = $this->db->prepare($query);
+        $exito = $stmt->execute([$comentario, $id]);
+
+        if ($exito) {
+            $this->registrarLog('Modificacion', "Se completó la donación #{$id}.", $_SESSION['admin_id'] ?? null);
+        }
+
+        return $exito;
+    }
+
+    public function create(array $datos)
+    {
+        $idTipoEquipo = $this->getTipoEquipoId($datos['tipoEquipo'] ?? '');
+
+        $query = "INSERT INTO donaciones
+            (nombreDonador, correoDonador, telefonoDonador, idTipoEquipo, marca, modelo,
+             estadoEquipo, cantidadEquipos, descripcionAdicional, estado)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 'Pendiente')
+        ";
+        $stmt = $this->db->prepare($query);
+        $exito = $stmt->execute([
+            $datos['nombreDonador'],
+            $datos['correoDonador'],
+            $datos['telefonoDonador'] ?? null,
+            $idTipoEquipo,
+            $datos['marca'] ?? null,
+            $datos['modelo'] ?? null,
+            $datos['estadoEquipo'],
+            $datos['cantidadEquipos'],
+            $datos['descripcionAdicional'] ?? null,
+        ]);
+
+        if ($exito) {
+            $id = (int) $this->db->lastInsertId();
+            $this->registrarLog('Registro', "Se registró una nueva donación de {$datos['nombreDonador']}.", $_SESSION['admin_id'] ?? null);
+            return $id;
+        }
+
+        return false;
+    }
+
+    public function updateById($id, array $datos)
+    {
+        $campos = [
+            'nombreDonador',
+            'correoDonador',
+            'telefonoDonador',
+            'marca',
+            'modelo',
+            'estadoEquipo',
+            'cantidadEquipos',
+            'descripcionAdicional'
+        ];
+
+        if (isset($datos['tipoEquipo']) && $datos['tipoEquipo'] !== '') {
+            $datos['idTipoEquipo'] = $this->getTipoEquipoId($datos['tipoEquipo']);
+        }
+
+        $sets = [];
+        $valores = [];
+        foreach ($campos as $campo) {
+            if (array_key_exists($campo, $datos)) {
+                $sets[] = "{$campo} = ?";
+                $valores[] = $datos[$campo];
+            }
+        }
+        if (isset($datos['idTipoEquipo'])) {
+            $sets[] = "idTipoEquipo = ?";
+            $valores[] = $datos['idTipoEquipo'];
+        }
+
+        if (empty($sets)) {
+            return false;
+        }
+
+        $valores[] = $id;
+        $query = "UPDATE donaciones SET " . implode(', ', $sets) . " WHERE idDonacion = ?";
+        $stmt = $this->db->prepare($query);
+        $exito = $stmt->execute($valores);
+
+        if ($exito) {
+            $this->registrarLog('Modificacion', "Se modificó la donación #{$id}.", $_SESSION['admin_id'] ?? null);
+        }
+
+        return $exito;
+    }
+
+    public function deleteById($id)
+    {
+        $query = "DELETE FROM donaciones WHERE idDonacion = ?";
+        $stmt = $this->db->prepare($query);
+        $exito = $stmt->execute([$id]);
+
+        if ($exito) {
+            $this->registrarLog('Eliminacion', "Se eliminó la donación #{$id}.", $_SESSION['admin_id'] ?? null);
+        }
+
+        return $exito;
+    }
+
+    private function getTipoEquipoId(string $nombre): int
+    {
+        if ($nombre === '') {
+            throw new \InvalidArgumentException('El tipo de equipo es requerido.');
+        }
+
+        $query = "SELECT idTipoEquipo FROM tipos_equipo WHERE nombre = ? LIMIT 1";
+        $stmt = $this->db->prepare($query);
+        $stmt->execute([$nombre]);
+        $id = $stmt->fetchColumn();
+
+        if ($id) {
+            return (int) $id;
+        }
+
+        $insert = "INSERT INTO tipos_equipo (nombre, co2Estimado) VALUES (?, 0)";
+        $stmt = $this->db->prepare($insert);
+        $stmt->execute([$nombre]);
+
+        return (int) $this->db->lastInsertId();
+    }
+
     private function registrarLog($tipo, $descripcion, $idAdministrador = null)
     {
         $query = "INSERT INTO auditoria (idAdministrador, tipo, descripcion) VALUES (?, ?, ?)";

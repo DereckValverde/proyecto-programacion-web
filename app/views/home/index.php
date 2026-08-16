@@ -251,13 +251,13 @@
                     </div>
 
                 </div>
-                <form action="" method="POST">
+                <form id="formDonacion" novalidate>
+                    <div class="form-alert" id="donacionAlert" role="alert" style="display:none;"></div>
                     <div class="row g-3">
                         <div class="col-md-6">
                             <label for="nombreDonante" class="form-label">
                                 Nombre completo
                             </label>
-
                             <input type="text" class="form-control" id="nombreDonante" name="nombreDonante"
                                 placeholder="Ingrese su nombre" required>
 
@@ -392,8 +392,8 @@
 
                 </div>
 
-                <form action="" method="POST">
-
+                <form id="formSolicitud" novalidate>
+                    <div class="form-alert" id="solicitudAlert" role="alert" style="display:none;"></div>
                     <div class="row g-3">
 
                         <div class="col-md-6">
@@ -640,30 +640,34 @@
 
                             <h4 class="mb-4">Envíanos un mensaje</h4>
 
-                            <form>
-
+                            <form id="formContacto" novalidate>
+                                <div class="form-alert" id="contactoAlert" role="alert" style="display:none;"></div>
                                 <div class="row">
 
                                     <div class="col-md-6 mb-3">
-                                        <label class="form-label">Nombre</label>
-                                        <input type="text" class="form-control" placeholder="Tu nombre">
+                                        <label for="contactoNombre" class="form-label">Nombre</label>
+                                        <input type="text" class="form-control" id="contactoNombre" name="nombre"
+                                            placeholder="Tu nombre" required>
                                     </div>
 
                                     <div class="col-md-6 mb-3">
-                                        <label class="form-label">Correo electrónico</label>
-                                        <input type="email" class="form-control" placeholder="correo@ejemplo.com">
+                                        <label for="contactoCorreo" class="form-label">Correo electrónico</label>
+                                        <input type="email" class="form-control" id="contactoCorreo" name="correo"
+                                            placeholder="correo@ejemplo.com" required>
                                     </div>
 
                                 </div>
 
                                 <div class="mb-3">
-                                    <label class="form-label">Asunto</label>
-                                    <input type="text" class="form-control" placeholder="Asunto del mensaje">
+                                    <label for="contactoAsunto" class="form-label">Asunto</label>
+                                    <input type="text" class="form-control" id="contactoAsunto" name="asunto"
+                                        placeholder="Asunto del mensaje" required>
                                 </div>
 
                                 <div class="mb-4">
-                                    <label class="form-label">Mensaje</label>
-                                    <textarea class="form-control" rows="6" placeholder="Escribe tu mensaje"></textarea>
+                                    <label for="contactoMensaje" class="form-label">Mensaje</label>
+                                    <textarea class="form-control" id="contactoMensaje" name="mensaje" rows="6"
+                                        placeholder="Escribe tu mensaje" required></textarea>
                                 </div>
 
                                 <button type="submit" class="btn btn-success px-4">
@@ -743,7 +747,7 @@
     <?php require_once LAYOUT_PATH . '/footer.php' ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="<?= BASE_URL . '/public/js/main.js' ?> ?>"></script>
+    <script src="<?= BASE_URL . '/public/js/main.js' ?>"></script>
 </body>
 
 </html>

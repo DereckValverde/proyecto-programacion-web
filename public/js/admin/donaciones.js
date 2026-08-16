@@ -95,6 +95,9 @@ async function cargarTabla(url) {
                         <button title="Ver Más" class="boton-acciones btn-ver-mas" onclick= "verMas(${donacion.idDonacion})">
                             <i class="bi bi-eye-fill"></i>
                         </button>
+                        <button title="Eliminar" class="boton-acciones btn-eliminar" onclick= "eliminarDonacion(${donacion.idDonacion})">
+                            <i class="bi bi-trash-fill"></i>
+                        </button>
                     </div>
                 </td>`;
                 tbody.appendChild(tr);
@@ -198,6 +201,18 @@ async function verMas(id) {
                             </button>
                             <button type="button" class="boton-acciones btn-aceptar px-3 py-1" onclick="aceptarDonacion(${data.idDonacion})">
                                 <i class="bi bi-check-lg"></i> Aceptar
+                            </button>
+                        </div>
+                    </div>` : ''}
+                ${data.estado === 'Aceptada' ? `
+                    <div class="card-footer bg-white border-0 mb-2 pb-0">
+                        <div class="mb-3">
+                            <label for="comentarioAdmin" class="form-label fw-semibold text-muted small mb-1">Comentario del administrador</label>
+                            <textarea class="form-control" id="comentarioAdmin" rows="3" placeholder="Nota sobre la entrega o finalización de la donación..."></textarea>
+                        </div>
+                        <div class="d-flex justify-content-end gap-2">
+                            <button type="button" class="boton-acciones btn-aceptar px-3 py-1" onclick="completarDonacion(${data.idDonacion})">
+                                <i class="bi bi-check2-circle"></i> Marcar como completada
                             </button>
                         </div>
                     </div>` : ''}
@@ -332,4 +347,77 @@ async function rechazarSolicitud(id) {
         }
     });
 
+}
+
+async function eliminarDonacion(id) {
+
+    Swal.fire({
+        title: "¿Está Seguro?",
+        text: "Esta donación se eliminará permanentemente.",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#d33",
+        cancelButtonColor: "#3085d6",
+        confirmButtonText: "Sí, eliminar",
+        cancelButtonText: "Cancelar"
+    }).then(async (result) => {
+        if (result.isConfirmed) {
+            try {
+                const response = await fetch(`${BASE_URL}donaciones/eliminar/${id}`, {
+                    method: 'POST'
+                });
+                const resData = await response.json();
+
+                if (resData.success) {
+                    Swal.fire('Eliminada', resData.message, 'success');
+                    cargarTabla(`${BASE_URL}donaciones/apiList`);
+                    cargarKpis();
+                } else {
+                    Swal.fire('Error', resData.message, 'error');
+                }
+            } catch (error) {
+                console.error(error);
+                Swal.fire('Error', 'Ocurrió un error al eliminar la donación', 'error');
+            }
+        }
+    });
+}
+
+async function completarDonacion(id) {
+
+    const comentario = document.getElementById('comentarioAdmin')?.value.trim() || null;
+
+    Swal.fire({
+        title: "¿Marcar como completada?",
+        text: "La donación pasará al estado Completada.",
+        icon: "question",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Sí, completar",
+        cancelButtonText: "Cancelar"
+    }).then(async (result) => {
+        if (result.isConfirmed) {
+            try {
+                const response = await fetch(`${BASE_URL}donaciones/completar/${id}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ comentario })
+                });
+                const resData = await response.json();
+
+                if (resData.success) {
+                    Swal.fire('Completada', resData.message, 'success');
+                    document.getElementById('donacionModal').classList.remove('active');
+                    cargarTabla(`${BASE_URL}donaciones/apiListEstado/Aceptada`);
+                    cargarKpis();
+                } else {
+                    Swal.fire('Error', resData.message, 'error');
+                }
+            } catch (error) {
+                console.error(error);
+                Swal.fire('Error', 'Ocurrió un error al completar la donación', 'error');
+            }
+        }
+    });
 }

@@ -90,6 +90,37 @@ class Donaciones
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+    public function buscar($texto)
+    {
+        $texto = '%' . $texto . '%';
+        $query = "
+        SELECT
+            d.idDonacion,
+            d.nombreDonador,
+            d.correoDonador,
+            d.telefonoDonador,
+            t.nombre AS tipoEquipo,
+            d.marca,
+            d.modelo,
+            d.estadoEquipo,
+            d.cantidadEquipos,
+            d.estado,
+            d.fechaRegistro
+        FROM donaciones d
+        INNER JOIN tipos_equipo t
+            ON d.idTipoEquipo = t.idTipoEquipo
+        WHERE d.nombreDonador LIKE :texto
+           OR d.correoDonador LIKE :texto
+           OR d.marca LIKE :texto
+           OR d.modelo LIKE :texto
+           OR t.nombre LIKE :texto
+        ORDER BY d.idDonacion ASC
+    ";
+        $stmt = $this->db->prepare($query);
+        $stmt->execute([':texto' => $texto]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function rechazarById($id, $comentario = null)
     {
         $query = "UPDATE donaciones 

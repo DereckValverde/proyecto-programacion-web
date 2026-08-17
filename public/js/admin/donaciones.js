@@ -1,101 +1,122 @@
-document.addEventListener('DOMContentLoaded', (e) => {
-    cargarTabla(`${BASE_URL}donaciones/apiList`); // Carga todos los registros de donaciones en la tabla
+function escapeHtml(text) {
+    if (text === null || text === undefined) return '';
+    const div = document.createElement('div');
+    div.textContent = String(text);
+    return div.innerHTML;
+}
 
-    /*Llama a un endpoint que trae todas las KPIs y las caga*/
+let filtroActivo = 'todas';
+let busquedaActual = '';
+let debounceTimer = null;
+
+document.addEventListener('DOMContentLoaded', (e) => {
+    cargarTabla(`${BASE_URL}donaciones/apiList`);
     cargarKpis();
 
-    //Se marca el botón en en navbar
     document.getElementById('linkDonaciones').classList.add('active');
 
-    /*Listener para cerrar el modal */
     const closeModal = document.getElementById('closeModal');
     const modal = document.getElementById('donacionModal');
 
     closeModal.addEventListener('click', () => {
         modal.classList.remove('active');
-    })
+    });
 
-    /*Listener de los botones de filtro para cambiar color */
-    const botones = document.querySelectorAll(".boton-filtro");
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) modal.classList.remove('active');
+    });
 
+    const botones = document.querySelectorAll('.boton-filtro');
     botones.forEach(boton => {
-        boton.addEventListener("click", () => {
-
-            // Quitar la clase al botón que la tenga
-            botones.forEach(b => b.classList.remove("boton-activo"));
-
-            // Agregarla al botón presionado
-            boton.classList.add("boton-activo");
+        boton.addEventListener('click', () => {
+            botones.forEach(b => b.classList.remove('boton-activo'));
+            boton.classList.add('boton-activo');
         });
     });
 
-    //Botones de filtro
-    btnTodas = document.getElementById('btnTodas');
-    btnPendientes = document.getElementById('btnPendientes');
-    btnAceptadas = document.getElementById('btnAceptadas');
-    btnRechazadas = document.getElementById('btnRechazadas');
-
-    btnTodas.addEventListener('click', () => {
-        cargarTabla(`${BASE_URL}donaciones/apiList`);
+    document.getElementById('btnTodas').addEventListener('click', () => {
+        filtroActivo = 'todas';
+        aplicarFiltroYBusqueda();
     });
 
-    btnPendientes.addEventListener('click', () => {
-        cargarTabla(`${BASE_URL}donaciones/apiListEstado/Pendiente`);
-    })
+    document.getElementById('btnPendientes').addEventListener('click', () => {
+        filtroActivo = 'Pendiente';
+        aplicarFiltroYBusqueda();
+    });
 
-    btnAceptadas.addEventListener('click', () => {
-        cargarTabla(`${BASE_URL}donaciones/apiListEstado/Aceptada`);
-    })
+    document.getElementById('btnAceptadas').addEventListener('click', () => {
+        filtroActivo = 'Aceptada';
+        aplicarFiltroYBusqueda();
+    });
 
-    btnRechazadas.addEventListener('click', () => {
-        cargarTabla(`${BASE_URL}donaciones/apiListEstado/Rechazada`);
-    })
+    document.getElementById('btnRechazadas').addEventListener('click', () => {
+        filtroActivo = 'Rechazada';
+        aplicarFiltroYBusqueda();
+    });
 
+    document.getElementById('btnCompletadas').addEventListener('click', () => {
+        filtroActivo = 'Completada';
+        aplicarFiltroYBusqueda();
+    });
 
+    document.getElementById('busquedaDonaciones').addEventListener('input', (e) => {
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(() => {
+            busquedaActual = e.target.value.trim();
+            aplicarFiltroYBusqueda();
+        }, 300);
+    });
 });
 
-/*Función que carga la tabla dependiento
- del filtro que se le pase por URL */
+function aplicarFiltroYBusqueda() {
+    if (busquedaActual !== '') {
+        cargarTabla(`${BASE_URL}donaciones/apiBuscar?texto=${encodeURIComponent(busquedaActual)}`);
+    } else if (filtroActivo === 'todas') {
+        cargarTabla(`${BASE_URL}donaciones/apiList`);
+    } else {
+        cargarTabla(`${BASE_URL}donaciones/apiListEstado/${filtroActivo}`);
+    }
+}
+
 async function cargarTabla(url) {
     const tbody = document.getElementById('donacionesTbody');
 
-
     try {
-
         const response = await fetch(url);
         const donaciones = await response.json();
 
         tbody.innerHTML = '';
 
         if (donaciones.length === 0) {
-            tbody.innerHTML = '<tr><td colspan="11" class="text-center" text-muted>No hay donaciones registradas</td></tr>';
-
+            tbody.innerHTML = '<tr><td colspan="9" class="text-center text-muted">No se encontraron resultados</td></tr>';
         } else {
             donaciones.forEach(donacion => {
                 const tr = document.createElement('tr');
 
                 tr.innerHTML = `
-                <td>${donacion.nombreDonador}</td>
-                <td>${donacion.tipoEquipo}</td>
-                <td>${donacion.marca}</td>
-                <td>${donacion.modelo}</td>
+                <td>${escapeHtml(donacion.nombreDonador)}</td>
+                <td>${escapeHtml(donacion.tipoEquipo)}</td>
+                <td>${escapeHtml(donacion.marca)}</td>
+                <td>${escapeHtml(donacion.modelo)}</td>
                 <td>
-                    <span class="estado-equipo-${donacion.estadoEquipo.toLowerCase()}">${donacion.estadoEquipo}</span>
-                    
+                    <span class="estado-equipo-${escapeHtml(donacion.estadoEquipo.toLowerCase())}">${escapeHtml(donacion.estadoEquipo)}</span>
                 </td>
-                <td>${donacion.cantidadEquipos}</td>
+                <td>${escapeHtml(donacion.cantidadEquipos)}</td>
                 <td>
-                    <span class="estado-${donacion.estado.toLowerCase()}">
-                        ${donacion.estado}
+                    <span class="estado-${escapeHtml(donacion.estado.toLowerCase())}">
+                        ${escapeHtml(donacion.estado)}
                     </span>
                 </td>
-                <td>${donacion.fechaRegistro.split(" ")[0]}</td>
+                <td>${escapeHtml(donacion.fechaRegistro.split(" ")[0])}</td>
                 <td>
                     <div class="acciones">
-                        <button title="Ver Más" class="boton-acciones btn-ver-mas" onclick= "verMas(${donacion.idDonacion})">
+                        <button title="Ver Más" class="boton-acciones btn-ver-mas" onclick="verMas(${donacion.idDonacion})">
                             <i class="bi bi-eye-fill"></i>
                         </button>
-                        <button title="Eliminar" class="boton-acciones btn-eliminar" onclick= "eliminarDonacion(${donacion.idDonacion})">
+                        <button title="Editar" class="boton-acciones btn-editar" onclick="editarDonacion(${donacion.idDonacion})">
+                            <i class="bi bi-pencil-fill"></i>
+                        </button>
+                        <button title="Eliminar" class="boton-acciones btn-eliminar" onclick="eliminarDonacion(${donacion.idDonacion})">
                             <i class="bi bi-trash-fill"></i>
                         </button>
                     </div>
@@ -121,71 +142,61 @@ function activarBotonFiltro(estado) {
         botonActivo = document.getElementById('btnAceptadas');
     } else if (estado === 'Rechazada') {
         botonActivo = document.getElementById('btnRechazadas');
+    } else if (estado === 'Completada') {
+        botonActivo = document.getElementById('btnCompletadas');
     }
 
     botonActivo.classList.add('boton-activo');
 }
 
-/*Función que abre el modal y muestra 
-los detalles de cada donación */
 async function verMas(id) {
-
-    // Abrir el modal
     const modal = document.getElementById('donacionModal');
     modal.classList.add('active');
 
-    // Titulo del modal
     const tituloModal = document.getElementById('modalTitle');
     tituloModal.textContent = 'Detalle de Donación';
 
-    // Contenido donde van a ir los detalles (ponemos un loader inicial opcional)
     const detallesDonacion = document.getElementById('detallesDonacion');
     detallesDonacion.innerHTML = '<div class="text-center py-4"><div class="spinner-border text-primary" role="status"></div></div>';
 
     try {
-        // Hacer llamada a la api buscando por id
         const response = await fetch(`${BASE_URL}donaciones/apiShow/${id}`);
         const result = await response.json();
 
         if (result.success) {
             const data = result.data;
 
-            // Detalles de la donación insertados en el HTML:
             detallesDonacion.innerHTML = `
             <div class="card shadow-sm border-0 w-100">
                 <div class="card-header bg-light text-dark d-flex flex-column flex-sm-row justify-content-between align-items-start align-items-sm-center gap-2 py-3">
-                    <h5 class="mb-0 text-break">Donación #${data.idDonacion}</h5>
-                    <span class="estado-${data.estado.toLowerCase()}">${data.estado}</span>
+                    <h5 class="mb-0 text-break">Donación #${escapeHtml(data.idDonacion)}</h5>
+                    <span class="estado-${escapeHtml(data.estado.toLowerCase())}">${escapeHtml(data.estado)}</span>
                 </div>
                 <div class="card-body px-3 px-md-4">
                     <div class="row g-3">
-                        <!-- Información del Donador -->
                         <div class="col-12 col-md-6">
                             <h6 class="text-muted border-bottom pb-2">Información del Donador</h6>
-                            <p class="mb-1 text-break"><strong>Nombre:</strong> ${data.nombreDonador}</p>
-                            <p class="mb-1 text-break"><strong>Correo:</strong> ${data.correoDonador}</p>
-                            <p class="mb-1 text-break"><strong>Teléfono:</strong> ${data.telefonoDonador}</p>
+                            <p class="mb-1 text-break"><strong>Nombre:</strong> ${escapeHtml(data.nombreDonador)}</p>
+                            <p class="mb-1 text-break"><strong>Correo:</strong> ${escapeHtml(data.correoDonador)}</p>
+                            <p class="mb-1 text-break"><strong>Teléfono:</strong> ${escapeHtml(data.telefonoDonador)}</p>
                         </div>
 
-                        <!-- Detalles del Equipo -->
                         <div class="col-12 col-md-6">
                             <h6 class="text-muted border-bottom pb-2">Detalles del Equipo</h6>
-                            <p class="mb-1 text-break"><strong>Marca / Modelo:</strong> ${data.marca} ${data.modelo}</p>
-                            <p class="mb-1"><strong>Cantidad:</strong> ${data.cantidadEquipos}</p>
-                            <p class="mb-1"><strong>Estado del equipo:</strong> ${data.estadoEquipo}</p>
+                            <p class="mb-1 text-break"><strong>Marca / Modelo:</strong> ${escapeHtml(data.marca)} ${escapeHtml(data.modelo)}</p>
+                            <p class="mb-1"><strong>Cantidad:</strong> ${escapeHtml(data.cantidadEquipos)}</p>
+                            <p class="mb-1"><strong>Estado del equipo:</strong> ${escapeHtml(data.estadoEquipo)}</p>
                         </div>
 
-                        <!-- Información Adicional -->
                         <div class="col-12 mt-3">
                             <h6 class="text-muted border-bottom pb-2">Información Adicional</h6>
-                            <p class="mb-1 text-break"><strong>Descripción:</strong> ${data.descripcionAdicional || 'Sin descripción'}</p>
-                            <p class="mb-1 text-break"><strong>Comentario Admin:</strong> ${data.comentarioAdministrador || 'Ninguno'}</p>
+                            <p class="mb-1 text-break"><strong>Descripción:</strong> ${escapeHtml(data.descripcionAdicional) || 'Sin descripción'}</p>
+                            <p class="mb-1 text-break"><strong>Comentario Admin:</strong> ${escapeHtml(data.comentarioAdministrador) || 'Ninguno'}</p>
                         </div>
 
-                        <!-- Fechas -->
                         <div class="col-12 mt-3 text-muted small border-top pt-2 d-flex flex-column flex-sm-row justify-content-between gap-1">
-                            <span>Registrado el: ${data.fechaRegistro}</span>
-                            ${data.fechaRevision ? `<span>Revisado el: ${data.fechaRevision}</span>` : ''}
+                            <span>Registrado el: ${escapeHtml(data.fechaRegistro)}</span>
+                            ${data.fechaRevision ? `<span>Revisado el: ${escapeHtml(data.fechaRevision)}</span>` : ''}
                         </div>
                     </div>
                 </div>
@@ -196,7 +207,7 @@ async function verMas(id) {
                             <textarea class="form-control" id="comentarioAdmin" rows="3" placeholder="Escriba una reseña, opinión o comentario sobre esta donación..."></textarea>
                         </div>
                         <div class="d-flex justify-content-end gap-2">
-                            <button type="button" class="boton-acciones btn-rechazar px-3 py-1" onclick="rechazarSolicitud(${data.idDonacion})">
+                            <button type="button" class="boton-acciones btn-rechazar px-3 py-1" onclick="rechazarDonacion(${data.idDonacion})">
                                 <i class="bi bi-x"></i> Rechazar
                             </button>
                             <button type="button" class="boton-acciones btn-aceptar px-3 py-1" onclick="aceptarDonacion(${data.idDonacion})">
@@ -237,36 +248,25 @@ async function verMas(id) {
 }
 
 async function cargarKpis() {
-
     const kpiTotalDonaciones = document.getElementById('kpiTotalDonaciones');
     const kpiPendientes = document.getElementById('kpiPendientes');
     const kpiAceptadas = document.getElementById('kpiAceptadas');
     const kpiRechazadas = document.getElementById('kpiRechazadas');
 
     try {
-
-        const response = await fetch(`${BASE_URL}/donaciones/apiKpis`);
+        const response = await fetch(`${BASE_URL}donaciones/apiKpis`);
         const kpis = await response.json();
-
-        console.log(`Respuesta de la carga de KPIs: ${response.ok}`);
 
         kpiTotalDonaciones.textContent = kpis.total;
         kpiPendientes.textContent = kpis.pendientes;
         kpiAceptadas.textContent = kpis.aceptadas;
         kpiRechazadas.textContent = kpis.rechazadas;
-
-
     } catch (error) {
-
         console.error(error);
-
     }
-
-
 }
 
 async function aceptarDonacion(id) {
-
     const comentario = document.getElementById('comentarioAdmin')?.value.trim() || null;
 
     Swal.fire({
@@ -305,11 +305,9 @@ async function aceptarDonacion(id) {
     });
 }
 
-async function rechazarSolicitud(id) {
-
+async function rechazarDonacion(id) {
     const comentario = document.getElementById('comentarioAdmin')?.value.trim() || null;
 
-    //Validación a nivel de front para confirmar el rechazo de la solicitud (SweetAlert)
     Swal.fire({
         title: "¿Está Seguro?",
         text: "¡No podrá revertir esta acción!",
@@ -329,8 +327,6 @@ async function rechazarSolicitud(id) {
                 });
                 const resData = await response.json();
 
-                console.log(resData);
-
                 if (resData.success) {
                     Swal.fire('Eliminado', resData.message, 'success');
                     document.getElementById('donacionModal').classList.remove('active');
@@ -346,11 +342,9 @@ async function rechazarSolicitud(id) {
             }
         }
     });
-
 }
 
 async function eliminarDonacion(id) {
-
     Swal.fire({
         title: "¿Está Seguro?",
         text: "Esta donación se eliminará permanentemente.",
@@ -384,7 +378,6 @@ async function eliminarDonacion(id) {
 }
 
 async function completarDonacion(id) {
-
     const comentario = document.getElementById('comentarioAdmin')?.value.trim() || null;
 
     Swal.fire({
@@ -420,4 +413,217 @@ async function completarDonacion(id) {
             }
         }
     });
+}
+
+function abrirModalCrearDonacion() {
+    const modal = document.getElementById('donacionModal');
+    const titulo = document.getElementById('modalTitle');
+    const contenido = document.getElementById('detallesDonacion');
+
+    titulo.textContent = 'Nueva Donación';
+    contenido.innerHTML = `
+    <form id="formCrearDonacion" class="admin-form" novalidate>
+        <div class="row g-3">
+            <div class="col-md-6">
+                <label class="form-label">Nombre completo *</label>
+                <input type="text" class="form-control" name="nombreDonador" placeholder="Nombre del donador" required>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Correo electrónico *</label>
+                <input type="email" class="form-control" name="correoDonador" placeholder="correo@ejemplo.com" required>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Teléfono *</label>
+                <input type="tel" class="form-control" name="telefonoDonador" placeholder="8888-8888" required>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Tipo de equipo *</label>
+                <select class="form-select" name="tipoEquipo" required>
+                    <option value="" selected disabled>Seleccione</option>
+                    <option>Laptop</option>
+                    <option>Computadora de escritorio</option>
+                    <option>Monitor</option>
+                    <option>Teclado</option>
+                    <option>Mouse</option>
+                    <option>Tablet</option>
+                    <option>Impresora</option>
+                    <option>Otro</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Marca</label>
+                <input type="text" class="form-control" name="marca" placeholder="Ej: Dell">
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Modelo</label>
+                <input type="text" class="form-control" name="modelo" placeholder="Ej: Latitude 5420">
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Estado del equipo *</label>
+                <select class="form-select" name="estadoEquipo" required>
+                    <option value="" selected disabled>Seleccione</option>
+                    <option>Nuevo</option>
+                    <option>Bueno</option>
+                    <option>Regular</option>
+                    <option>Malo</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Cantidad *</label>
+                <input type="number" class="form-control" name="cantidadEquipos" min="1" value="1" required>
+            </div>
+            <div class="col-12">
+                <label class="form-label">Descripción adicional</label>
+                <textarea class="form-control" name="descripcionAdicional" rows="3" placeholder="Detalles adicionales..."></textarea>
+            </div>
+        </div>
+        <div class="d-flex justify-content-end gap-2 mt-4">
+            <button type="button" class="btn-admin-cancelar" onclick="document.getElementById('donacionModal').classList.remove('active')">Cancelar</button>
+            <button type="submit" class="btn-admin-guardar"><i class="bi bi-check-lg"></i> Guardar</button>
+        </div>
+    </form>`;
+
+    document.getElementById('formCrearDonacion').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        await guardarNuevaDonacion(e.target);
+    });
+
+    modal.classList.add('active');
+}
+
+async function guardarNuevaDonacion(form) {
+    const fd = new FormData(form);
+    const datos = Object.fromEntries(fd.entries());
+    datos.cantidadEquipos = parseInt(datos.cantidadEquipos) || 1;
+
+    try {
+        const response = await fetch(`${BASE_URL}donaciones/crear`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(datos)
+        });
+        const resData = await response.json();
+
+        if (resData.success) {
+            Swal.fire('Creada', resData.message, 'success');
+            document.getElementById('donacionModal').classList.remove('active');
+            cargarTabla(`${BASE_URL}donaciones/apiList`);
+            cargarKpis();
+        } else {
+            Swal.fire('Error', resData.message, 'error');
+        }
+    } catch (error) {
+        console.error(error);
+        Swal.fire('Error', 'Ocurrió un error al crear la donación', 'error');
+    }
+}
+
+async function editarDonacion(id) {
+    const modal = document.getElementById('donacionModal');
+    const titulo = document.getElementById('modalTitle');
+    const contenido = document.getElementById('detallesDonacion');
+
+    titulo.textContent = 'Editar Donación';
+    contenido.innerHTML = '<div class="text-center py-4"><div class="spinner-border text-primary" role="status"></div></div>';
+    modal.classList.add('active');
+
+    try {
+        const response = await fetch(`${BASE_URL}donaciones/apiShow/${id}`);
+        const result = await response.json();
+
+        if (!result.success) {
+            contenido.innerHTML = '<div class="alert alert-warning m-3">No se encontró la donación.</div>';
+            return;
+        }
+
+        const d = result.data;
+        const opcionesTipo = ['Laptop', 'Computadora de escritorio', 'Monitor', 'Teclado', 'Mouse', 'Tablet', 'Impresora', 'Otro'];
+        const opcionesEstado = ['Nuevo', 'Bueno', 'Regular', 'Malo'];
+
+        contenido.innerHTML = `
+        <form id="formEditarDonacion" class="admin-form" novalidate>
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label class="form-label">Nombre completo *</label>
+                    <input type="text" class="form-control" name="nombreDonador" value="${escapeHtml(d.nombreDonador)}" required>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Correo electrónico *</label>
+                    <input type="email" class="form-control" name="correoDonador" value="${escapeHtml(d.correoDonador)}" required>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Teléfono *</label>
+                    <input type="tel" class="form-control" name="telefonoDonador" value="${escapeHtml(d.telefonoDonador)}" required>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Tipo de equipo *</label>
+                    <select class="form-select" name="tipoEquipo" required>
+                        ${opcionesTipo.map(t => `<option ${d.tipoEquipo === t ? 'selected' : ''}>${t}</option>`).join('')}
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Marca</label>
+                    <input type="text" class="form-control" name="marca" value="${escapeHtml(d.marca || '')}">
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Modelo</label>
+                    <input type="text" class="form-control" name="modelo" value="${escapeHtml(d.modelo || '')}">
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Estado del equipo *</label>
+                    <select class="form-select" name="estadoEquipo" required>
+                        ${opcionesEstado.map(e => `<option ${d.estadoEquipo === e ? 'selected' : ''}>${e}</option>`).join('')}
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Cantidad *</label>
+                    <input type="number" class="form-control" name="cantidadEquipos" min="1" value="${d.cantidadEquipos}" required>
+                </div>
+                <div class="col-12">
+                    <label class="form-label">Descripción adicional</label>
+                    <textarea class="form-control" name="descripcionAdicional" rows="3">${escapeHtml(d.descripcionAdicional || '')}</textarea>
+                </div>
+            </div>
+            <div class="d-flex justify-content-end gap-2 mt-4">
+                <button type="button" class="btn-admin-cancelar" onclick="document.getElementById('donacionModal').classList.remove('active')">Cancelar</button>
+                <button type="submit" class="btn-admin-guardar"><i class="bi bi-check-lg"></i> Guardar cambios</button>
+            </div>
+        </form>`;
+
+        document.getElementById('formEditarDonacion').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            await guardarEdicionDonacion(id, e.target);
+        });
+
+    } catch (error) {
+        console.error(error);
+        contenido.innerHTML = '<div class="alert alert-danger m-3">Error al conectar con el servidor.</div>';
+    }
+}
+
+async function guardarEdicionDonacion(id, form) {
+    const fd = new FormData(form);
+    const datos = Object.fromEntries(fd.entries());
+    datos.cantidadEquipos = parseInt(datos.cantidadEquipos) || 1;
+
+    try {
+        const response = await fetch(`${BASE_URL}donaciones/actualizar/${id}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(datos)
+        });
+        const resData = await response.json();
+
+        if (resData.success) {
+            Swal.fire('Actualizada', resData.message, 'success');
+            document.getElementById('donacionModal').classList.remove('active');
+            cargarTabla(`${BASE_URL}donaciones/apiList`);
+            cargarKpis();
+        } else {
+            Swal.fire('Error', resData.message, 'error');
+        }
+    } catch (error) {
+        console.error(error);
+        Swal.fire('Error', 'Ocurrió un error al actualizar la donación', 'error');
+    }
 }

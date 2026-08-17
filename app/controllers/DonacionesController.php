@@ -49,6 +49,20 @@ class DonacionesController
         echo json_encode($kpis);
     }
 
+    public function apiBuscar()
+    {
+        header('Content-Type: application/json');
+        $texto = trim($_GET['texto'] ?? '');
+
+        if ($texto === '') {
+            $donaciones = $this->donacionesModel->getAll();
+        } else {
+            $donaciones = $this->donacionesModel->buscar($texto);
+        }
+
+        echo json_encode($donaciones);
+    }
+
     public function apiRechazar($id)
     {
         header('Content-Type: application/json');

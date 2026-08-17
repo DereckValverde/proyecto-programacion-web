@@ -10,17 +10,17 @@ if (session_status() === PHP_SESSION_NONE) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="<?= BASE_URL . '/public/css/style-admin-login.css' ?>">
-    <title>Proyecto</title>
+    <link rel="stylesheet" href="<?= BASE_URL . 'public/css/style-admin-login.css' ?>">
+    <link rel="icon" type="image/png" href="<?= BASE_URL . 'public/images/LOGO.png' ?>">
+    <title>Acceso Administrativo</title>
 </head>
 
-<body>
-
-    <body class="login-body">
+<body class="login-body">
 
         <div class="login-container">
 
             <h1>Acceso Administrativo</h1>
+            <p class="login-subtitle">Ingresá tus credenciales para continuar</p>
 
             <form action="<?= BASE_URL . 'login' ?>" method="POST">
 
@@ -39,7 +39,7 @@ if (session_status() === PHP_SESSION_NONE) {
                     <?php unset($_SESSION['error']) ?>
                 <?php endif; ?>
 
-                <button type="submit">Inciar Sesión</button>
+                <button type="submit">Iniciar Sesión</button>
 
             </form>
 

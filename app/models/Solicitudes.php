@@ -102,6 +102,40 @@ class Solicitudes
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+    public function buscar($texto)
+    {
+        $texto = '%' . $texto . '%';
+        $query = "
+        SELECT
+            s.idSolicitud,
+            s.nombreSolicitante,
+            s.correoSolicitante,
+            s.telefonoSolicitante,
+            s.nombreOrganizacion,
+            o.nombre as tipoOrganizacion,
+            t.nombre AS tipoEquipo,
+            s.cantidadEquipos,
+            s.motivoSolicitud,
+            s.estado,
+            s.comentarioAdministrador,
+            s.fechaRegistro
+        FROM solicitudes s
+        INNER JOIN tipos_equipo t
+            ON s.idTipoEquipo = t.idTipoEquipo
+        INNER JOIN tipos_organizacion o
+            ON s.idTipoOrganizacion = o.idTipoOrganizacion
+        WHERE s.nombreSolicitante LIKE :texto
+           OR s.correoSolicitante LIKE :texto
+           OR s.nombreOrganizacion LIKE :texto
+           OR t.nombre LIKE :texto
+           OR o.nombre LIKE :texto
+        ORDER BY s.idSolicitud ASC
+    ";
+        $stmt = $this->db->prepare($query);
+        $stmt->execute([':texto' => $texto]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function aceptarById($id, $comentario = null)
     {
         $query = "UPDATE solicitudes 

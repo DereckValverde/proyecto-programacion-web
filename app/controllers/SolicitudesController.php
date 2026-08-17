@@ -51,6 +51,20 @@ class SolicitudesController
         echo json_encode($kpis);
     }
 
+    public function apiBuscar()
+    {
+        header('Content-Type: application/json');
+        $texto = trim($_GET['texto'] ?? '');
+
+        if ($texto === '') {
+            $solicitudes = $this->solicitudesModel->getAll();
+        } else {
+            $solicitudes = $this->solicitudesModel->buscar($texto);
+        }
+
+        echo json_encode($solicitudes);
+    }
+
     public function apiAceptar($id)
     {
         header('Content-Type: application/json');

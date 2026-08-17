@@ -10,7 +10,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700;800&display=swap"
         rel="stylesheet">
-    <link rel="icon" type="image/png" href=<?= BASE_URL . '/public/images/LOGO.png' ?>>
+    <link rel="icon" type="image/png" href="<?= BASE_URL . 'public/images/LOGO.png' ?>">
     <link rel="stylesheet" href="<?= BASE_URL . 'public/css/style.css' ?>">
 </head>
 
@@ -52,8 +52,8 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="hero-image-wrapper">
-                        <img src="https://placehold.co/600x500/007b8b/FFFFFF?text=Equipos+que+transforman"
-                            alt="Equipos tecnológicos donados">
+                        <img src="<?= BASE_URL . 'public/images/conect.webp' ?>"
+                            alt="ConectiTicos - Equipos tecnológicos donados">
                     </div>
                 </div>
             </div>
@@ -98,10 +98,10 @@
 
     <section id="mision">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="section-header text-start">
-                        <div class="sh-bar"></div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <div class="section-header">
+                        <div class="sh-bar mx-auto"></div>
                         <p class="sh-label">Nuestra misión</p>
                         <h2>Tecnología que transforma comunidades</h2>
                     </div>
@@ -109,10 +109,6 @@
                         comunidades, escuelas y emprendedores que los necesitan para transformar su futuro.</p>
                     <p class="mission-secondary">Desde 2020, hemos facilitado la donación de más de 5,000 equipos,
                         reduciendo la brecha digital y el desperdicio electrónico en toda la región.</p>
-                </div>
-                <div class="col-lg-6">
-                    <img src="https://placehold.co/600x400/2d6758/FFFFFF?text=Tecnolog%C3%ADa+que+transforma"
-                        alt="Tecnología que transforma vidas">
                 </div>
             </div>
             <div class="section-header">
@@ -238,19 +234,15 @@
 
             <div class="public-form-card donation-form-card">
 
-                <div class="form-message donation-message">
-
+                <div class="form-card-header">
                     <i class="fas fa-hand-holding-heart"></i>
-
                     <div>
                         <h3>Donación de equipos</h3>
-                        <p>
-                            Este formulario es para empresas que desean
-                            <strong>donar equipos tecnológicos.</strong>
-                        </p>
+                        <p>Para empresas que desean donar equipos tecnológicos</p>
                     </div>
-
                 </div>
+
+                <div class="form-card-body">
                 <form id="formDonacion" novalidate>
                     <div class="form-alert" id="donacionAlert" role="alert" style="display:none;"></div>
                     <div class="row g-3">
@@ -260,31 +252,29 @@
                             </label>
                             <input type="text" class="form-control" id="nombreDonante" name="nombreDonador"
                                 placeholder="Ingrese su nombre" required>
-
+                            <small class="field-error" id="error-nombreDonador"></small>
                         </div>
                         <div class="col-md-6">
                             <label for="emailDonante" class="form-label">
                                 Correo electrónico
                             </label>
-
                             <input type="email" class="form-control" id="emailDonante" name="correoDonador"
                                 placeholder="correo@ejemplo.com" required>
+                            <small class="field-error" id="error-correoDonador"></small>
                         </div>
                         <div class="col-md-6">
                             <label for="telefonoDonante" class="form-label">
                                 Teléfono
                             </label>
-
                             <input type="tel" class="form-control" id="telefonoDonante" name="telefonoDonador"
                                 placeholder="8888-8888" required>
+                            <small class="field-error" id="error-telefonoDonador"></small>
                         </div>
                         <div class="col-md-6">
                             <label for="tipoEquipoDonacion" class="form-label">
                                 Tipo de equipo
                             </label>
-
                             <select class="form-select" id="tipoEquipoDonacion" name="tipoEquipo" required>
-
                                 <option value="" selected disabled>
                                     Seleccione un equipo
                                 </option>
@@ -299,13 +289,12 @@
                                 <option value="Impresora">Impresora</option>
                                 <option value="Otro">Otro</option>
                             </select>
-
+                            <small class="field-error" id="error-tipoEquipoDonacion"></small>
                         </div>
                         <div class="col-md-6">
                             <label for="marcaEquipo" class="form-label">
                                 Marca
                             </label>
-
                             <input type="text" class="form-control" id="marcaEquipo" name="marca"
                                 placeholder="Ej: Dell">
                         </div>
@@ -313,7 +302,6 @@
                             <label for="modeloEquipo" class="form-label">
                                 Modelo
                             </label>
-
                             <input type="text" class="form-control" id="modeloEquipo" name="modelo"
                                 placeholder="Ej: Latitude 5420">
                         </div>
@@ -321,7 +309,6 @@
                             <label for="estadoEquipo" class="form-label">
                                 Estado del equipo
                             </label>
-
                             <select class="form-select" id="estadoEquipo" name="estadoEquipo" required>
                                 <option value="" selected disabled>
                                     Seleccione el estado
@@ -331,15 +318,15 @@
                                 <option value="Regular">Regular</option>
                                 <option value="Malo">Malo</option>
                             </select>
-
+                            <small class="field-error" id="error-estadoEquipo"></small>
                         </div>
                         <div class="col-md-6">
                             <label for="cantidadDonacion" class="form-label">
                                 Cantidad de equipos
                             </label>
-
                             <input type="number" class="form-control" id="cantidadDonacion" name="cantidadEquipos"
                                 min="1" placeholder="1" required>
+                            <small class="field-error" id="error-cantidadDonacion"></small>
                         </div>
                         <div class="col-12">
                             <label for="descripcionDonacion" class="form-label">
@@ -358,6 +345,7 @@
                         </div>
                     </div>
                 </form>
+                </div>
             </div>
         </div>
     </section>
@@ -378,20 +366,15 @@
 
             <div class="public-form-card request-form-card">
 
-                <div class="form-message request-message">
-
+                <div class="form-card-header">
                     <i class="fas fa-laptop"></i>
-
                     <div>
                         <h3>Solicitud de equipos</h3>
-                        <p>
-                            Este formulario es para organizaciones o comunidades que
-                            <strong>necesitan recibir equipos tecnológicos.</strong>
-                        </p>
+                        <p>Para organizaciones o comunidades que necesitan recibir equipos</p>
                     </div>
-
                 </div>
 
+                <div class="form-card-body">
                 <form id="formSolicitud" novalidate>
                     <div class="form-alert" id="solicitudAlert" role="alert" style="display:none;"></div>
                     <div class="row g-3">
@@ -404,6 +387,7 @@
 
                             <input type="text" class="form-control" id="nombreSolicitante" name="nombreSolicitante"
                                 placeholder="Ingrese su nombre" required>
+                            <small class="field-error" id="error-nombreSolicitante"></small>
 
                         </div>
 
@@ -415,6 +399,7 @@
 
                             <input type="email" class="form-control" id="emailSolicitante" name="correoSolicitante"
                                 placeholder="correo@ejemplo.com" required>
+                            <small class="field-error" id="error-correoSolicitante"></small>
 
                         </div>
 
@@ -426,6 +411,7 @@
 
                             <input type="tel" class="form-control" id="telefonoSolicitante" name="telefonoSolicitante"
                                 placeholder="8888-8888" required>
+                            <small class="field-error" id="error-telefonoSolicitante"></small>
 
                         </div>
 
@@ -437,6 +423,7 @@
 
                             <input type="text" class="form-control" id="organizacionSolicitante"
                                 name="nombreOrganizacion" placeholder="Nombre de la organización" required>
+                            <small class="field-error" id="error-nombreOrganizacion"></small>
 
                         </div>
 
@@ -461,6 +448,7 @@
                                 <option value="Otra">Otra</option>
 
                             </select>
+                            <small class="field-error" id="error-tipoOrganizacion"></small>
 
                         </div>
                         <div class="col-md-6">
@@ -486,6 +474,7 @@
                                 <option value="Otro">Otro</option>
 
                             </select>
+                            <small class="field-error" id="error-tipoEquipoSolicitud"></small>
 
                         </div>
                         <div class="col-md-6">
@@ -496,6 +485,7 @@
 
                             <input type="number" class="form-control" id="cantidadSolicitud" name="cantidadEquipos"
                                 min="1" placeholder="1" required>
+                            <small class="field-error" id="error-cantidadSolicitud"></small>
 
                         </div>
                         <div class="col-12">
@@ -507,6 +497,7 @@
                             <textarea class="form-control" id="motivoSolicitud" name="motivoSolicitud" rows="5"
                                 placeholder="Explicanos para qué se utilizarán los equipos y quiénes serán los beneficiarios"
                                 required></textarea>
+                            <small class="field-error" id="error-motivoSolicitud"></small>
 
                         </div>
                         <div class="col-12">
@@ -519,39 +510,6 @@
                         </div>
                     </div>
                 </form>
-            </div>
-        </div>
-    </section>
-
-    <section id="aliados" class="section-padding">
-        <div class="container">
-            <div class="section-header">
-                <div class="sh-bar"></div>
-                <h2>Aliados</h2>
-                <p class="sh-subtitle">Empresas que hacen posible esta labor</p>
-            </div>
-            <div class="allies-marquee-wrapper">
-                <div class="allies-marquee">
-                    <span class="allies-marquee-text">Próximamente</span>
-                    <span class="allies-marquee-line"></span>
-                    <span class="allies-marquee-text">Próximamente</span>
-                    <span class="allies-marquee-line"></span>
-                    <span class="allies-marquee-text">Próximamente</span>
-                    <span class="allies-marquee-line"></span>
-                    <span class="allies-marquee-text">Próximamente</span>
-                    <span class="allies-marquee-line"></span>
-                    <span class="allies-marquee-text">Próximamente</span>
-                    <span class="allies-marquee-line"></span>
-                    <span class="allies-marquee-text">Próximamente</span>
-                    <span class="allies-marquee-line"></span>
-                    <span class="allies-marquee-text">Próximamente</span>
-                    <span class="allies-marquee-line"></span>
-                    <span class="allies-marquee-text">Próximamente</span>
-                    <span class="allies-marquee-line"></span>
-                    <span class="allies-marquee-text">Próximamente</span>
-                    <span class="allies-marquee-line"></span>
-                    <span class="allies-marquee-text">Próximamente</span>
-                    <span class="allies-marquee-line"></span>
                 </div>
             </div>
         </div>
@@ -634,11 +592,17 @@
                 <!-- Formulario -->
                 <div class="col-lg-7">
 
-                    <div class="card shadow border-0 h-100">
+                    <div class="public-form-card" style="max-width:100%;">
 
-                        <div class="card-body p-4">
+                        <div class="form-card-header">
+                            <i class="fas fa-paper-plane"></i>
+                            <div>
+                                <h3 style="color:var(--color-teal);">Envíanos un mensaje</h3>
+                                <p>Respondemos en menos de 24 horas</p>
+                            </div>
+                        </div>
 
-                            <h4 class="mb-4">Envíanos un mensaje</h4>
+                        <div class="form-card-body">
 
                             <form id="formContacto" novalidate>
                                 <div class="form-alert" id="contactoAlert" role="alert" style="display:none;"></div>
@@ -648,12 +612,14 @@
                                         <label for="contactoNombre" class="form-label">Nombre</label>
                                         <input type="text" class="form-control" id="contactoNombre" name="nombre"
                                             placeholder="Tu nombre" required>
+                                        <small class="field-error" id="error-nombreContacto"></small>
                                     </div>
 
                                     <div class="col-md-6 mb-3">
                                         <label for="contactoCorreo" class="form-label">Correo electrónico</label>
                                         <input type="email" class="form-control" id="contactoCorreo" name="correo"
                                             placeholder="correo@ejemplo.com" required>
+                                        <small class="field-error" id="error-correoContacto"></small>
                                     </div>
 
                                 </div>
@@ -662,15 +628,17 @@
                                     <label for="contactoAsunto" class="form-label">Asunto</label>
                                     <input type="text" class="form-control" id="contactoAsunto" name="asunto"
                                         placeholder="Asunto del mensaje" required>
+                                    <small class="field-error" id="error-asuntoContacto"></small>
                                 </div>
 
                                 <div class="mb-4">
                                     <label for="contactoMensaje" class="form-label">Mensaje</label>
                                     <textarea class="form-control" id="contactoMensaje" name="mensaje" rows="6"
                                         placeholder="Escribe tu mensaje" required></textarea>
+                                    <small class="field-error" id="error-mensajeContacto"></small>
                                 </div>
 
-                                <button type="submit" class="btn btn-success px-4">
+                                <button type="submit" class="public-form-btn" style="background:var(--color-teal);">
                                     <i class="fas fa-paper-plane"></i>
                                     Enviar mensaje
                                 </button>
@@ -686,53 +654,59 @@
                 <!-- Información -->
                 <div class="col-lg-5">
 
-                    <div class="card shadow border-0 mb-4">
+                    <div class="contact-info-card">
 
-                        <div class="card-body">
+                        <h4>Información de contacto</h4>
 
-                            <h4 class="mb-4">Información de contacto</h4>
+                        <div class="contact-info-item">
+                            <div class="contact-info-icon pine">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <span class="contact-info-label">Dirección</span>
+                                <p>San José, Costa Rica</p>
+                            </div>
+                        </div>
 
-                            <p>
-                                <i class="fas fa-map-marker-alt text-success me-2"></i>
-                                San José, Costa Rica
-                            </p>
+                        <div class="contact-info-item">
+                            <div class="contact-info-icon teal">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <span class="contact-info-label">Teléfono</span>
+                                <p>+506 8888-7777</p>
+                            </div>
+                        </div>
 
-                            <p>
-                                <i class="fas fa-phone text-success me-2"></i>
-                                +506 8888-7777
-                            </p>
-
-                            <p>
-                                <i class="fas fa-envelope text-success me-2"></i>
-                                info@conectiticos.org
-                            </p>
-
+                        <div class="contact-info-item">
+                            <div class="contact-info-icon coral">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <span class="contact-info-label">Correo</span>
+                                <p>info@conectiticos.org</p>
+                            </div>
                         </div>
 
                     </div>
 
-                    <div class="card shadow border-0">
+                    <div class="contact-social-card">
 
-                        <div class="card-body text-center">
+                        <h4>Síguenos</h4>
 
-                            <h4 class="mb-4">Síguenos</h4>
-
-                            <a href="#" class="btn btn-outline-primary rounded-circle m-2">
+                        <div class="contact-social-icons">
+                            <a href="#" class="contact-social-link pine">
                                 <i class="fab fa-facebook-f"></i>
                             </a>
-
-                            <a href="#" class="btn btn-outline-danger rounded-circle m-2">
+                            <a href="#" class="contact-social-link coral">
                                 <i class="fab fa-instagram"></i>
                             </a>
-
-                            <a href="#" class="btn btn-outline-info rounded-circle m-2">
+                            <a href="#" class="contact-social-link teal">
                                 <i class="fab fa-linkedin-in"></i>
                             </a>
-
-                            <a href="#" class="btn btn-outline-success rounded-circle m-2">
+                            <a href="#" class="contact-social-link pine">
                                 <i class="fab fa-whatsapp"></i>
                             </a>
-
                         </div>
 
                     </div>
@@ -751,7 +725,7 @@
     <script>
         const BASE_URL = "<?= BASE_URL ?>";
     </script>
-    <script src="<?= BASE_URL . '/public/js/main.js' ?>"></script>
+    <script src="<?= BASE_URL . 'public/js/main.js' ?>"></script>
 </body>
 
 </html>

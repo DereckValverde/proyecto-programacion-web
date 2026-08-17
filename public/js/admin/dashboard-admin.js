@@ -1,3 +1,10 @@
+function escapeHtml(text) {
+    if (text === null || text === undefined) return '';
+    const div = document.createElement('div');
+    div.textContent = String(text);
+    return div.innerHTML;
+}
+
 document.addEventListener('DOMContentLoaded', () => {
 
     cargarKpis();
@@ -147,9 +154,9 @@ async function cargarSolicitudesRecientes() {
                 const tr = document.createElement('tr');
 
                 tr.innerHTML = `
-                <td>${solicitud.nombreSolicitante}</td>
-                <td>${solicitud.cantidadEquipos} ${solicitud.tipoEquipo}</td>
-                <td>${solicitud.fechaRegistro.split(" ")[0]}</td>
+                <td>${escapeHtml(solicitud.nombreSolicitante)}</td>
+                <td>${escapeHtml(solicitud.cantidadEquipos)} ${escapeHtml(solicitud.tipoEquipo)}</td>
+                <td>${escapeHtml(solicitud.fechaRegistro.split(" ")[0])}</td>
                 <td>
                     <div class="d-flex flex-wrap justify-content-center gap-2">
                         <button type="button" class="btn btn-primary btn-sm rounded-2 flex-fill" onclick="verMas(${solicitud.idSolicitud})">Ver Más</button>
@@ -188,39 +195,39 @@ async function verMas(id) {
             detallesSolicitud.innerHTML = `
             <div class="card shadow-sm border-0 w-100">
                 <div class="card-header bg-light text-dark d-flex flex-column flex-sm-row justify-content-between align-items-start align-items-sm-center gap-2 py-3">
-                    <h5 class="mb-0 text-break">Solicitud #${data.idSolicitud}</h5>
-                    <span class="estado-${data.estado.toLowerCase()}">${data.estado}</span>
+                    <h5 class="mb-0 text-break">Solicitud #${escapeHtml(data.idSolicitud)}</h5>
+                    <span class="estado-${escapeHtml(data.estado.toLowerCase())}">${escapeHtml(data.estado)}</span>
                 </div>
                 <div class="card-body px-3 px-md-4">
                     <div class="row g-3">
                         <div class="col-12 col-md-6">
                             <h6 class="text-muted border-bottom pb-2">Información del Solicitante</h6>
-                            <p class="mb-1 text-break"><strong>Nombre:</strong> ${data.nombreSolicitante}</p>
-                            <p class="mb-1 text-break"><strong>Correo:</strong> ${data.correoSolicitante}</p>
-                            <p class="mb-1 text-break"><strong>Teléfono:</strong> ${data.telefonoSolicitante}</p>
+                            <p class="mb-1 text-break"><strong>Nombre:</strong> ${escapeHtml(data.nombreSolicitante)}</p>
+                            <p class="mb-1 text-break"><strong>Correo:</strong> ${escapeHtml(data.correoSolicitante)}</p>
+                            <p class="mb-1 text-break"><strong>Teléfono:</strong> ${escapeHtml(data.telefonoSolicitante)}</p>
                         </div>
 
                         <div class="col-12 col-md-6">
                             <h6 class="text-muted border-bottom pb-2">Detalles de la Solicitud</h6>
-                            <p class="mb-1 text-break"><strong>Organización:</strong> ${data.nombreOrganizacion}</p>
-                            <p class="mb-1"><strong>Tipo de organización:</strong> ${data.tipoOrganizacion}</p>
-                            <p class="mb-1"><strong>Equipo solicitado:</strong> ${data.tipoEquipo}</p>
-                            <p class="mb-1"><strong>Cantidad:</strong> ${data.cantidadEquipos}</p>
+                            <p class="mb-1 text-break"><strong>Organización:</strong> ${escapeHtml(data.nombreOrganizacion)}</p>
+                            <p class="mb-1"><strong>Tipo de organización:</strong> ${escapeHtml(data.tipoOrganizacion)}</p>
+                            <p class="mb-1"><strong>Equipo solicitado:</strong> ${escapeHtml(data.tipoEquipo)}</p>
+                            <p class="mb-1"><strong>Cantidad:</strong> ${escapeHtml(data.cantidadEquipos)}</p>
                         </div>
 
                         <div class="col-12 mt-3">
                             <h6 class="text-muted border-bottom pb-2">Motivo de la Solicitud</h6>
-                            <p class="mb-1 text-break">${data.motivoSolicitud}</p>
+                            <p class="mb-1 text-break">${escapeHtml(data.motivoSolicitud)}</p>
                         </div>
 
                         <div class="col-12 mt-3">
                             <h6 class="text-muted border-bottom pb-2">Comentario Admin</h6>
-                            <p class="mb-1 text-break">${data.comentarioAdministrador || 'Ninguno'}</p>
+                            <p class="mb-1 text-break">${escapeHtml(data.comentarioAdministrador) || 'Ninguno'}</p>
                         </div>
 
                         <div class="col-12 mt-3 text-muted small border-top pt-2 d-flex flex-column flex-sm-row justify-content-between gap-1">
-                            <span>Registrado el: ${data.fechaRegistro}</span>
-                            ${data.fechaRevision ? `<span>Revisado el: ${data.fechaRevision}</span>` : ''}
+                            <span>Registrado el: ${escapeHtml(data.fechaRegistro)}</span>
+                            ${data.fechaRevision ? `<span>Revisado el: ${escapeHtml(data.fechaRevision)}</span>` : ''}
                         </div>
                     </div>
                 </div>
@@ -384,7 +391,7 @@ async function cargarLogs() {
 
                 const descripcion = document.createElement('p');
                 descripcion.className = 'mb-1 text-secondary small fw-medium';
-                descripcion.textContent = log.descripcion;
+                descripcion.textContent = escapeHtml(log.descripcion);
 
                 item.appendChild(header);
                 item.appendChild(descripcion);

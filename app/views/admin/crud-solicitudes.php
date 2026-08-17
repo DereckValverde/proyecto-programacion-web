@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -20,16 +20,17 @@
     <main class="main">
         <div class="d-flex flex-column container-fluid px-4 gap-5">
 
-            <div class="dashboard-head">
-                <p>Panel Administrativo / <strong>Solicitudes</strong></p>
+            <div class="admin-header">
+                <div class="admin-bar"></div>
                 <h2>Gestión de Solicitudes</h2>
+                <p class="admin-subtitle">Revisá, aceptá o rechazá las solicitudes recibidas</p>
             </div>
 
             <div class="row g-4 mb-4">
                 <div class="col-12 col-lg-3">
-                    <div class="d-flex flex-column dashboard-card shadow text-dark bg-white border border-1 border-dark-light rounded-4 p-3">
+                    <div class="d-flex flex-column dashboard-card text-dark bg-white p-3">
                         <div class="d-flex justify-content-between align-items-center">
-                            <p class="card-title text-secondary  fw-bold fs-8 mb-0">Total de Solicitudes</p>
+                            <p class="card-title text-secondary fw-bold fs-8 mb-0">Total de Solicitudes</p>
                             <i class="bi bi-inbox fs-5 text-secondary"></i>
                         </div>
                         <h3 class="card-value text-dark fs-5 fw-bold mt-4 mb-0" id="kpiTotal"></h3>
@@ -37,7 +38,7 @@
                 </div>
 
                 <div class="col-12 col-lg-3">
-                    <div class="d-flex flex-column dashboard-card shadow border border-1 border-dark-light  rounded-4 p-3 solicitudes-pendientes">
+                    <div class="d-flex flex-column dashboard-card solicitudes-pendientes p-3">
                         <div class="d-flex justify-content-between align-items-center">
                             <p class="card-title fw-bold fs-8 mb-0">Pendientes de Revisar</p>
                             <i class="bi bi-clipboard-check fs-5"></i>
@@ -47,7 +48,7 @@
                 </div>
 
                 <div class="col-12 col-lg-3">
-                    <div class="d-flex flex-column dashboard-card shadow text-dark bg-white border border-1 border-dark-light rounded-4 p-3">
+                    <div class="d-flex flex-column dashboard-card text-dark bg-white p-3">
                         <div class="d-flex justify-content-between align-items-center">
                             <p class="card-title text-secondary fw-bold fs-8 mb-0"> Solicitudes Aceptadas</p>
                             <i class="bi bi-check-circle fs-5 text-secondary"></i>
@@ -57,7 +58,7 @@
                 </div>
 
                 <div class="col-12 col-lg-3">
-                    <div class="d-flex flex-column dashboard-card shadow text-dark bg-white border border-1 border-dark-light rounded-4 p-3">
+                    <div class="d-flex flex-column dashboard-card text-dark bg-white p-3">
                         <div class="d-flex justify-content-between align-items-center">
                             <p class="card-title text-secondary fw-bold fs-8 mb-0">Solicitudes Rechazadas</p>
                             <i class="bi bi-x-circle fs-5 text-secondary"></i>
@@ -67,11 +68,13 @@
                 </div>
             </div>
 
-            <div class="d-flex flex-wrap gap-2">
+            <div class="d-flex flex-wrap gap-2 align-items-center">
+                <button class="btn-nuevo" onclick="abrirModalCrearSolicitud()"><i class="bi bi-plus-lg"></i> Nueva Solicitud</button>
                 <button class="btn btn-light rounded-pill boton-filtro boton-activo" id="btnTodas">Todas</button>
                 <button class="btn btn-light border border-dark-light rounded-pill boton-filtro" id="btnPendientes">Pendientes</button>
                 <button class="btn btn-light border border-dark-light rounded-pill boton-filtro" id="btnAceptadas">Aceptadas</button>
                 <button class="btn btn-light border border-dark-light rounded-pill boton-filtro" id="btnRechazadas">Rechazadas</button>
+                <input type="text" class="form-control rounded-pill border border-dark-light" id="busquedaSolicitudes" placeholder="Buscar por nombre, correo, organización o equipo..." style="max-width: 320px; margin-left: auto;">
             </div>
 
             <div class="table-responsive border border-dark-light border border-bottom-0 rounded-3">
@@ -116,7 +119,7 @@
     <script>
         const BASE_URL = "<?= BASE_URL ?>";
     </script>
-    <script src="<?= BASE_URL . '/public/js/admin/solicitudes.js' ?>">
+    <script src="<?= BASE_URL . 'public/js/admin/solicitudes.js' ?>">
 
     </script>
 </body>

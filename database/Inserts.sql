@@ -1,174 +1,20 @@
 -- =========================================================
+-- Datos de prueba: Donaciones y Solicitudes
 -- Base de datos: techdonaciones
--- Proyecto: ConectiTicos
 -- Generado: 17 de agosto de 2026
 -- =========================================================
-
-CREATE DATABASE IF NOT EXISTS `techdonaciones`
-  DEFAULT CHARACTER SET utf8mb4
-  COLLATE utf8mb4_general_ci;
 
 USE `techdonaciones`;
 
 -- ---------------------------------------------------------
--- Tabla: administradores
--- ---------------------------------------------------------
-CREATE TABLE `administradores` (
-  `idAdministrador` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(100) NOT NULL,
-  `correo` varchar(100) NOT NULL,
-  `contrasena` varchar(255) NOT NULL,
-  `fechaCreacion` datetime DEFAULT current_timestamp(),
-  `ultimoAcceso` datetime DEFAULT NULL,
-  PRIMARY KEY (`idAdministrador`),
-  UNIQUE KEY `correo` (`correo`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- Admin: dereck@admin.com / Admin123*
-INSERT INTO `administradores` (`nombre`, `correo`, `contrasena`)
-VALUES ('Dereck Valverde', 'dereck@admin.com', '$2y$10$8K1p/a0dL1LXMIgoEDFrPOClU3bXiVqHJBGP0Hf.zQJQ4V4p1k4We');
-
--- ---------------------------------------------------------
--- Tabla: tipos_equipo
--- ---------------------------------------------------------
-CREATE TABLE `tipos_equipo` (
-  `idTipoEquipo` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(50) NOT NULL,
-  `co2Estimado` decimal(8,2) NOT NULL,
-  PRIMARY KEY (`idTipoEquipo`),
-  UNIQUE KEY `nombre` (`nombre`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
-INSERT INTO `tipos_equipo` (`nombre`, `co2Estimado`) VALUES
-('Laptop', 300.00),
-('Computadora de escritorio', 400.00),
-('Monitor', 150.00),
-('Teclado', 10.00),
-('Mouse', 5.00),
-('Tablet', 200.00),
-('Impresora', 80.00),
-('Servidor', 1000.00),
-('Proyector', 120.00),
-('Teléfono celular', 70.00),
-('Otro', 0.00);
-
--- ---------------------------------------------------------
--- Tabla: tipos_organizacion
--- ---------------------------------------------------------
-CREATE TABLE `tipos_organizacion` (
-  `idTipoOrganizacion` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(50) NOT NULL,
-  PRIMARY KEY (`idTipoOrganizacion`),
-  UNIQUE KEY `nombre` (`nombre`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
-INSERT INTO `tipos_organizacion` (`nombre`) VALUES
-('Escuela'),
-('Colegio'),
-('Universidad'),
-('Fundación'),
-('Asociación'),
-('Comunidad'),
-('Emprendimiento'),
-('Gobierno'),
-('Iglesia'),
-('Otra');
-
--- ---------------------------------------------------------
--- Tabla: donaciones
--- ---------------------------------------------------------
-CREATE TABLE `donaciones` (
-  `idDonacion` int(11) NOT NULL AUTO_INCREMENT,
-  `nombreDonador` varchar(100) NOT NULL,
-  `correoDonador` varchar(100) NOT NULL,
-  `telefonoDonador` varchar(20) DEFAULT NULL,
-  `tipoDonador` enum('Persona Fisica','Empresa') DEFAULT 'Persona Fisica',
-  `detalleDonador` varchar(150) DEFAULT NULL,
-  `idTipoEquipo` int(11) NOT NULL,
-  `marca` varchar(50) DEFAULT NULL,
-  `modelo` varchar(100) DEFAULT NULL,
-  `estadoEquipo` enum('Nuevo','Bueno','Regular','Malo') NOT NULL,
-  `cantidadEquipos` int(11) NOT NULL,
-  `descripcionAdicional` text DEFAULT NULL,
-  `estado` enum('Pendiente','Aceptada','Rechazada','Completada') DEFAULT 'Pendiente',
-  `comentarioAdministrador` text DEFAULT NULL,
-  `fechaRegistro` datetime DEFAULT current_timestamp(),
-  `fechaRevision` datetime DEFAULT NULL,
-  `idAdministrador` int(11) DEFAULT NULL,
-  PRIMARY KEY (`idDonacion`),
-  KEY `fk_donacion_tipoEquipo` (`idTipoEquipo`),
-  KEY `fk_donacion_admin` (`idAdministrador`),
-  CONSTRAINT `fk_donacion_tipoEquipo` FOREIGN KEY (`idTipoEquipo`) REFERENCES `tipos_equipo` (`idTipoEquipo`),
-  CONSTRAINT `fk_donacion_admin` FOREIGN KEY (`idAdministrador`) REFERENCES `administradores` (`idAdministrador`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- ---------------------------------------------------------
--- Tabla: solicitudes
--- ---------------------------------------------------------
-CREATE TABLE `solicitudes` (
-  `idSolicitud` int(11) NOT NULL AUTO_INCREMENT,
-  `nombreSolicitante` varchar(100) NOT NULL,
-  `correoSolicitante` varchar(100) NOT NULL,
-  `telefonoSolicitante` varchar(20) DEFAULT NULL,
-  `nombreOrganizacion` varchar(100) NOT NULL,
-  `idTipoOrganizacion` int(11) NOT NULL,
-  `idTipoEquipo` int(11) NOT NULL,
-  `cantidadEquipos` int(11) NOT NULL,
-  `motivoSolicitud` text NOT NULL,
-  `estado` enum('Pendiente','Aceptada','Rechazada','Completada') DEFAULT 'Pendiente',
-  `comentarioAdministrador` text DEFAULT NULL,
-  `fechaRegistro` datetime DEFAULT current_timestamp(),
-  `fechaRevision` datetime DEFAULT NULL,
-  `idAdministrador` int(11) DEFAULT NULL,
-  PRIMARY KEY (`idSolicitud`),
-  KEY `fk_solicitud_tipoOrganizacion` (`idTipoOrganizacion`),
-  KEY `fk_solicitud_tipoEquipo` (`idTipoEquipo`),
-  KEY `fk_solicitud_admin` (`idAdministrador`),
-  CONSTRAINT `fk_solicitud_tipoEquipo` FOREIGN KEY (`idTipoEquipo`) REFERENCES `tipos_equipo` (`idTipoEquipo`),
-  CONSTRAINT `fk_solicitud_tipoOrganizacion` FOREIGN KEY (`idTipoOrganizacion`) REFERENCES `tipos_organizacion` (`idTipoOrganizacion`),
-  CONSTRAINT `fk_solicitud_admin` FOREIGN KEY (`idAdministrador`) REFERENCES `administradores` (`idAdministrador`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- ---------------------------------------------------------
--- Tabla: contacto
--- ---------------------------------------------------------
-CREATE TABLE `contacto` (
-  `idContacto` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(100) NOT NULL,
-  `correo` varchar(100) NOT NULL,
-  `asunto` varchar(100) NOT NULL,
-  `mensaje` longtext NOT NULL,
-  `fechaEnvio` datetime DEFAULT current_timestamp(),
-  `leido` tinyint(1) DEFAULT 0,
-  PRIMARY KEY (`idContacto`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- ---------------------------------------------------------
--- Tabla: auditoria
--- ---------------------------------------------------------
-CREATE TABLE `auditoria` (
-  `idLog` int(11) NOT NULL AUTO_INCREMENT,
-  `idAdministrador` int(11) DEFAULT NULL,
-  `tipo` enum('Registro','Modificacion','Eliminacion','InicioSesion','Error') NOT NULL,
-  `descripcion` text NOT NULL,
-  `fecha` datetime DEFAULT current_timestamp(),
-  PRIMARY KEY (`idLog`),
-  KEY `fk_auditoria_admin` (`idAdministrador`),
-  CONSTRAINT `fk_auditoria_admin` FOREIGN KEY (`idAdministrador`) REFERENCES `administradores` (`idAdministrador`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- =========================================================
--- Datos de prueba: Donaciones y Solicitudes
--- =========================================================
-
--- ---------------------------------------------------------
--- Donaciones (30 registros, Mar - Ago 2026)
+-- Donaciones de prueba (30 registros, Mar - Ago 2026)
 -- ---------------------------------------------------------
 INSERT INTO `donaciones`
     (`nombreDonador`, `correoDonador`, `telefonoDonador`, `tipoDonador`, `detalleDonador`,
      `idTipoEquipo`, `marca`, `modelo`, `estadoEquipo`, `cantidadEquipos`,
      `descripcionAdicional`, `estado`, `comentarioAdministrador`, `fechaRegistro`, `fechaRevision`, `idAdministrador`)
 VALUES
+    -- Marzo 2026 (3)
     ('Carlos Mendoza', 'carlos.mendoza@gmail.com', '8888-1234', 'Persona Fisica', NULL,
      1, 'Lenovo', 'ThinkPad X1 Carbon', 'Bueno', 1,
      'Laptop usada en buen estado, funciona perfectamente', 'Completada', 'Equipo recibido en buen estado.', '2026-03-05 09:15:00', '2026-03-10 14:30:00', 1),
@@ -181,6 +27,7 @@ VALUES
      3, 'Samsung', 'S24F350', 'Regular', 2,
      'Monitores con pequeña mancha en la esquina inferior derecha', 'Aceptada', NULL, '2026-03-22 16:45:00', NULL, NULL),
 
+    -- Abril 2026 (4)
     ('Roberto Jiménez', 'rjimenez@outlook.com', '8666-7890', 'Persona Fisica', NULL,
      4, 'Logitech', 'K120', 'Nuevo', 10,
      'Teclados nuevos sin usar, sobrantes de inventario', 'Completada', 'Producto nuevo, excelente condición.', '2026-04-02 08:30:00', '2026-04-05 09:00:00', 1),
@@ -197,6 +44,7 @@ VALUES
      6, 'Apple', 'iPad Air 2', 'Malo', 1,
      'Tablet con pantalla agrietada pero enciende', 'Pendiente', NULL, '2026-04-28 13:00:00', NULL, NULL),
 
+    -- Mayo 2026 (5)
     ('Banco Nacional CR', 'responsabilidad.social@bn.cr', '2211-9876', 'Empresa', 'Gerencia de RRSS',
      2, 'Lenovo', 'V530', 'Bueno', 12,
      '12 equipos de escritorio con monitor incluido', 'Completada', 'Equipos procesados y distribuidos.', '2026-05-03 09:00:00', '2026-05-08 15:00:00', 1),
@@ -219,8 +67,9 @@ VALUES
 
     ('Constructora Horizonte', 'ti@horizonte.co.cr', '2233-5555', 'Empresa', 'Área de Sistemas',
      3, 'LG', '24MP48HQ', 'Bueno', 6,
-     'Monitores 24 pulgadas Full HD', 'Aceptada', 'Monitores en excelente estado.', '2026-05-28 14:00:00', '2026-06-01 09:00:00', 1),
+     'Monitores 24 pulgados Full HD', 'Aceptada', 'Monitores en excelente estado.', '2026-05-28 14:00:00', '2026-06-01 09:00:00', 1),
 
+    -- Junio 2026 (5)
     ('Felipe Arias', 'farias@outlook.com', '8000-6666', 'Persona Fisica', NULL,
      10, 'Samsung', 'Galaxy Tab A', 'Bueno', 2,
      'Tablets para niños en escuela rural', 'Completada', 'Tablets funcionales, se entregarán a escuela.', '2026-06-02 09:30:00', '2026-06-07 11:00:00', 1),
@@ -241,6 +90,7 @@ VALUES
      11, 'Otro', 'Sin marca identificable', 'Malo', 1,
      'Equipo desconocido, posiblemente parte de servidor', 'Rechazada', 'Equipo sin identificación ni funcionalidad.', '2026-06-28 11:45:00', '2026-06-30 09:00:00', 1),
 
+    -- Julio 2026 (5)
     ('Hospital San Rafael', 'compras@hsr.go.cr', '2256-8888', 'Empresa', 'Depto. de Equipamiento',
      3, 'Dell', 'P2419H', 'Bueno', 3,
      'Monitores de estaciones de trabajo migradas', 'Completada', 'Monitores verificados, buen estado.', '2026-07-01 09:00:00', '2026-07-05 10:00:00', 1),
@@ -261,6 +111,7 @@ VALUES
      5, 'HP', 'Wireless Mouse', 'Nuevo', 2,
      'Mouses nuevos en paquete', 'Pendiente', NULL, '2026-07-29 16:00:00', NULL, NULL),
 
+    -- Agosto 2026 (8)
     ('Farmacia Fischel', 'responsabilidad@fischel.co.cr', '2220-4444', 'Empresa', 'Depto. de Logística',
      2, 'Lenovo', 'ThinkCentre M920t', 'Bueno', 6,
      'Escritorios de sedes centrales renovados', 'Pendiente', NULL, '2026-08-01 09:00:00', NULL, NULL),
@@ -287,14 +138,14 @@ VALUES
 
     ('Luis Fernando Quesada', 'lfquesada@outlook.com', '8333-5555', 'Persona Fisica', NULL,
      9, 'Epson', 'EB-W51', 'Bueno', 1,
-     'Proyector con bajo uso, menos de 500 horas', 'Pendiente', NULL, '2026-08-14 15:00:00', NULL, NULL),
+     'Proyector con bajo uso, less de 500 horas', 'Pendiente', NULL, '2026-08-14 15:00:00', NULL, NULL),
 
     ('Coca-Cola FEMSA', 'sostenibilidad@femsa.co.cr', '2255-6666', 'Empresa', 'Depto. de Sostenibilidad',
      1, 'HP', 'ProBook 450 G8', 'Bueno', 10,
      'Laptops de oficinas corporativas en ciclo de renovación', 'Pendiente', NULL, '2026-08-16 10:30:00', NULL, NULL);
 
 -- ---------------------------------------------------------
--- Solicitudes (20 registros, Mar - Ago 2026)
+-- Solicitudes de prueba (20 registros, Mar - Ago 2026)
 -- ---------------------------------------------------------
 INSERT INTO `solicitudes`
     (`nombreSolicitante`, `correoSolicitante`, `telefonoSolicitante`,
@@ -302,102 +153,108 @@ INSERT INTO `solicitudes`
      `cantidadEquipos`, `motivoSolicitud`, `estado`,
      `comentarioAdministrador`, `fechaRegistro`, `fechaRevision`, `idAdministrador`)
 VALUES
+    -- Marzo 2026 (3)
     ('Ana Lucía Méndez', 'ana.mendez@escuela15.ed.cr', '2478-1234',
      'Escuela República de Italia', 1, 1,
-     10, 'Necesitamos 10 laptops para el laboratorio de informática que atiende a 200 alumnos de primaria.',
+     10, 'Necesitamos 10 laptops para el laboratorio de informática que atiende a 200 alumnos de primaria. Actualmente solo contamos con 3 equipos obsoletos.',
      'Completada', 'Solicitud aprobada. Equipos entregados el 20/03.', '2026-03-03 08:00:00', '2026-03-08 10:00:00', 1),
 
     ('Carlos Ramírez', 'cramirez@colegiosol.ed.cr', '2222-5678',
      'Colegio Sol Naciente', 2, 3,
-     5, 'Requerimos 5 monitores para las estaciones de la biblioteca del colegio.',
+     5, 'Requerimos 5 monitores para las estaciones de la biblioteca del colegio. Los actuales presentan parpadeo constante.',
      'Aceptada', NULL, '2026-03-15 14:30:00', '2026-03-20 09:00:00', 1),
 
     ('María Elena Rojas', 'merojas@fundacionpaz.org', '8888-3456',
      'Fundación Paz y Bien', 4, 2,
-     8, 'Buscamos 8 computadoras de escritorio para equipar el centro de capacitación digital.',
+     8, 'Buscamos 8 computadoras de escritorio para equipar el centro de capacitación digital que atiende a adultos mayores del cantón de Tibás.',
      'Pendiente', NULL, '2026-03-25 11:00:00', NULL, NULL),
 
+    -- Abril 2026 (3)
     ('Roberto Cascante', 'rcascante@universidad.cr', '2277-8901',
      'Universidad Técnica Nacional', 3, 1,
-     20, 'Solicitamos 20 laptops para el programa de becas estudiantiles del semestre 2026-I.',
+     20, 'Solicitamos 20 laptops para el programa de becas estudiantiles del semestre 2026-I. Los estudiantes no cuentan con recursos para adquirir equipo propio.',
      'Aceptada', NULL, '2026-04-05 09:00:00', '2026-04-10 14:00:00', 1),
 
     ('Patricia Mora', 'pmora@asociaciondelnorte.org', '2466-7890',
      'Asociación de Desarrollo del Norte', 5, 4,
-     30, 'Necesitamos 30 teclados para el centro de capacitación comunitaria.',
+     30, 'Necesitamos 30 teclados para el centro de capacitación que estamos habilitando para comunidades rurales.',
      'Pendiente', NULL, '2026-04-18 10:30:00', NULL, NULL),
 
     ('Francisco Solano', 'fsolano@comunidaddespino.cr', '8777-4567',
      'Comunidad de Desarrollo Espino', 6, 5,
-     15, 'Solicitamos 15 mice para las computadoras del aula de informática comunitaria.',
-     'Rechazada', 'No contamos con mice en inventario. Se sugiere reactivar en el próximo ciclo.', '2026-04-22 15:00:00', '2026-04-25 11:00:00', 1),
+     15, 'Solicitamos 15 mice para las computadoras del aula de informática comunitaria. Actualmente hay 10 computadoras sin periféricos.',
+     'Rechazada', 'No contamos con mice en inventario en este momento. Se sugiere reactivar en el próximo ciclo de donaciones.', '2026-04-22 15:00:00', '2026-04-25 11:00:00', 1),
 
+    -- Mayo 2026 (4)
     ('Gabriela Chaves', 'gchaves@emprendedorescr.com', '8666-2345',
      'Red de Emprendedores del Valle', 7, 1,
-     5, 'Necesitamos 5 laptops para nuestro programa de capacitación tecnológica para jóvenes.',
+     5, 'Como emprendedores necesitamos 5 laptops para nuestro programa de capacitación tecnológica para jóvenes en situación de vulnerabilidad.',
      'Aceptada', NULL, '2026-05-02 08:30:00', '2026-05-06 10:00:00', 1),
 
     ('Municipalidad de Goicoechea', 'tecnologia@munic.go.cr', '2234-5678',
      'Municipalidad de Goicoechea', 8, 2,
-     12, 'Requerimos 12 computadoras de escritorio para reemplazar los equipos del SINART.',
+     12, 'Requerimos 12 computadoras de escritorio para reemplazar los equipos del SINART que presentan fallas crónicas.',
      'Completada', 'Equipos entregados el 18/05. Funcionando correctamente.', '2026-05-10 09:00:00', '2026-05-18 14:00:00', 1),
 
     ('Iglesia Monte Sión', 'montesion@iglesia.cr', '2455-6789',
      'Iglesia Monte Sión', 9, 7,
-     3, 'Necesitamos 3 impresoras para administrar la documentación del programa social.',
+     3, 'Necesitamos 3 impresoras para administrar la documentación del programa social que atiende a 150 familias.',
      'Pendiente', NULL, '2026-05-20 13:00:00', NULL, NULL),
 
     ('Diana Montero', 'dmontero@colegiosanpedro.ed.cr', '2211-3456',
      'Colegio San Pedro Apóstol', 2, 6,
-     5, 'Solicitamos 5 tablets para el programa de educación inclusiva.',
+     5, 'Solicitamos 5 tablets para el programa de educación inclusiva del colegio, destinadas a alumnos con necesidades educativas especiales.',
      'Aceptada', NULL, '2026-05-28 10:00:00', '2026-06-02 09:00:00', 1),
 
+    -- Junio 2026 (3)
     ('Fundación Maestría', 'contacto@fundacionmaestria.org', '2288-7890',
      'Fundación Maestría Educativa', 4, 1,
-     15, 'Requerimos 15 laptops para el programa de alfabetización digital en zonas rurales.',
+     15, 'Requerimos 15 laptops para el programa de alfabetización digital en zonas rurales de Limón y Puntarenas.',
      'Completada', 'Equipos distribuidos exitosamente.', '2026-06-05 08:00:00', '2026-06-12 11:00:00', 1),
 
     ('Eduardo Umaña', 'eumana@escuelaelena.ed.cr', '2477-8901',
      'Escuela Elena Quirós', 1, 3,
-     8, 'Necesitamos 8 monitores para el centro de computo.',
-     'Rechazada', 'No hay monitores disponibles. Se programará para el próximo lote.', '2026-06-18 14:00:00', '2026-06-22 09:30:00', 1),
+     8, 'Necesitamos 8 monitores para el centro de computo. Los actuales tienen más de 10 años de uso.',
+     'Rechazada', 'No hay monitores disponibles en inventario actual. Se programará para el próximo lote.', '2026-06-18 14:00:00', '2026-06-22 09:30:00', 1),
 
     ('Liga Deportiva Alajuelita', 'ldalajuelita@deporte.cr', '8555-1234',
      'Liga Deportiva Alajuelita', 5, 2,
-     4, 'Solicitamos 4 computadoras para digitalizar los registros deportivos.',
+     4, 'Solicitamos 4 computadoras para digitalizar los registros deportivos de más de 500 atletas.',
      'Pendiente', NULL, '2026-06-25 11:30:00', NULL, NULL),
 
+    -- Julio 2026 (4)
     ('Claudia Arce', 'carce@universidadveritas.ac.cr', '2255-4321',
      'Universidad Veritas', 3, 1,
-     25, 'Programa de Responsabilidad Social: 25 laptops para estudiantes de escasos recursos.',
+     25, 'Programa de Responsabilidad Social: 25 laptops para estudiantes de arquitectura de escasos recursos.',
      'Aceptada', NULL, '2026-07-02 09:00:00', '2026-07-07 14:00:00', 1),
 
     ('Asociación de Dueños de Montecillos', 'adm@montecillos.org', '2466-5678',
      'Asociación Montecillos', 5, 9,
-     2, 'Necesitamos 2 proyectores para asambleas comunitarias y talleres.',
+     2, 'Necesitamos 2 proyectores para las asambleas comunitarias y talleres de capacitación.',
      'Pendiente', NULL, '2026-07-10 10:00:00', NULL, NULL),
 
     ('Centro de Ancianos Hogar Paz', 'direccion@hogarpaz.org', '2277-6789',
      'Centro de Ancianos Hogar Paz', 4, 2,
-     3, 'Buscamos 3 computadoras para videollamadas con familiares.',
+     3, 'Buscamos 3 computadoras para que los residentes puedan comunicarse con sus familiares por videollamada.',
      'Completada', 'Equipos entregados e instalados.', '2026-07-18 08:30:00', '2026-07-23 10:00:00', 1),
 
     ('Programa CR Futuro', 'info@crfuturo.org', '2288-8901',
      'Programa CR Futuro', 4, 1,
-     12, 'Solicitamos 12 laptops para el programa de capacitación en programación.',
+     12, 'Solicitamos 12 laptops para el programa de capacitación en programación para jóvenes de 15-25 años.',
      'Pendiente', NULL, '2026-07-28 15:00:00', NULL, NULL),
 
+    -- Agosto 2026 (3)
     ('Escuela Rural Los Angeles', 'director@losangeles.ed.cr', '2499-1234',
      'Escuela Rural Los Ángeles', 1, 1,
-     8, 'Escuela rural con 80 alumnos sin acceso a tecnología. Necesitamos 8 laptops.',
+     8, 'Escuela rural con 80 alumnos sin acceso a tecnología. Necesitamos urgentemente 8 laptops para implementar el currículo digital.',
      'Pendiente', NULL, '2026-08-02 08:00:00', NULL, NULL),
 
     ('COOPENAE', 'sostenibilidad@coopenae.fi.cr', '2211-2345',
      'Cooperativa COOPENAE', 10, 2,
-     10, 'Donación solidaria: 10 escritorios de nuestra sede central renovados.',
+     10, 'Donación solidaria: 10 escritorios de nuestra sede central que fueron renovados.',
      'Pendiente', NULL, '2026-08-10 09:00:00', NULL, NULL),
 
     ('Red Nacional de Bibliotecas', 'proyectos@rednacionalbib.cr', '2233-3456',
      'Red Nacional de Bibliotecas Públicas', 8, 7,
-     20, 'Solicitamos 20 impresoras para las bibliotecas del programa «Tecnología para Todos».',
+     20, 'Solicitamos 20 impresoras para las 20 bibliotecas públicas participantes del programa «Tecnología para Todos».',
      'Pendiente', NULL, '2026-08-15 11:00:00', NULL, NULL);

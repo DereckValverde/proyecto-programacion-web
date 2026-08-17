@@ -7,9 +7,15 @@
 :root {
     --color-pine: #2d6758;
     --color-teal: #0092a5;
+    --color-coral: #ff6447;
+    --color-indigo: #554be4;
+    --color-grey: #f4f4f4;
+    --color-grey-dark: #282828;
     --color-grey-night: #212121;
     --color-white: #ffffff;
-
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+    --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.12);
     --font-heading: 'Poppins', sans-serif;
     --font-body: 'Inter', 'Segoe UI', system-ui, sans-serif;
 }
@@ -26,7 +32,7 @@ body {
     padding: 8px 0;
     transition: box-shadow 0.3s ease;
     border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-    box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
 }
 
 .navbar .navbar-brand {
@@ -123,13 +129,16 @@ body {
 }
 
 .dashboard-card {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
     cursor: pointer;
+    border-radius: 16px;
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    box-shadow: var(--shadow-sm);
 }
 
 .dashboard-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
 }
 
 .donaciones-pendientes,
@@ -150,6 +159,111 @@ body {
     border-radius: 5px;
 }
 
+.btn-editar:hover {
+    transition: 0.3s;
+    background-color: #e8f4fd;
+    border-color: #1565C0;
+    color: #1565C0;
+}
+
+.btn-nuevo {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 18px;
+    background-color: var(--color-pine);
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    white-space: nowrap;
+}
+
+.btn-nuevo:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(45, 103, 88, 0.3);
+}
+
+.admin-form .form-label {
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #555;
+    margin-bottom: 4px;
+}
+
+.admin-form .form-control,
+.admin-form .form-select {
+    border: 1px solid #e2e2e2;
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-size: 0.88rem;
+    background: #fafafa;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.admin-form .form-control:hover,
+.admin-form .form-select:hover {
+    border-color: #ccc;
+    background: #fff;
+}
+
+.admin-form .form-control:focus,
+.admin-form .form-select:focus {
+    border-color: var(--color-pine);
+    box-shadow: 0 0 0 3px rgba(45, 103, 88, 0.1);
+    background: #fff;
+}
+
+.admin-form textarea {
+    resize: vertical;
+}
+
+.btn-admin-guardar {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 22px;
+    background-color: var(--color-pine);
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 0.88rem;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-admin-guardar:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(45, 103, 88, 0.3);
+}
+
+.btn-admin-cancelar {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 22px;
+    background-color: #fff;
+    color: #666;
+    border: 1px solid #ddd;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.88rem;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.btn-admin-cancelar:hover {
+    background-color: #f5f5f5;
+}
+
 .btn-ver-mas:hover {
     transition: 0.3s;
     background-color: #e5edf6;
@@ -163,6 +277,13 @@ body {
 .btn-rechazar:hover {
     transition: 0.3s;
     background-color: #FDEAEA;
+}
+
+.btn-eliminar:hover {
+    transition: 0.3s;
+    background-color: #FDEAEA;
+    border-color: #dc3545;
+    color: #dc3545;
 }
 
 .estado-pendiente,
@@ -222,6 +343,80 @@ body {
     display: flex;
     gap: 5px;
     justify-content: center;
+}
+
+.table thead th {
+    background-color: rgba(45, 103, 88, 0.06);
+    color: var(--color-pine);
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid rgba(45, 103, 88, 0.12);
+    padding: 12px 16px;
+}
+
+.table tbody tr {
+    transition: background 0.15s ease;
+}
+
+.table tbody tr:hover {
+    background-color: rgba(45, 103, 88, 0.03);
+}
+
+.table-responsive {
+    border-radius: 16px;
+    border: 1px solid rgba(0, 0, 0, 0.04) !important;
+    box-shadow: var(--shadow-sm);
+}
+
+.table-responsive.border {
+    border: 1px solid rgba(0, 0, 0, 0.04) !important;
+}
+
+.boton-filtro {
+    font-weight: 600;
+    font-size: 0.85rem;
+    transition: all 0.2s ease;
+}
+
+.boton-filtro:hover {
+    background-color: rgba(255, 100, 71, 0.08);
+    border-color: var(--color-coral) !important;
+    color: var(--color-coral);
+}
+
+.admin-header {
+    margin-bottom: 8px;
+}
+
+.admin-header .admin-bar {
+    width: 36px;
+    height: 4px;
+    background: var(--color-coral);
+    border-radius: 2px;
+    margin-bottom: 12px;
+}
+
+.admin-header h2 {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    margin-bottom: 4px;
+}
+
+.admin-header p.admin-subtitle {
+    font-size: 0.9rem;
+    color: #888;
+    margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+    .admin-header h2 {
+        font-size: 1.4rem;
+    }
 }
 
 .modal-overlay {

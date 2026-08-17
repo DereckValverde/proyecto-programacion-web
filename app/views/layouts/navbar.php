@@ -19,9 +19,6 @@
                         <a class="nav-link" href="#impacto" data-section="impacto">Impacto</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#aliados" data-section="aliados">Aliados</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="#contacto" data-section="contacto">Contacto</a>
                     </li>
                     <li class="nav-item">

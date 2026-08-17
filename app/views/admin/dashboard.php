@@ -21,37 +21,38 @@
     <main class="main">
         <div class="d-flex flex-column container-fluid px-4 gap-3">
 
-            <div class="py-4">
-                <p>Panel Administrativo / <strong>Dashboard</strong></p>
-                <h2 class="dashboard-title">Panel Administrativo</h2>
+            <div class="admin-header">
+                <div class="admin-bar"></div>
+                <h2>Panel Administrativo</h2>
+                <p class="admin-subtitle">Resumen general del sistema</p>
             </div>
 
             <div class="row g-4 mb-4">
                 <div class="col-12 col-lg-4">
-                    <div class="dashboard-card bg-white text-dark p-4 rounded-3 shadow-sm p-4 h-100">
+                    <div class="dashboard-card bg-white text-dark p-4 h-100">
                         <div class="d-flex justify-content-between align-items-center">
                             <p class="card-title fw-bold fs-5 mb-0">Solicitudes Pendientes</p>
-                            <i class="bi bi-clock-history fs-5"></i>
+                            <i class="bi bi-clock-history fs-5" style="color: var(--color-coral);"></i>
                         </div>
                         <h3 class="card-value fw-bold mt-4 mb-0" id="kpiSolicitudesPendientes">0</h3>
                     </div>
                 </div>
 
                 <div class="col-12 col-lg-4">
-                    <div class="dashboard-card bg-white text-dark p-4 rounded-3 shadow-sm p-4 h-100">
+                    <div class="dashboard-card bg-white text-dark p-4 h-100">
                         <div class="d-flex justify-content-between align-items-center">
                             <p class="card-title fw-bold fs-5 mb-0">Donaciones Completadas</p>
-                            <i class="bi bi-check-circle fs-5"></i>
+                            <i class="bi bi-check-circle fs-5" style="color: var(--color-pine);"></i>
                         </div>
                         <h3 class="card-value fw-bold mt-4 mb-0" id="kpiDonacionesCompletadas">0</h3>
                     </div>
                 </div>
 
                 <div class="col-12 col-lg-4">
-                    <div class="dashboard-card bg-white text-dark p-4 rounded-3 shadow-sm p-4 h-100">
+                    <div class="dashboard-card bg-white text-dark p-4 h-100">
                         <div class="d-flex justify-content-between">
                             <p class="card-title fw-bold fs-5">CO₂ Evitado</p>
-                            <i class="bi bi-tree fs-5"></i>
+                            <i class="bi bi-tree fs-5" style="color: var(--color-teal);"></i>
                         </div>
                         <h3 class="card-value fw-bold fs-4 mt-4 mb-0" id="kpiCo2Evitado">0 kg CO₂e</h3>
                     </div>
@@ -61,14 +62,14 @@
             <div class="row pt-4 g-4">
 
                 <div class="col-12 col-md-8 d-flex flex-column">
-                    <div class="white-panel bg-white text-dark p-4 rounded-3 shadow-sm h-100">
+                    <div class="white-panel bg-white text-dark p-4 h-100">
                         <h5 class="fw-bold mb-4">Histórico Mensual de Donaciones</h5>
                         <canvas id="lineChart" style="max-height: 400px; width: 100%;"></canvas>
                     </div>
                 </div>
 
                 <div class="col-12 col-md-4 d-flex flex-column">
-                    <div class="white-panel bg-white text-dark p-4 rounded-3 shadow-sm h-100">
+                    <div class="white-panel bg-white text-dark p-4 h-100">
                         <h5 class="fw-bold mb-4 text-center">Tipos de Equipos Donados</h5>
                         <canvas id="chartArea"></canvas>
                     </div>
@@ -77,11 +78,11 @@
 
             <div class="row pt-4 g-4">
                 <div class="col-12 col-md-8 d-flex flex-column">
-                    <div class="white-panel bg-white text-dark p-4 rounded-3 shadow-sm h-100">
+                    <div class="white-panel bg-white text-dark p-4 h-100">
 
                         <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
                             <h5 class="fw-bold mb-0">Solicitudes Recientes</h5>
-                            <a href="<?= BASE_URL . 'auth/solicitudes' ?>" class="btn btn-outline-info btn-sm py-1 px-4">Ver Todas</a>
+                            <a href="<?= BASE_URL . 'auth/solicitudes' ?>" class="btn btn-sm py-1 px-4" style="background:var(--color-pine);color:#fff;border-radius:50px;font-weight:600;">Ver Todas</a>
                         </div>
 
                         <div class="table-responsive">
@@ -102,7 +103,7 @@
                 </div>
 
                 <div class="col-12 col-md-4 d-flex flex-column">
-                    <div class="white-panel bg-white text-dark p-4 rounded-3 shadow-sm h-100">
+                    <div class="white-panel bg-white text-dark p-4 h-100">
                         <h5 class="fw-bold mb-4">Últimos Logs (Auditoría)</h5>
                         <div class="list-group list-group-flush class-logs-container" id="logsContainer">
                         </div>

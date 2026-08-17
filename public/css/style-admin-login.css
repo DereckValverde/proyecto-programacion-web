@@ -1,11 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700;800&display=swap');
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+:root {
+    --color-pine: #2d6758;
+    --color-pine-dark: #235548;
+    --color-grey-night: #212121;
+    --font-heading: 'Poppins', sans-serif;
+    --font-body: 'Inter', 'Segoe UI', system-ui, sans-serif;
+}
+
 body {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+    font-family: var(--font-body);
 }
 
 .login-body {
@@ -13,25 +23,34 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: #F8F9FA;
+    background-color: #F5F8F7;
 }
 
 .login-container {
     width: 100%;
-    max-width: 400px;
+    max-width: 420px;
     margin: 15px;
-    padding: 30px;
-    font-size: 13px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    padding: 36px 32px;
+    border: none;
+    border-radius: 20px;
     background-color: #fff;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
 .login-container h1 {
     text-align: center;
-    color: #6C757D;
-    font-weight: 500;
-    margin: 20px 0;
+    color: var(--color-pine);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.4rem;
+    margin: 0 0 8px;
+}
+
+.login-container .login-subtitle {
+    text-align: center;
+    color: #888;
+    font-size: 0.85rem;
+    margin-bottom: 28px;
 }
 
 form {
@@ -40,56 +59,77 @@ form {
 }
 
 form label {
-    margin: 5px;
-    font-size: 16px;
-    font-weight: 400;
+    margin: 5px 5px 2px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #555;
 }
 
 form input {
-    margin: 5px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    margin: 2px 5px 10px;
+    padding: 12px 14px;
+    border: 1px solid #e2e2e2;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    background: #fafafa;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+form input:hover {
+    border-color: #ccc;
+    background: #fff;
+}
+
+form input:focus {
+    outline: none;
+    border-color: var(--color-pine);
+    box-shadow: 0 0 0 3px rgba(45, 103, 88, 0.1);
+    background: #fff;
 }
 
 form button {
-    margin: 10px 5px  5px;
-    padding: 10px;
+    margin: 12px 5px 5px;
+    padding: 13px;
     color: #fff;
-    background-color: #000;
-    border: 1px solid transparent;
-    border-radius: 4px;
-    font-size: 14px;
-    font-weight: 400;
-
-    transition: 0.3s;
+    background-color: var(--color-pine);
+    border: none;
+    border-radius: 50px;
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: -0.2px;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 form button:hover {
-    color: #000;
-    background-color: #eee;
-    border: 1px solid #ccc;
-    cursor: pointer;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(45, 103, 88, 0.3);
+    background-color: var(--color-pine-dark);
+    color: #fff;
 }
 
-.alerta-error{
+.alerta-error {
     text-align: center;
-    background-color: #f8d7da;
-    color: #721c24;
-    border-radius: 6px;
-    border: 1px solid #f5c6cb;
-
+    background-color: rgba(220, 53, 69, 0.06);
+    color: #c0392b;
+    border-radius: 10px;
+    border: 1px solid rgba(220, 53, 69, 0.15);
+    font-size: 0.88rem;
     animation: aparecerSuave 0.2s ease-out forwards;
 }
 
-@keyframes aparecerSuave{
-    0%{
+@keyframes aparecerSuave {
+    0% {
         opacity: 0;
         max-height: 0;
         margin-bottom: 0;
-        transform: translateY(-10px); 
+        transform: translateY(-10px);
     }
-    100%{
+
+    100% {
         opacity: 1;
         max-height: 100px;
         padding: 8px 0;

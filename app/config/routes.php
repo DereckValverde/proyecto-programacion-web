@@ -4,6 +4,7 @@
 $router = new Router();
 
 $router->get('home', ['HomeController', 'index']);
+$router->get('', ['HomeController', 'index']);
 
 $router->get('auth', ['AuthController', 'index']);
 $router->get('auth/dashboard', ['AuthController', 'dashboard']);
@@ -15,15 +16,29 @@ $router->get('donaciones/apiList', ['DonacionesController', 'apiList']);
 $router->get('donaciones/apiShow', ['DonacionesController', 'apiShow']);
 $router->get('donaciones/apiListEstado', ['DonacionesController', 'apiListEstado']);
 $router->get('donaciones/apiKpis', ['DonacionesController', 'apiKpis']);
+$router->get('donaciones/apiBuscar', ['DonacionesController', 'apiBuscar']);
 $router->post('donaciones/rechazar', ['DonacionesController', 'apiRechazar']);
 $router->post('donaciones/aceptar', ['DonacionesController', 'apiAceptar']);
+$router->post('donaciones/completar', ['DonacionesController', 'apiCompletar']);
+$router->post('donaciones/eliminar', ['DonacionesController', 'apiEliminar']);
+$router->post('donaciones/crear', ['DonacionesController', 'apiCrear']);
+$router->post('donaciones/actualizar', ['DonacionesController', 'apiActualizar']);
 
 $router->get('solicitudes/apiList', ['SolicitudesController', 'apiList']);
 $router->get('solicitudes/apiShow', ['SolicitudesController', 'apiShow']);
 $router->get('solicitudes/apiListEstado', ['SolicitudesController', 'apiListEstado']);
 $router->get('solicitudes/apiKpis', ['SolicitudesController', 'apiKpis']);
+$router->get('solicitudes/apiBuscar', ['SolicitudesController', 'apiBuscar']);
 $router->post('solicitudes/aceptar', ['SolicitudesController', 'apiAceptar']);
 $router->post('solicitudes/rechazar', ['SolicitudesController', 'apiRechazar']);
+$router->post('solicitudes/eliminar', ['SolicitudesController', 'apiEliminar']);
+$router->post('solicitudes/crear', ['SolicitudesController', 'apiCrear']);
+$router->post('solicitudes/actualizar', ['SolicitudesController', 'apiActualizar']);
+
+// Rutas públicas para el sitio
+$router->post('formularios/donacion', ['FormulariosController', 'guardarDonacion']);
+$router->post('formularios/solicitud', ['FormulariosController', 'guardarSolicitud']);
+$router->post('formularios/contacto', ['FormulariosController', 'guardarContacto']);
 
 $router->get('dashboard/apiKpis', ['DashboardController', 'apiKpis']);
 $router->get('dashboard/apiHistorialMensual', ['DashboardController', 'apiHistorialMensual']);

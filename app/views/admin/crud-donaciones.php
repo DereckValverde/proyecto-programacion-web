@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -21,16 +21,17 @@
     <main class="main">
         <div class="d-flex flex-column container-fluid px-4 gap-5">
 
-            <div class="dashboard-head">
-                <p>Panel Administrativo / <strong>Donaciones</strong></p>
+            <div class="admin-header">
+                <div class="admin-bar"></div>
                 <h2>Gestión de Donaciones</h2>
+                <p class="admin-subtitle">Revisá, aceptá o rechazá las donaciones registradas</p>
             </div>
 
             <div class="row g-4 mb-4">
                 <div class="col-12 col-lg-3">
-                    <div class="d-flex flex-column dashboard-card shadow text-dark bg-white border border-1 border-dark-light rounded-4 p-3">
+                    <div class="d-flex flex-column dashboard-card text-dark bg-white p-3">
                         <div class="d-flex justify-content-between align-items-center">
-                            <p class="card-title text-secondary  fw-bold fs-8 mb-0">Total de Donaciones</p>
+                            <p class="card-title text-secondary fw-bold fs-8 mb-0">Total de Donaciones</p>
                             <i class="bi bi-box2-heart fs-5 text-secondary"></i>
                         </div>
                         <h3 class="card-value text-dark fs-5 fw-bold mt-4 mb-0" id="kpiTotalDonaciones"></h3>
@@ -38,7 +39,7 @@
                 </div>
 
                 <div class="col-12 col-lg-3">
-                    <div class="d-flex flex-column dashboard-card shadow border border-1 border-dark-light  rounded-4 p-3 donaciones-pendientes">
+                    <div class="d-flex flex-column dashboard-card donaciones-pendientes p-3">
                         <div class="d-flex justify-content-between align-items-center">
                             <p class="card-title fw-bold fs-8 mb-0">Pendientes de Revisar</p>
                             <i class="bi bi-clipboard-check fs-5"></i>
@@ -48,7 +49,7 @@
                 </div>
 
                 <div class="col-12 col-lg-3">
-                    <div class="d-flex flex-column dashboard-card shadow text-dark bg-white border border-1 border-dark-light rounded-4 p-3">
+                    <div class="d-flex flex-column dashboard-card text-dark bg-white p-3">
                         <div class="d-flex justify-content-between align-items-center">
                             <p class="card-title text-secondary fw-bold fs-8 mb-0"> Donaciones Aceptadas</p>
                             <i class="bi bi-check-circle fs-5 text-secondary"></i>
@@ -58,7 +59,7 @@
                 </div>
 
                 <div class="col-12 col-lg-3">
-                    <div class="d-flex flex-column dashboard-card shadow text-dark bg-white border border-1 border-dark-light rounded-4 p-3">
+                    <div class="d-flex flex-column dashboard-card text-dark bg-white p-3">
                         <div class="d-flex justify-content-between align-items-center">
                             <p class="card-title text-secondary fw-bold fs-8 mb-0">Donaciones Rechazadas</p>
                             <i class="bi bi-x-circle fs-5 text-secondary"></i>
@@ -68,11 +69,14 @@
                 </div>
             </div>
 
-            <div class="d-flex flex-wrap gap-2">
+            <div class="d-flex flex-wrap gap-2 align-items-center">
+                <button class="btn-nuevo" onclick="abrirModalCrearDonacion()"><i class="bi bi-plus-lg"></i> Nueva Donación</button>
                 <button class="btn btn-light border border-dark-light rounded-pill boton-filtro boton-activo" id="btnTodas">Todas</button>
                 <button class="btn btn-light border border-dark-light rounded-pill boton-filtro" id="btnPendientes">Pendientes</button>
                 <button class="btn btn-light border border-dark-light rounded-pill boton-filtro" id="btnAceptadas">Aceptadas</button>
                 <button class="btn btn-light border border-dark-light rounded-pill boton-filtro" id="btnRechazadas">Rechazadas</button>
+                <button class="btn btn-light border border-dark-light rounded-pill boton-filtro" id="btnCompletadas">Completadas</button>
+                <input type="text" class="form-control rounded-pill border border-dark-light" id="busquedaDonaciones" placeholder="Buscar por nombre, marca, modelo o tipo..." style="max-width: 320px; margin-left: auto;">
             </div>
 
             <div class="table-responsive border border-dark-light border border-bottom-0 rounded-3">

@@ -271,6 +271,22 @@
                             <small class="field-error" id="error-telefonoDonador"></small>
                         </div>
                         <div class="col-md-6">
+                            <label for="tipoDonador" class="form-label">
+                                ¿Quién dona?
+                            </label>
+                            <select class="form-select" id="tipoDonador" name="tipoDonador" required>
+                                <option value="Persona Fisica" selected>Persona Física</option>
+                                <option value="Empresa">Empresa</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6" id="detalleDonadorGroup" style="display: none;">
+                            <label for="detalleDonador" class="form-label">
+                                Departamento o empleado
+                            </label>
+                            <input type="text" class="form-control" id="detalleDonador" name="detalleDonador"
+                                placeholder="Ej: Depto. de TI / Juan Pérez">
+                        </div>
+                        <div class="col-md-6">
                             <label for="tipoEquipoDonacion" class="form-label">
                                 Tipo de equipo
                             </label>
@@ -597,7 +613,7 @@
                         <div class="form-card-header">
                             <i class="fas fa-paper-plane"></i>
                             <div>
-                                <h3 style="color:var(--color-teal);">Envíanos un mensaje</h3>
+                                <h3 style="color:var(--color-teal);">Envíanos un mensaje o testimonio</h3>
                                 <p>Respondemos en menos de 24 horas</p>
                             </div>
                         </div>
@@ -721,6 +737,7 @@
     <?php require_once LAYOUT_PATH . '/footer.php' ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
         const BASE_URL = "<?= BASE_URL ?>";

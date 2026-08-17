@@ -37,6 +37,8 @@ class FormulariosController
             'nombreDonador'       => trim($datos['nombreDonador']),
             'correoDonador'       => trim($datos['correoDonador']),
             'telefonoDonador'     => trim($datos['telefonoDonador'] ?? ''),
+            'tipoDonador'         => trim($datos['tipoDonador'] ?? 'Persona Fisica'),
+            'detalleDonador'      => trim($datos['detalleDonador'] ?? ''),
             'tipoEquipo'          => trim($datos['tipoEquipo']),
             'marca'               => trim($datos['marca'] ?? ''),
             'modelo'              => trim($datos['modelo'] ?? ''),
@@ -48,7 +50,7 @@ class FormulariosController
         if ($id) {
             echo json_encode([
                 'success' => true,
-                'message' => 'Su donación fue registrada con éxito. ¡Gracias por ayudar!',
+                'message' => 'Donación registrada con éxito. Nuestro equipo se pondrá en contacto para coordinar la recolección pronto.',
                 'id' => $id
             ]);
         } else {

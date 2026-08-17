@@ -82,6 +82,8 @@ CREATE TABLE `donaciones` (
   `nombreDonador` varchar(100) NOT NULL,
   `correoDonador` varchar(100) NOT NULL,
   `telefonoDonador` varchar(20) DEFAULT NULL,
+  `tipoDonador` enum('Persona Fisica','Empresa') DEFAULT 'Persona Fisica',
+  `detalleDonador` varchar(150) DEFAULT NULL,
   `idTipoEquipo` int(11) NOT NULL,
   `marca` varchar(50) DEFAULT NULL,
   `modelo` varchar(100) DEFAULT NULL,

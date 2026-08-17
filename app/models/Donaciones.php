@@ -18,6 +18,8 @@ class Donaciones
             d.nombreDonador,
             d.correoDonador,
             d.telefonoDonador,
+            d.tipoDonador,
+            d.detalleDonador,
             t.nombre AS tipoEquipo,
             d.marca,
             d.modelo,
@@ -52,6 +54,8 @@ class Donaciones
             d.nombreDonador,
             d.correoDonador,
             d.telefonoDonador,
+            d.tipoDonador,
+            d.detalleDonador,
             t.nombre AS tipoEquipo,
             d.marca,
             d.modelo,
@@ -99,6 +103,8 @@ class Donaciones
             d.nombreDonador,
             d.correoDonador,
             d.telefonoDonador,
+            d.tipoDonador,
+            d.detalleDonador,
             t.nombre AS tipoEquipo,
             d.marca,
             d.modelo,
@@ -178,15 +184,18 @@ class Donaciones
         $idTipoEquipo = $this->getTipoEquipoId($datos['tipoEquipo'] ?? '');
 
         $query = "INSERT INTO donaciones
-            (nombreDonador, correoDonador, telefonoDonador, idTipoEquipo, marca, modelo,
+            (nombreDonador, correoDonador, telefonoDonador, tipoDonador, detalleDonador,
+             idTipoEquipo, marca, modelo,
              estadoEquipo, cantidadEquipos, descripcionAdicional, estado)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 'Pendiente')
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'Pendiente')
         ";
         $stmt = $this->db->prepare($query);
         $exito = $stmt->execute([
             $datos['nombreDonador'],
             $datos['correoDonador'],
             $datos['telefonoDonador'] ?? null,
+            $datos['tipoDonador'] ?? 'Persona Fisica',
+            $datos['detalleDonador'] ?? null,
             $idTipoEquipo,
             $datos['marca'] ?? null,
             $datos['modelo'] ?? null,
@@ -210,6 +219,8 @@ class Donaciones
             'nombreDonador',
             'correoDonador',
             'telefonoDonador',
+            'tipoDonador',
+            'detalleDonador',
             'marca',
             'modelo',
             'estadoEquipo',

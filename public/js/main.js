@@ -206,6 +206,14 @@ document.addEventListener('DOMContentLoaded', function () {
             validarCantidad('cantidadDonacion', 'La cantidad');
         });
 
+        var tipoDonador = document.getElementById('tipoDonador');
+        var detalleDonadorGroup = document.getElementById('detalleDonadorGroup');
+        if (tipoDonador) {
+            tipoDonador.addEventListener('change', function () {
+                detalleDonadorGroup.style.display = this.value === 'Empresa' ? '' : 'none';
+            });
+        }
+
         formDonacion.addEventListener('submit', async function (e) {
             e.preventDefault();
             limpiarTodosLosErrores(formDonacion);
@@ -243,14 +251,17 @@ document.addEventListener('DOMContentLoaded', function () {
                 var resData = await response.json();
 
                 if (resData.success) {
-                    alertDiv.className = 'form-alert alert-success';
-                    alertDiv.textContent = resData.message;
-                    alertDiv.style.display = 'block';
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Donación registrada',
+                        text: resData.message,
+                        confirmButtonColor: '#2d6758',
+                        confirmButtonText: 'Entendido'
+                    });
                     formDonacion.reset();
                     formDonacion.querySelectorAll('.is-valid').forEach(function (el) {
                         el.classList.remove('is-valid');
                     });
-                    alertDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
                 } else {
                     var mensaje = resData.message || 'Verifique los datos e intente nuevamente.';
                     if (Array.isArray(resData.errores)) {
@@ -340,11 +351,14 @@ document.addEventListener('DOMContentLoaded', function () {
                 var resData = await response.json();
 
                 if (resData.success) {
-                    alertDiv.className = 'form-alert alert-success';
-                    alertDiv.textContent = resData.message;
-                    alertDiv.style.display = 'block';
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Solicitud registrada',
+                        text: resData.message,
+                        confirmButtonColor: '#2d6758',
+                        confirmButtonText: 'Entendido'
+                    });
                     formSolicitud.reset();
-                    alertDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
                 } else {
                     var mensaje = resData.message || 'Verifique los datos e intente nuevamente.';
                     if (Array.isArray(resData.errores)) {
@@ -418,11 +432,14 @@ document.addEventListener('DOMContentLoaded', function () {
                 var resData = await response.json();
 
                 if (resData.success) {
-                    alertDiv.className = 'form-alert alert-success';
-                    alertDiv.textContent = resData.message;
-                    alertDiv.style.display = 'block';
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Mensaje enviado',
+                        text: resData.message,
+                        confirmButtonColor: '#2d6758',
+                        confirmButtonText: 'Entendido'
+                    });
                     formContacto.reset();
-                    alertDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
                 } else {
                     var mensaje = resData.message || 'Verifique los datos e intente nuevamente.';
                     if (Array.isArray(resData.errores)) {

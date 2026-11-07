@@ -22,7 +22,7 @@ loadEnv(dirname(__DIR__, 2) . '/.env');
 define('DB_HOST', getenv('DB_HOST') ?: 'localhost');
 define('DB_NAME', getenv('DB_NAME') ?: 'techdonaciones');
 define('DB_USER', getenv('DB_USER') ?: 'root');
-define('DB_PASS', getenv('DB_PASS') === false ? 'Derecktiti12345@' : getenv('DB_PASS'));
+define('DB_PASS', getenv('DB_PASS') === false ? '' : getenv('DB_PASS'));
 define('DB_CHARSET', getenv('DB_CHARSET') ?: 'utf8');
 
 define('APP_PATH', dirname(__DIR__) . '/');
